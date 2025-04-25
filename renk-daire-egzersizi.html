@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Renkli Daire Egzersizi | Göz Egzersizi</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --primary-dark: #004494;
+            --secondary-color: #00a0e3;
+            --success-color: #06d6a0;
+            --danger-color: #ef476f;
+            --warning-color: #ffd166;
+            --dark-color: #333333;
+            --light-color: #f5f9ff;
+            --gray-color: #f0f2f5;
+            --gray-dark: #adb5bd;
+        }
+        
+        * {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            overscroll-behavior: none;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background: var(--primary-dark);
+            padding: 15px 0;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .back-button {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.1);
+            transition: background 0.3s;
+        }
+        
+        .back-button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10px;
+            transform: scale(0.96);
+            transform-origin: top center;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 12px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 24px;
+        }
+        
+        .exercise-info {
+            background-color: white;
+            border-radius: 12px;
+            padding: 12px;
+            margin: 12px 0;
+            text-align: center;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .toolbar {
+            background-color: white;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 12px;
+            align-items: center;
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-btn {
+            background: var(--light-color);
+            border: 1px solid var(--gray-color);
+            border-radius: 6px;
+            padding: 0;
+            display: flex;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .dropdown-btn:hover, .dropdown-btn:active {
+            background: var(--gray-color);
+        }
+        
+        .dropdown-title {
+            border-right: 1px solid var(--gray-color);
+            padding: 8px 10px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .dropdown-arrow {
+            padding: 8px;
+            color: var(--primary-color);
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 6;
+            border-radius: 6px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s ease;
+        }
+        
+        .dropdown-content a:hover, .dropdown-content a:active {
+            background-color: var(--gray-color);
+            color: var(--primary-color);
+        }
+        
+        .timer-bar {
+            background: linear-gradient(to right, var(--dark-color), #3a455c);
+            color: white;
+            height: 36px;
+            line-height: 36px;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .info-text {
+            padding: 0 15px;
+            font-weight: 500;
+        }
+        
+        .timer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0 20px;
+            border-radius: 0 8px 8px 0;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        
+        .exercise-area {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 460px;
+            margin: 8px auto;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .circle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .growing-circle {
+            position: absolute;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 68, 148, 0.8), rgba(0, 160, 227, 0.8));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .start-button, .stop-button {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin: 5px;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .start-button:active, .stop-button:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .stop-button {
+            background: linear-gradient(to right, var(--danger-color), #d64161);
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            z-index: 5;
+            display: none;
+        }
+        
+        .countdown {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background: white;
+            font-size: 70px;
+            color: var(--primary-color);
+            border: 3px solid var(--primary-color);
+            display: none;
+            z-index: 20;
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            font-weight: bold;
+        }
+        
+        .color-selection {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding: 0 10px;
+        }
+        
+        .color-option {
+            display: flex;
+            align-items: center;
+            background-color: var(--gray-color);
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .color-option:hover {
+            background-color: #e9ecef;
+        }
+        
+        .color-option.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .color-swatch {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .color-name {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .completion-message {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .completion-title {
+            color: var(--dark-color);
+            font-size: 24px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .result-stats {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: left;
+            font-size: 15px;
+        }
+        
+        .result-stats p {
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .result-stats p span {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .submit-button, .restart-button {
+            background: linear-gradient(to right, var(--success-color), #3cb371);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.2s ease;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .submit-button:hover, .restart-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+        
+        .submit-button:active, .restart-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .stats-container {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stats-container div {
+            margin: 5px 0;
+        }
+        
+        .stats-container span {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .fullscreen-button {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            z-index: 5;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .fullscreen-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        }
+        
+        .fullscreen {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .fullscreen .exercise-area {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        
+        .fullscreen-exit {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10000;
+            display: none;
+            transition: all 0.2s ease;
+        }
+        
+        .fullscreen-exit:hover {
+            background: rgba(0,0,0,0.3);
+        }
+        
+        /* Mobil cihazlar için özel düzenlemeler */
+        @media (max-width: 768px) {
+            .color-selection {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                top: 10px;
+                right: 10px;
+                padding: 5px 8px;
+                font-size: 10px;
+                max-width: 120px;
+                border-radius: 6px;
+            }
+            
+            .stats-container div {
+                margin: 2px 0;
+            }
+            
+            .countdown {
+                width: 80px;
+                height: 80px;
+                line-height: 80px;
+                font-size: 50px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .dropdown {
+                margin: 5px 0;
+            }
+            
+            .exercise-area {
+                height: 400px;
+            }
+            
+            .completion-message {
+                padding: 15px;
+                width: 85%;
+            }
+            
+            .result-stats {
+                padding: 10px;
+                font-size: 14px;
+            }
+            
+            .completion-title {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Beyin Enstitüsü</a>
+            <a href="index.html" class="back-button">← Tüm Egzersizler</a>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <div class="header">
+            <h1>Renkli Daire Egzersizi</h1>
+        </div>
+        
+        <div class="exercise-info">
+            Bu egzersiz, görsel algı ve kısa süreli bellek becerilerinizi geliştirmeyi amaçlar.
+            Ekranın merkezinde farklı renklerde büyüyen daireler göreceksiniz.
+            Bu dairelerin renklerini iyi gözlemleyin ve hatırlamaya çalışın.
+            Egzersiz sonunda hangi renkleri gördüğünüzü seçmeniz istenecek.
+            <br><br>
+            <strong>Gözünüzü sabit tutun ve dairelerin büyümesini takip edin!</strong>
+        </div>
+        
+        <div class="toolbar">
+            <div class="dropdown">
+                <button class="dropdown-btn" id="durationBtn">
+                    <div class="dropdown-title" id="selectedDuration">1:00</div>
+                    <div class="dropdown-arrow">▾</div>
+                </button>
+                <div id="durationDropdown" class="dropdown-content">
+                    <a href="#" id="duration30">0:30</a>
+                    <a href="#" id="duration60">1:00</a>
+                    <a href="#" id="duration120">2:00</a>
+                    <a href="#" id="duration180">3:00</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn" id="speedBtn">
+                    <div class="dropdown-title" id="selectedSpeed">Normal (2.5sn)</div>
+                    <div class="dropdown-arrow">▾</div>
+                </button>
+                <div id="speedDropdown" class="dropdown-content">
+                    <a href="#" id="speed1">Yavaş (4sn)</a>
+                    <a href="#" id="speed2">Normal (2.5sn)</a>
+                    <a href="#" id="speed3">Hızlı (1.5sn)</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn" id="colorCountBtn">
+                    <div class="dropdown-title" id="selectedColorCount">6 Renk</div>
+                    <div class="dropdown-arrow">▾</div>
+                </button>
+                <div id="colorCountDropdown" class="dropdown-content">
+                    <a href="#" id="colors2">2 Renk</a>
+                    <a href="#" id="colors4">4 Renk</a>
+                    <a href="#" id="colors6">6 Renk</a>
+                    <a href="#" id="colors8">8 Renk</a>
+                    <a href="#" id="colors10">10 Renk</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timer-bar">
+            <span class="info-text">Daireleri izleyin ve renklerini hatırlamaya çalışın</span>
+            <span class="timer" id="timer">01:00</span>
+        </div>
+        
+        <div class="exercise-area" id="exerciseArea">
+            <button class="fullscreen-button" id="fullscreenButton">Tam Ekran</button>
+            <button class="fullscreen-exit" id="fullscreenExit">✕</button>
+            <button class="stop-button" id="stopButton">Egzersizi Durdur</button>
+            
+            <div class="circle-container" id="circleContainer">
+                <!-- Daireler JavaScript ile eklenecek -->
+            </div>
+            
+            <div class="stats-container" id="statsContainer" style="display: none;">
+                <div>Daire Sayısı: <span id="circleCount">0</span></div>
+                <div>Gösterilen Renkler: <span id="colorCount">0</span></div>
+            </div>
+            
+            <div class="overlay" id="startOverlay">
+                <button class="start-button" id="startButton">Egzersizi Başlat</button>
+            </div>
+            
+            <div class="countdown" id="countdown">3</div>
+            
+            <div id="colorSelectionOverlay" class="overlay" style="display: none;">
+                <div class="completion-message">
+                    <h2 class="completion-title">Hangi Renkleri Gördünüz?</h2>
+                    <p>Bu egzersiz sırasında gördüğünüz tüm renkleri seçin:</p>
+                    
+                    <div class="color-selection" id="colorSelection">
+                        <!-- Renk seçenekleri JavaScript ile eklenecek -->
+                    </div>
+                    
+                    <button class="submit-button" id="submitButton">Cevapları Gönder</button>
+                </div>
+            </div>
+            
+            <div id="completionOverlay" class="overlay" style="display: none;">
+                <div class="completion-message">
+                    <h2 class="completion-title">Egzersiz Tamamlandı!</h2>
+                    <div class="result-stats">
+                        <p>Toplam Daire: <span id="totalCircles">0</span></p>
+                        <p>Doğru Hatırlanan Renkler: <span id="correctColors">0</span></p>
+                        <p>Kaçırılan Renkler: <span id="missedColors">0</span></p>
+                        <p>Fazladan İşaretlenen Renkler: <span id="extraColors">0</span></p>
+                        <p>Başarı Oranı: <span id="successRate">0%</span></p>
+                    </div>
+                    <button class="restart-button" id="restartButton">Yeni Egzersiz Başlat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Kullanılabilecek tüm renkler
+        const allColors = [
+            { name: "Kırmızı", value: "#e63946" },
+            { name: "Mavi", value: "#457b9d" },
+            { name: "Yeşil", value: "#2a9d8f" },
+            { name: "Sarı", value: "#ffbe0b" },
+            { name: "Mor", value: "#8338ec" },
+            { name: "Siyah", value: "#1d3557" },
+            { name: "Beyaz", value: "#f8f9fa" },
+            { name: "Turuncu", value: "#fb8500" },
+            { name: "Pembe", value: "#ff6392" },
+            { name: "Turkuaz", value: "#48cae4" }
+        ];
+
+        // Egzersiz ayarları
+        let duration = 60;  // saniye
+        let speed = 2;      // 1: yavaş, 2: normal, 3: hızlı
+        let maxColorCount = 6; // Maksimum gösterilecek renk sayısı (varsayılan 6)
+        let availableColors = allColors.slice(0, maxColorCount);
+        let exerciseStarted = false;
+        let circleCount = 0;
+        let shownColors = []; // Gösterilen renkler
+        let isFullscreen = false;
+        
+        // Zamanlayıcılar
+        let exerciseTimer;
+        let circleTimer;
+        let remainingTime = 60;
+        
+        // Hıza göre büyüme süreleri (ms)
+        const growthDurations = [4000, 2500, 1500]; // yavaş, normal, hızlı
+        
+        // DOM elementleri hazır olduğunda çalışacak
+        document.addEventListener('DOMContentLoaded', function() {
+            setupUI();
+        });
+        
+        // Kullanıcı arayüzü ayarları
+        function setupUI() {
+            // Dropdown açma işlemleri
+            document.getElementById('durationBtn').addEventListener('click', function() {
+                toggleDropdown('durationDropdown');
+            });
+            
+            document.getElementById('speedBtn').addEventListener('click', function() {
+                toggleDropdown('speedDropdown');
+            });
+            
+            document.getElementById('colorCountBtn').addEventListener('click', function() {
+                toggleDropdown('colorCountDropdown');
+            });
+            
+            // Süre seçenekleri
+            document.getElementById('duration30').addEventListener('click', function(e) {
+                e.preventDefault();
+                setDuration(30);
+            });
+            
+            document.getElementById('duration60').addEventListener('click', function(e) {
+                e.preventDefault();
+                setDuration(60);
+            });
+            
+            document.getElementById('duration120').addEventListener('click', function(e) {
+                e.preventDefault();
+                setDuration(120);
+            });
+            
+            document.getElementById('duration180').addEventListener('click', function(e) {
+                e.preventDefault();
+                setDuration(180);
+            });
+            
+            // Hız seçenekleri
+            document.getElementById('speed1').addEventListener('click', function(e) {
+                e.preventDefault();
+                setSpeed(1);
+            });
+            
+            document.getElementById('speed2').addEventListener('click', function(e) {
+                e.preventDefault();
+                setSpeed(2);
+            });
+            
+            document.getElementById('speed3').addEventListener('click', function(e) {
+                e.preventDefault();
+                setSpeed(3);
+            });
+            
+            // Renk sayısı seçenekleri
+            document.getElementById('colors2').addEventListener('click', function(e) {
+                e.preventDefault();
+                setColorCount(2);
+            });
+            
+            document.getElementById('colors4').addEventListener('click', function(e) {
+                e.preventDefault();
+                setColorCount(4);
+            });
+            
+            document.getElementById('colors6').addEventListener('click', function(e) {
+                e.preventDefault();
+                setColorCount(6);
+            });
+            
+            document.getElementById('colors8').addEventListener('click', function(e) {
+                e.preventDefault();
+                setColorCount(8);
+            });
+            
+            document.getElementById('colors10').addEventListener('click', function(e) {
+                e.preventDefault();
+                setColorCount(10);
+            });
+            
+            // Tam ekran butonları
+            document.getElementById('fullscreenButton').addEventListener('click', toggleFullscreen);
+            document.getElementById('fullscreenExit').addEventListener('click', exitFullscreen);
+            
+            // Butonlara olay dinleyicileri
+            document.getElementById('startButton').addEventListener('click', startExercise);
+            document.getElementById('stopButton').addEventListener('click', stopExercise);
+            document.getElementById('submitButton').addEventListener('click', checkResults);
+            document.getElementById('restartButton').addEventListener('click', resetExercise);
+            
+            // Dışarıya tıklandığında dropdown menüleri kapat
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.dropdown-btn') && !event.target.closest('.dropdown-content')) {
+                    closeAllDropdowns();
+                }
+            });
+            
+            // ESC tuşu ile tam ekrandan çıkma
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && isFullscreen) {
+                    exitFullscreen();
+                }
+            });
+        }
+        
+        // Dropdown'u aç/kapat
+        function toggleDropdown(id) {
+            if (exerciseStarted) return;
+            
+            const dropdown = document.getElementById(id);
+            const isOpen = dropdown.style.display === 'block';
+            
+            // Önce tüm dropdown'ları kapat
+            closeAllDropdowns();
+            
+            // Tıklanan dropdown açık değilse aç
+            if (!isOpen) {
+                dropdown.style.display = 'block';
+            }
+        }
+        
+        // Tüm dropdown'ları kapat
+        function closeAllDropdowns() {
+            const dropdowns = document.getElementsByClassName('dropdown-content');
+            for (let i = 0; i < dropdowns.length; i++) {
+                dropdowns[i].style.display = 'none';
+            }
+        }
+        
+        // Süreyi ayarla
+        function setDuration(seconds) {
+            duration = seconds;
+            remainingTime = seconds;
+            
+            let durationText = '';
+            if (seconds < 60) {
+                durationText = `0:${seconds < 10 ? '0' : ''}${seconds}`;
+            } else {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                durationText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+            
+            document.getElementById('selectedDuration').innerText = durationText;
+            document.getElementById('timer').innerText = durationText;
+            closeAllDropdowns();
+        }
+        
+        // Hızı ayarla
+        function setSpeed(newSpeed) {
+            speed = newSpeed;
+            const speedTexts = ['Yavaş (4sn)', 'Normal (2.5sn)', 'Hızlı (1.5sn)'];
+            document.getElementById('selectedSpeed').innerText = speedTexts[newSpeed - 1];
+            closeAllDropdowns();
+        }
+        
+        // Renk sayısını ayarla
+        function setColorCount(count) {
+            maxColorCount = count;
+            availableColors = allColors.slice(0, maxColorCount);
+            document.getElementById('selectedColorCount').innerText = `${count} Renk`;
+            closeAllDropdowns();
+        }
+        
+        // Tam ekran modunu aç/kapat
+        function toggleFullscreen() {
+            const exerciseArea = document.getElementById('exerciseArea');
+            
+            if (!isFullscreen) {
+                isFullscreen = true;
+                exerciseArea.classList.add('fullscreen');
+                document.getElementById('fullscreenExit').style.display = 'block';
+                document.getElementById('fullscreenButton').style.display = 'none';
+                
+                // Stats container'ı tam ekranda daha iyi göster
+                const statsContainer = document.getElementById('statsContainer');
+                if (statsContainer.style.display !== 'none') {
+                    statsContainer.style.top = '80px';
+                }
+            }
+        }
+        
+        // Tam ekrandan çık
+        function exitFullscreen() {
+            const exerciseArea = document.getElementById('exerciseArea');
+            
+            if (isFullscreen) {
+                isFullscreen = false;
+                exerciseArea.classList.remove('fullscreen');
+                document.getElementById('fullscreenExit').style.display = 'none';
+                document.getElementById('fullscreenButton').style.display = 'block';
+                
+                // Stats container pozisyonunu geri al
+                const statsContainer = document.getElementById('statsContainer');
+                statsContainer.style.top = '15px';
+            }
+        }
+        
+        // Zamanı formatla
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+        
+        // Rastgele renk seç
+        function getRandomColor() {
+            const randomIndex = Math.floor(Math.random() * availableColors.length);
+            return availableColors[randomIndex];
+        }
+        
+        // Yeni daire oluştur ve büyüt
+        function createAndGrowCircle() {
+            if (!exerciseStarted) return;
+            
+            // Daire sayısını artır
+            circleCount++;
+            document.getElementById('circleCount').innerText = circleCount;
+            
+            // Rastgele renk seç
+            const selectedColor = getRandomColor();
+            
+            // Eğer renk daha önce gösterilmediyse listeye ekle
+            if (!shownColors.some(color => color.name === selectedColor.name)) {
+                shownColors.push(selectedColor);
+                document.getElementById('colorCount').innerText = shownColors.length;
+            }
+            
+            // Daire oluştur
+            const circle = document.createElement('div');
+            circle.className = 'growing-circle';
+            circle.style.backgroundColor = selectedColor.value;
+            circle.style.width = '10px';
+            circle.style.height = '10px';
+            
+            // Daireyi container'a ekle
+            const container = document.getElementById('circleContainer');
+            container.appendChild(circle);
+            
+            // Büyüme animasyonu
+            const growthDuration = growthDurations[speed - 1];
+            const startTime = performance.now();
+            
+            // Egzersiz alanının boyutlarını al
+            const exerciseArea = document.getElementById('exerciseArea');
+            const areaWidth = exerciseArea.clientWidth;
+            const areaHeight = exerciseArea.clientHeight;
+            
+            // Minimum boyut (ekranın %80'i veya 100vmin)
+            const maxSize = Math.min(areaWidth, areaHeight) * 0.8;
+            
+            function grow(timestamp) {
+                if (!exerciseStarted) return;
+                
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / growthDuration, 1);
+                const size = progress * maxSize;
+                
+                circle.style.width = `${size}px`;
+                circle.style.height = `${size}px`;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(grow);
+                } else {
+                    // Daire büyümesi tamamlandı
+                    setTimeout(() => {
+                        if (container.contains(circle)) {
+                            container.removeChild(circle);
+                        }
+                        
+                        // Egzersiz devam ediyorsa sonraki daireyi planla
+                        if (exerciseStarted) {
+                            const waitTime = 1000; // Sabit bekleme süresi 1 saniye
+                            circleTimer = setTimeout(createAndGrowCircle, waitTime);
+                        }
+                    }, 200);
+                }
+            }
+            
+            // Büyüme animasyonunu başlat
+            requestAnimationFrame(grow);
+        }
+        
+        // Egzersizi başlat
+        function startExercise() {
+            // Egzersiz zaten başladıysa işlem yapma
+            if (exerciseStarted) return;
+            
+            // Değişkenleri sıfırla
+            exerciseStarted = true;
+            circleCount = 0;
+            shownColors = [];
+            remainingTime = duration;
+            
+            // İstatistikleri güncelle
+            document.getElementById('circleCount').innerText = '0';
+            document.getElementById('colorCount').innerText = '0';
+            document.getElementById('statsContainer').style.display = 'block';
+            
+            // UI elemanlarını güncelle
+            document.getElementById('stopButton').style.display = 'block';
+            document.getElementById('startOverlay').style.display = 'none';
+            document.getElementById('timer').innerText = formatTime(remainingTime);
+            
+            // Tam ekran modunu etkinleştir
+            if (!isFullscreen) {
+                toggleFullscreen();
+            }
+            
+            // Geri sayımı göster
+            const countdownEl = document.getElementById('countdown');
+            countdownEl.style.display = 'block';
+            countdownEl.innerText = '3';
+            
+            // Manuel olarak geri sayım yap, fonksiyon çağrıları ile
+            startCountdown();
+        }
+        
+        // Geri sayımı başlat
+        function startCountdown() {
+            const countdownEl = document.getElementById('countdown');
+            let count = 3;
+            
+            function updateCountdown() {
+                countdownEl.innerText = count;
+                
+                if (count > 0) {
+                    count--;
+                    setTimeout(updateCountdown, 1000);
+                } else {
+                    countdownEl.style.display = 'none';
+                    
+                    // Egzersizi başlat
+                    startTimer();
+                    createAndGrowCircle();
+                }
+            }
+            
+            // İlk güncellemeyi başlat
+            updateCountdown();
+        }
+        
+        // Zamanlayıcıyı başlat
+        function startTimer() {
+            exerciseTimer = setInterval(function() {
+                remainingTime--;
+                document.getElementById('timer').innerText = formatTime(remainingTime);
+                
+                if (remainingTime <= 0) {
+                    endExercise();
+                }
+            }, 1000);
+        }
+        
+        // Egzersizi durdur
+        function stopExercise() {
+            if (!exerciseStarted) return;
+            endExercise();
+        }
+        
+        // Egzersizi sonlandır
+        function endExercise() {
+            // Egzersiz durumunu güncelle
+            exerciseStarted = false;
+            
+            // Tüm zamanlayıcıları temizle
+            clearInterval(exerciseTimer);
+            clearTimeout(circleTimer);
+            
+            // Tüm daireleri temizle
+            document.getElementById('circleContainer').innerHTML = '';
+            
+            // UI elemanlarını güncelle
+            document.getElementById('statsContainer').style.display = 'none';
+            document.getElementById('stopButton').style.display = 'none';
+            
+            // Renk seçim ekranını göster
+            prepareColorSelection();
+        }
+        
+        // Renk seçim ekranını hazırla
+        function prepareColorSelection() {
+            const colorSelection = document.getElementById('colorSelection');
+            colorSelection.innerHTML = '';
+            
+            // Tüm renkleri ekle (önceden belirlenen renk sayısına göre)
+            availableColors.forEach(color => {
+                const colorOption = document.createElement('div');
+                colorOption.className = 'color-option';
+                colorOption.dataset.color = color.name;
+                
+                const colorSwatch = document.createElement('div');
+                colorSwatch.className = 'color-swatch';
+                colorSwatch.style.backgroundColor = color.value;
+                
+                const colorName = document.createElement('div');
+                colorName.className = 'color-name';
+                colorName.innerText = color.name;
+                
+                colorOption.appendChild(colorSwatch);
+                colorOption.appendChild(colorName);
+                
+                // Tıklama olayı ekle
+                colorOption.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                });
+                
+                colorSelection.appendChild(colorOption);
+            });
+            
+            // Renk seçim ekranını göster
+            document.getElementById('colorSelectionOverlay').style.display = 'flex';
+        }
+        
+        // Cevapları kontrol et
+        function checkResults() {
+            // Kullanıcının seçtiği renkleri topla
+            const selectedOptions = document.querySelectorAll('.color-option.selected');
+            const userSelectedColors = Array.from(selectedOptions).map(option => option.dataset.color);
+            
+            // Gerçekte gösterilen renkleri bul
+            const actualColors = shownColors.map(color => color.name);
+            
+            // Doğru hatırlanan renkler
+            const correctColors = userSelectedColors.filter(color => actualColors.includes(color));
+            
+            // Kaçırılan renkler
+            const missedColors = actualColors.filter(color => !userSelectedColors.includes(color));
+            
+            // Fazladan işaretlenen renkler
+            const extraColors = userSelectedColors.filter(color => !actualColors.includes(color));
+            
+            // Başarı oranı
+            const successRate = actualColors.length > 0 ? 
+                Math.round((correctColors.length / actualColors.length) * 100) : 0;
+            
+            // Sonuçları göster
+            document.getElementById('totalCircles').innerText = circleCount;
+            document.getElementById('correctColors').innerText = correctColors.length;
+            document.getElementById('missedColors').innerText = missedColors.length;
+            document.getElementById('extraColors').innerText = extraColors.length;
+            document.getElementById('successRate').innerText = `${successRate}%`;
+            
+            // Renk seçim ekranını gizle ve sonuç ekranını göster
+            document.getElementById('colorSelectionOverlay').style.display = 'none';
+            document.getElementById('completionOverlay').style.display = 'flex';
+        }
+        
+        // Egzersizi sıfırla
+        function resetExercise() {
+            // Sonuç ekranını gizle
+            document.getElementById('completionOverlay').style.display = 'none';
+            
+            // Başlangıç ekranını göster
+            document.getElementById('startOverlay').style.display = 'flex';
+            
+            // Zamanı sıfırla
+            document.getElementById('timer').innerText = formatTime(duration);
+            
+            // Değişkenleri sıfırla
+            remainingTime = duration;
+            circleCount = 0;
+            shownColors = [];
+            
+            // Tam ekrandan çık
+            exitFullscreen();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Beyin Enstitüsü | Online Egzersiz Platformu</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #004494;
+            --accent-color: #00a0e3;
+            --light-color: #f5f9ff;
+            --dark-color: #333333;
+            --grey-color: #f0f2f5;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+        }
+        
+        header .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        header .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        header .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        header h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            display: block;
+            padding: 15px 10px;
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Intro Section */
+        .intro {
+            background-color: white;
+            padding: 40px 20px;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .intro h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .intro p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* Exercises Section */
+        .exercises {
+            padding: 20px 0 50px;
+        }
+        
+        .exercises h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            font-size: 2rem;
+        }
+        
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .exercise-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--dark-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .exercise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .exercise-card .icon {
+            background-color: var(--accent-color);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .exercise-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .exercise-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+        }
+        
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .exercise-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            footer .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav ul {
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0 8px;
+            }
+            
+            .intro {
+                padding: 30px 15px;
+            }
+            
+            .exercise-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="Beyin Enstitüsü Logo"> alt="Beyin Enstitüsü Logo">
+                <h1>Beyin Enstitüsü</h1>
+            </div>
+            <h2>Online Egzersiz Platformu</h2>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="intro">
+            <h2>Beyin ve Görsel İşlev Egzersizleri</h2>
+            <p>Aşağıdaki egzersizler, beyin fonksiyonlarınızı geliştirmek, görsel algı ve tepki hızınızı artırmak için özel olarak tasarlanmıştır. Düzenli pratik yaparak bilişsel yeteneklerinizi geliştirebilirsiniz.</p>
+        </section>
+        
+        <section class="exercises">
+            <h2>Egzersizler</h2>
+            
+            <div class="exercise-grid">
+                <a href="hedef-nesne-egzersizi.html" class="exercise-card">
+                    <div class="icon">★</div>
+                    <h3>Hedef Nesne Egzersizi</h3>
+                    <p>Gösterilen nesneler arasından hedef nesneyi tespit etme egzersizi.</p>
+                </a>
+                
+                <a href="renk-daire-egzersizi.html" class="exercise-card">
+                    <div class="icon">🎯</div>
+                    <h3>Renkli Daire Egzersizi</h3>
+                    <p>Renkli daireleri belli bir sırayla takip etmeye çalıştığınız egzersiz.</p>
+                </a>
+                
+                <a href="sayi-takip-egzersizi.html" class="exercise-card">
+                    <div class="icon">↕️</div>
+                    <h3>Dikey Zikzak ve Bellek Egzersizi</h3>
+                    <p>Zikzak şeklinde hareket eden nesneleri takip etme egzersizi.</p>
+                </a>
+                
+                <a href="harf-takip-egzersizi.html" class="exercise-card">
+                    <div class="icon">Aa</div>
+                    <h3>Harf Takip Egzersizi</h3>
+                    <p>Belirli harflerin takibi ve tepki hızı egzersizi.</p>
+                </a>
+                
+                <a href="renk-eslestirme-egzersizi.html" class="exercise-card">
+                    <div class="icon">🎨</div>
+                    <h3>Renk Eşleştirme</h3>
+                    <p>Renkler ve kelimeler arasındaki uyumsuzluk egzersizi.</p>
+                </a>
+                
+                <a href="dikkat-egzersizi.html" class="exercise-card">
+                    <div class="icon">👁️</div>
+                    <h3>Dikkat Egzersizi</h3>
+                    <p>Değişen görsel uyaranları yakalama egzersizi.</p>
+                </a>
+                
+                <a href="hafiza-egzersizi.html" class="exercise-card">
+                    <div class="icon">🧠</div>
+                    <h3>Görsel Hafıza</h3>
+                    <p>Kısa süreli görsel hafızayı geliştirme egzersizi.</p>
+                </a>
+                
+                <a href="yon-egzersizi.html" class="exercise-card">
+                    <div class="icon">↔️</div>
+                    <h3>Yön Egzersizi</h3>
+                    <p>Hareket eden nesnelerin yönünü tespit etme egzersizi.</p>
+                </a>
+                
+                <a href="odaklanma-egzersizi.html" class="exercise-card">
+                    <div class="icon">🔍</div>
+                    <h3>Odaklanma Egzersizi</h3>
+                    <p>Farklı noktalara hızlı odaklanma egzersizi.</p>
+                </a>
+                
+                <a href="sekil-eslestirme.html" class="exercise-card">
+                    <div class="icon">▲■</div>
+                    <h3>Şekil Eşleştirme</h3>
+                    <p>Belirli şekilleri hızla eşleştirme egzersizi.</p>
+                </a>
+                
+                <a href="goz-izleme.html" class="exercise-card">
+                    <div class="icon">👀</div>
+                    <h3>Göz İzleme</h3>
+                    <p>Hareket eden nesneyi gözle düzgün takip etme egzersizi.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Beyin Enstitüsü. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="#">Gizlilik Politikası</a>
+                <a href="#">Kullanım Koşulları</a>
+                <a href="#">İletişim</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
