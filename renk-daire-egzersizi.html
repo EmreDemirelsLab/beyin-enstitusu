@@ -253,6 +253,25 @@
             left: 50%;
             top: 50%;
         }
+
+        .growing-circle.hollow {
+            background-color: transparent !important; /* Arka planı şeffaf yap */
+            border-width: 4px; /* Kenarlık kalınlığı */
+            border-style: solid; /* Kenarlık stili */
+            border-color: inherit; /* JavaScript ile ayarlanacak */
+        }
+        
+        .growing-circle.hollow::after {
+            content: '';
+            position: absolute;
+            width: 6px; /* Merkez noktanın boyutu */
+            height: 6px; /* Merkez noktanın boyutu */
+            background-color: currentColor; /* Daire rengiyle aynı renk */
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
         
         .overlay {
             position: absolute;
@@ -625,6 +644,18 @@
                     <a href="#" id="duration180">3:00</a>
                 </div>
             </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn" id="circleTypeBtn">
+                    <div class="dropdown-title" id="selectedCircleType">İçi Dolu</div>
+                    <div class="dropdown-arrow">▾</div>
+                </button>
+                <div id="circleTypeDropdown" class="dropdown-content">
+                    <a href="#" id="circleTypeFilled">İçi Dolu</a>
+                    <a href="#" id="circleTypeHollow">İçi Boş Animasyonlu</a>
+                    <a href="#" id="circleTypeStep">İçi Boş Kademeli</a>
+                </div>
+            </div>
             
             <div class="dropdown">
                 <button class="dropdown-btn" id="speedBtn">
@@ -731,6 +762,7 @@
         let circleCount = 0;
         let shownColors = []; // Gösterilen renkler
         let isFullscreen = false;
+        let circleType = 'filled'; // 'filled', 'hollow', 'step'
         
         // Zamanlayıcılar
         let exerciseTimer;
@@ -846,6 +878,37 @@
                     exitFullscreen();
                 }
             });
+
+            document.getElementById('circleTypeBtn').addEventListener('click', function() {
+                toggleDropdown('circleTypeDropdown');
+            });
+            
+            document.getElementById('circleTypeFilled').addEventListener('click', function(e) {
+                e.preventDefault();
+                setCircleType('filled');
+            });
+            
+            document.getElementById('circleTypeHollow').addEventListener('click', function(e) {
+                e.preventDefault();
+                setCircleType('hollow');
+            });
+            
+            document.getElementById('circleTypeStep').addEventListener('click', function(e) {
+                e.preventDefault();
+                setCircleType('step');
+            });
+        }
+
+        // Daire tipini ayarlama fonksiyonu
+        function setCircleType(type) {
+            circleType = type;
+            
+            let typeText = 'İçi Dolu';
+            if (type === 'hollow') typeText = 'İçi Boş Animasyonlu';
+            else if (type === 'step') typeText = 'İçi Boş Kademeli';
+            
+            document.getElementById('selectedCircleType').innerText = typeText;
+            closeAllDropdowns();
         }
         
         // Dropdown'u aç/kapat
@@ -974,7 +1037,19 @@
             // Daire oluştur
             const circle = document.createElement('div');
             circle.className = 'growing-circle';
-            circle.style.backgroundColor = selectedColor.value;
+            
+            // Daire tipine göre stil ayarla
+            if (circleType === 'filled') {
+                // İçi dolu daire (orijinal)
+                circle.style.backgroundColor = selectedColor.value;
+            } else {
+                // İçi boş daire (hollow veya step)
+                circle.classList.add('hollow');
+                circle.style.backgroundColor = 'transparent';
+                circle.style.borderColor = selectedColor.value;
+                circle.style.color = selectedColor.value; // Merkez noktanın rengi için
+            }
+            
             circle.style.width = '10px';
             circle.style.height = '10px';
             
@@ -984,7 +1059,6 @@
             
             // Büyüme animasyonu
             const growthDuration = growthDurations[speed - 1];
-            const startTime = performance.now();
             
             // Egzersiz alanının boyutlarını al
             const exerciseArea = document.getElementById('exerciseArea');
@@ -994,36 +1068,81 @@
             // Minimum boyut (ekranın %80'i veya 100vmin)
             const maxSize = Math.min(areaWidth, areaHeight) * 0.8;
             
-            function grow(timestamp) {
-                if (!exerciseStarted) return;
+            // Daire tipine göre farklı büyüme animasyonları
+            if (circleType !== 'step') {
+                // Kayarak (smooth) büyüme - İçi dolu veya içi boş animasyonlu için
+                const startTime = performance.now();
                 
-                const elapsed = timestamp - startTime;
-                const progress = Math.min(elapsed / growthDuration, 1);
-                const size = progress * maxSize;
-                
-                circle.style.width = `${size}px`;
-                circle.style.height = `${size}px`;
-                
-                if (progress < 1) {
-                    requestAnimationFrame(grow);
-                } else {
-                    // Daire büyümesi tamamlandı
-                    setTimeout(() => {
-                        if (container.contains(circle)) {
-                            container.removeChild(circle);
-                        }
-                        
-                        // Egzersiz devam ediyorsa sonraki daireyi planla
-                        if (exerciseStarted) {
-                            const waitTime = 1000; // Sabit bekleme süresi 1 saniye
-                            circleTimer = setTimeout(createAndGrowCircle, waitTime);
-                        }
-                    }, 200);
+                function grow(timestamp) {
+                    if (!exerciseStarted) return;
+                    
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(elapsed / growthDuration, 1);
+                    const size = progress * maxSize;
+                    
+                    circle.style.width = `${size}px`;
+                    circle.style.height = `${size}px`;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(grow);
+                    } else {
+                        // Daire büyümesi tamamlandı
+                        setTimeout(() => {
+                            if (container.contains(circle)) {
+                                container.removeChild(circle);
+                            }
+                            
+                            // Egzersiz devam ediyorsa sonraki daireyi planla
+                            if (exerciseStarted) {
+                                const waitTime = 1000; // Sabit bekleme süresi 1 saniye
+                                circleTimer = setTimeout(createAndGrowCircle, waitTime);
+                            }
+                        }, 200);
+                    }
                 }
+                
+                // Büyüme animasyonunu başlat
+                requestAnimationFrame(grow);
+            } else {
+                // Kademeli adım adım büyüme - İçi boş kademeli için
+                const steps = 10; // Adım sayısı
+                const stepDuration = growthDuration / steps;
+                let currentStep = 0;
+                
+                function growStep() {
+                    if (!exerciseStarted) return;
+                    
+                    currentStep++;
+                    
+                    if (currentStep <= steps) {
+                        // Bir sonraki adımın boyutu
+                        const progress = currentStep / steps;
+                        const size = progress * maxSize;
+                        
+                        circle.style.width = `${size}px`;
+                        circle.style.height = `${size}px`;
+                        
+                        // Bir sonraki adımı planla
+                        setTimeout(growStep, stepDuration);
+                    } else {
+                        // Daire büyümesi tamamlandı
+                        setTimeout(() => {
+                            if (container.contains(circle)) {
+                                container.removeChild(circle);
+                            }
+                            
+                            // Egzersiz devam ediyorsa sonraki daireyi planla
+                            if (exerciseStarted) {
+                                const waitTime = 1000; // Sabit bekleme süresi 1 saniye
+                                circleTimer = setTimeout(createAndGrowCircle, waitTime);
+                            }
+                        }, 200);
+                    }
+                }
+                
+                // Adım adım büyüme animasyonunu başlat
+                growStep();
             }
-            
-            // Büyüme animasyonunu başlat
-            requestAnimationFrame(grow);
         }
         
         // Egzersizi başlat
