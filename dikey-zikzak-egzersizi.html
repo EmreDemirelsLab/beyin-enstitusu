@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Dikey Zikzak Egzersizi | ForBrain Learning Center</title>
+    <style>
+        :root {
+            --primary-color: #0f4c8a; /* Dark blue from the logo */
+            --primary-color-transparent: rgba(15, 76, 138, 0.85); /* Semi-transparent primary */
+            --secondary-color: #65c8e5; /* Light blue from the logo */
+            --secondary-color-transparent: rgba(101, 200, 229, 0.85); /* Semi-transparent secondary */
+            --accent-color: #8cc63f; /* Green from the logo */
+            --accent-color-transparent: rgba(140, 198, 63, 0.85); /* Semi-transparent accent */
+            --success-color: #06d6a0;
+            --danger-color: #ef476f;
+            --warning-color: #ffd166;
+            --light-color: #f9fbff;
+            --dark-color: #333333;
+            --grey-color: #f0f2f5;
+            --white-transparent: rgba(255, 255, 255, 0.9);
+            --shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            
+            /* Responsive units */
+            --container-padding: 5%;
+            --card-padding: clamp(0.5rem, 1.8vw, 1rem);
+            --section-margin: clamp(0.8rem, 2.5vw, 1.5rem);
+            --heading-size: clamp(1.1rem, 3vw, 1.6rem);
+            --subheading-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            --text-size: clamp(0.85rem, 1.6vw, 0.95rem);
+            --text-small: clamp(0.75rem, 1.3vw, 0.85rem);
+            --icon-size: clamp(2.2rem, 5vw, 3rem);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        html {
+            font-size: 16px; /* Base font size */
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            overscroll-behavior: none;
+            transition: var(--transition);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 70rem; /* 1120px - slightly smaller */
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: clamp(0.6rem, 1.5vw, 0.9rem) 0;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        .logo img {
+            width: 60%;
+            max-width: 15.625rem; /* 250px */
+            min-width: 9.375rem; /* 150px */
+            height: auto;
+        }
+        
+        .back-button {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.3125rem;
+            background: var(--grey-color);
+            transition: background 0.3s;
+            font-size: var(--text-small);
+            font-weight: 500;
+        }
+        
+        .back-button:hover {
+            background: #e5e9f0;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: clamp(0.5rem, 1.2vw, 0.8rem) 0;
+            text-align: center;
+            margin: var(--section-margin) 0 clamp(0.3rem, 1vw, 0.6rem);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-weight: 500;
+            font-size: var(--heading-size);
+            letter-spacing: 0.5px;
+        }
+        
+        /* Exercise Info */
+        .exercise-info {
+            background-color: var(--white-transparent);
+            border-radius: 0.4rem;
+            padding: var(--card-padding);
+            margin: 0.5rem auto var(--section-margin);
+            text-align: center;
+            color: #444;
+            font-size: var(--text-small);
+            line-height: 1.5;
+            box-shadow: var(--shadow);
+            max-width: 85%; /* Smaller width */
+            border-left: 3px solid var(--primary-color);
+            backdrop-filter: blur(4px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .exercise-info:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+        
+        /* Toolbar */
+        .toolbar {
+            background-color: white;
+            padding: var(--card-padding);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.625rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: clamp(0.4rem, 1.5vw, 0.8rem);
+            align-items: center;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-btn {
+            background: var(--light-color);
+            border: 1px solid var(--grey-color);
+            border-radius: 0.375rem;
+            padding: 0;
+            display: flex;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0.0625rem 0.1875rem rgba(0,0,0,0.05);
+        }
+        
+        .dropdown-btn:hover, .dropdown-btn:active {
+            background: var(--grey-color);
+        }
+        
+        .dropdown-title {
+            border-right: 1px solid var(--grey-color);
+            padding: 0.5rem 0.625rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        
+        .dropdown-arrow {
+            padding: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 10rem;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.1);
+            z-index: 6;
+            border-radius: 0.375rem;
+            margin-top: 0.3125rem;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 0.625rem 0.9375rem;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s ease;
+        }
+        
+        .dropdown-content a:hover, .dropdown-content a:active {
+            background-color: var(--grey-color);
+            color: var(--primary-color);
+        }
+        
+        /* Timer Bar */
+        .timer-bar {
+            background: rgba(15, 76, 138, 0.8);
+            color: white;
+            height: 2rem;
+            line-height: 2rem;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 0.4rem;
+            margin-bottom: 0.05rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(4px);
+            transition: background 0.3s ease;
+        }
+        
+        .timer-bar:hover {
+            background: rgba(15, 76, 138, 0.9);
+        }
+        
+        .info-text {
+            padding: 0 0.8rem;
+            font-weight: 500;
+            font-size: var(--text-small);
+            letter-spacing: 0.3px;
+        }
+        
+        .timer {
+            background-color: rgba(0, 0, 0, 0.15);
+            color: white;
+            padding: 0 1.1rem;
+            border-radius: 0 0.4rem 0.4rem 0;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        /* Exercise Area */
+        .exercise-area {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 38rem; /* Made larger like the reference pages */
+            margin: 0.5rem auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 0.4rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-top: 0.625rem;
+            position: relative;
+            z-index: 1;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+            border: 1px solid rgba(240, 242, 245, 0.8);
+        }
+        
+        .exercise-area:hover {
+            box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Zigzag Container */
+        .zigzag-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Object Display Styles */
+        .object-point {
+            position: absolute;
+            width: 0.5rem;
+            height: 0.5rem;
+            background-color: rgba(15, 76, 138, 0.2);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .current-object {
+            position: absolute;
+            font-size: 3rem;
+            z-index: 2;
+            text-align: center;
+            transition: all 0.2s ease;
+            transform: translate(-50%, -50%);
+            line-height: 1;
+        }
+        
+        /* Glow effect for active points */
+        .active-point {
+            box-shadow: 0 0 10px var(--accent-color);
+            background-color: var(--accent-color);
+            width: 0.75rem;
+            height: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        
+        /* Object selection styles for memory test */
+        .object-selection {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.9375rem;
+            margin: 0.9375rem 0;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding: 0 0.625rem;
+        }
+        
+        .object-option {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--grey-color);
+            border-radius: 0.5rem;
+            padding: 0.625rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 2rem;
+        }
+        
+        .object-option:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+        }
+        
+        .object-option.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Overlay */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 76, 138, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            border-radius: 0.4rem;
+            backdrop-filter: blur(5px);
+            transition: background 0.4s ease;
+        }
+        
+        .overlay:hover {
+            background: rgba(15, 76, 138, 0.7);
+        }
+        
+        .start-button, .stop-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.9375rem 2.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 3.125rem;
+            box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.2);
+            margin: 0.3125rem;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .start-button:active, .stop-button:active {
+            transform: translateY(0.1875rem);
+            box-shadow: 0 0.125rem 0.625rem rgba(0,0,0,0.2);
+        }
+        
+        .stop-button {
+            background: var(--danger-color);
+            position: absolute;
+            top: 0.9375rem;
+            left: 0.9375rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 1rem;
+            z-index: 5;
+            display: none;
+        }
+        
+        /* Countdown */
+        .countdown {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 5rem;
+            height: 5rem;
+            display: none; /* Start with display none - will be changed to flex by JS */
+            background: white;
+            color: var(--primary-color);
+            border: 3px solid var(--primary-color);
+            z-index: 20;
+            border-radius: 50%;
+            box-shadow: 0 0.3rem 1.25rem rgba(0,0,0,0.2);
+            font-weight: bold;
+            pointer-events: none;
+            
+            /* These properties will apply when the element is displayed */
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            text-align: center; /* Additional centering for text */
+            line-height: 5rem; /* Match height for vertical alignment */
+        }
+        
+        /* Memory Test Overlay */
+        .memory-test-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 76, 138, 0.6);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            border-radius: 0.4rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Completion Message */
+        .completion-message {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0.4rem;
+            padding: 1.1rem 1.6rem;
+            text-align: center;
+            max-width: 28rem;
+            width: 90%;
+            height: auto;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 0.4rem 1.2rem rgba(0,0,0,0.08);
+            backdrop-filter: blur(5px);
+            transform: translateY(10px);
+            animation: slideUp 0.4s forwards;
+            border-top: 3px solid var(--accent-color);
+        }
+        
+        @keyframes slideUp {
+            to { transform: translateY(0); }
+        }
+        
+        .completion-title {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .result-stats {
+            background-color: rgba(249, 251, 255, 0.7);
+            border-radius: 0.4rem;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            text-align: left;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .result-stats:hover {
+            background-color: var(--light-color);
+        }
+        
+        .result-stats p {
+            margin: 0.4rem 0;
+            display: flex;
+            justify-content: space-between;
+            transition: transform 0.2s ease;
+        }
+        
+        .result-stats p:hover {
+            transform: translateX(2px);
+        }
+        
+        .result-stats p span {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        
+        .progress-bar {
+            height: 1.2rem;
+            background-color: rgba(240, 242, 245, 0.7);
+            border-radius: 0.6rem;
+            margin: 0.8rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-value {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color-transparent), var(--primary-color));
+            border-radius: 0.6rem;
+            text-align: center;
+            line-height: 1.2rem;
+            color: white;
+            font-weight: 500;
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .restart-button, .submit-button {
+            background: var(--accent-color-transparent);
+            color: white;
+            border: none;
+            padding: 0.7rem 2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border-radius: 2.5rem;
+            box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.1);
+            user-select: none;
+            -webkit-user-select: none;
+            letter-spacing: 0.5px;
+        }
+        
+        .restart-button:hover, .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.3rem 0.7rem rgba(0,0,0,0.15);
+            background: var(--accent-color);
+        }
+        
+        .restart-button:active, .submit-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 0.1rem 0.3rem rgba(0,0,0,0.1);
+        }
+        
+        /* Fullscreen related */
+        .fullscreen-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            position: absolute;
+            bottom: 0.9375rem;
+            right: 0.9375rem;
+            z-index: 5;
+            box-shadow: 0 0.25rem 0.375rem rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .fullscreen-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.375rem 0.625rem rgba(0,0,0,0.15);
+        }
+        
+        .fullscreen {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .fullscreen .exercise-area {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        
+        .fullscreen-exit {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: rgba(0,0,0,0.2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            font-size: 1.25rem;
+            cursor: pointer;
+            z-index: 10000;
+            display: none;
+            transition: all 0.2s ease;
+        }
+        
+        .fullscreen-exit:hover {
+            background: rgba(0,0,0,0.3);
+        }
+        
+        /* Focus point guidance */
+        .focus-guide {
+            position: absolute;
+            bottom: 0.9375rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.3rem 0.7rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            z-index: 3;
+            box-shadow: var(--shadow);
+        }
+        
+        .focus-guide:hover {
+            opacity: 1;
+        }
+        
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 48em) { /* 768px */
+            .exercise-area {
+                height: 34rem; /* Adjusted for better mobile display */
+            }
+            
+            .object-selection {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.75rem;
+            }
+            
+            .countdown {
+                width: 4.5rem;
+                height: 4.5rem;
+                line-height: 4.5rem;
+                font-size: 2.2rem;
+            }
+            
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0.75rem;
+            }
+            
+            .dropdown {
+                margin-bottom: 0.5rem;
+            }
+            
+            .completion-message {
+                padding: 0.8rem 1.2rem;
+                width: 85%;
+            }
+            
+            .current-object {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 36em) { /* 576px */
+            .completion-message {
+                padding: 0.8rem;
+                width: 85%;
+            }
+            
+            .result-stats {
+                padding: 0.6rem;
+                font-size: 0.8rem;
+            }
+            
+            .completion-title {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .exercise-area {
+                height: 32rem; /* Adjusted for mobile */
+            }
+            
+            .toolbar {
+                padding: 0.5rem;
+            }
+            
+            .dropdown-btn .dropdown-title,
+            .dropdown-btn .dropdown-arrow {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+            }
+            
+            .exercise-info {
+                max-width: 95%;
+                padding: 0.5rem;
+            }
+            
+            .object-selection {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .current-object {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            .navbar, .toolbar, .stop-button, 
+            .fullscreen-button, .fullscreen-exit, .overlay, .back-button {
+                display: none !important;
+            }
+            
+            .exercise-area, .completion-message {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+                background: white !important;
+                backdrop-filter: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="ForBrain Learning Center Logo">
+            </a>
+            <a href="index.html" class="back-button">← Tüm Egzersizler</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>Dikey Zikzak Egzersizi</h1>
+        </header>
+        
+        <div class="exercise-info">
+            Bu egzersiz, göz kaslarını güçlendirmeyi, görsel takip becerinizi geliştirmeyi ve kısa süreli görsel belleğinizi desteklemeyi amaçlar. Ekran üzerinde zikzak hareketlerle ilerleyen farklı nesneleri sadece gözlerinizle takip edin ve bunları hafızanıza almaya çalışın. Egzersiz sonunda görmüş olduğunuz nesneleri seçmeniz istenecektir.
+            <br><br>
+            <strong>Dikkat: Başınızı hareket ettirmeden, sadece gözlerinizle takip edin!</strong>
+        </div>
+        
+        <div class="toolbar">
+            <div class="dropdown">
+                <button class="dropdown-btn" id="durationBtn">
+                    <div class="dropdown-title" id="selectedDuration">1:00</div>
+                    <div class="dropdown-arrow">▾</div>
+                </button>
+                <div id="durationDropdown" class="dropdown-content">
+                    <a href="#" id="duration30">0:30</a>
+                    <a href="#" id="duration60">1:00</a>
+                    <a href="#" id="duration120">2:00</a>
+                    <a href="#" id="duration180">3:00</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn" id="levelBtn">
+                    <div class="dropdown-title" id="selectedLevel">3. Seviye</div>
+                    <div class="dropdown-arrow">▾</div>
+                </button>
+                <div id="levelDropdown" class="dropdown-content">
+                    <a href="#" id="level1">1. Seviye (Kolay)</a>
+                    <a href="#" id="level3">3. Seviye (Orta)</a>
+                    <a href="#" id="level5">5. Seviye (Zor)</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn" id="speedBtn">
+                    <div class="dropdown-title" id="selectedSpeed">Normal</div>
+                    <div class="dropdown-arrow">▾</div>
+                </button>
+                <div id="speedDropdown" class="dropdown-content">
+                    <a href="#" id="speed1">Yavaş</a>
+                    <a href="#" id="speed2">Normal</a>
+                    <a href="#" id="speed3">Hızlı</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timer-bar">
+            <span class="info-text">Gözlerinizle nesneleri takip edin ve hatırlamaya çalışın</span>
+            <span class="timer" id="timer">01:00</span>
+        </div>
+        
+        <div class="exercise-area" id="exerciseArea">
+            <button class="fullscreen-button" id="fullscreenButton">Tam Ekran</button>
+            <button class="fullscreen-exit" id="fullscreenExit">✕</button>
+            <button class="stop-button" id="stopButton">Egzersizi Durdur</button>
+            
+            <div class="zigzag-container" id="zigzagContainer">
+                <!-- Zigzag nokta ve nesneler JavaScript ile eklenecek -->
+            </div>
+            
+            <div class="focus-guide" id="focusGuide">Başınızı hareket ettirmeden, sadece gözlerinizle takip edin</div>
+            
+            <div class="overlay" id="startOverlay">
+                <button class="start-button" id="startButton">Egzersizi Başlat</button>
+            </div>
+            
+            <div class="countdown" id="countdown">3</div>
+            
+            <div id="memoryTestOverlay" class="memory-test-overlay">
+                <div class="completion-message">
+                    <h2 class="completion-title">Hangi Nesneleri Gördünüz?</h2>
+                    <p>Bu egzersiz sırasında gördüğünüz tüm nesneleri seçin:</p>
+                    
+                    <div class="object-selection" id="objectSelection">
+                        <!-- Nesne seçenekleri JavaScript ile eklenecek -->
+                    </div>
+                    
+                    <button class="submit-button" id="submitButton">Cevapları Gönder</button>
+                </div>
+            </div>
+            
+            <div id="completionOverlay" class="overlay" style="display: none;">
+                <div class="completion-message">
+                    <h2 class="completion-title">Egzersiz Tamamlandı!</h2>
+                    <div class="result-stats">
+                        <p>Gösterilen Nesne Sayısı: <span id="totalObjects">0</span></p>
+                        <p>Doğru Hatırlanan Nesneler: <span id="correctObjects">0</span></p>
+                        <p>Kaçırılan Nesneler: <span id="missedObjects">0</span></p>
+                        <p>Fazladan İşaretlenen Nesneler: <span id="extraObjects">0</span></p>
+                        <p>Başarı Oranı:</p>
+                        <div class="progress-bar">
+                            <div class="progress-value" id="successRate">0%</div>
+                        </div>
+                    </div>
+                    <button class="restart-button" id="restartButton">Yeni Egzersiz Başlat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Kullanılabilecek nesneler
+        const allObjects = [
+            '🍎', '🚀', '🧸', '🐸', '⭐', '🧠', '🎯', '🛸', '🪐', '🐢', 
+            '🏀', '🦋', '🌈', '🌵', '🎸', '🔍', '🦁', '🍉', '🎮', '🎨'
+        ];
+
+        // Egzersiz ayarları
+        let duration = 60;  // saniye
+        let level = 3;      // 1: kolay, 3: orta, 5: zor
+        let speed = 2;      // 1: yavaş, 2: normal, 3: hızlı
+        let exerciseStarted = false;
+        let shownObjects = []; // Gösterilen nesneler
+        let isFullscreen = false;
+        
+        // Zigzag noktaları için değişkenler
+        const pointCount = 7; // Sabit nokta sayısı
+        let points = []; // Noktaların koordinatlarını saklayacak
+        let currentPointIndex = 0; // Şu anki aktif nokta
+        
+        // Zamanlayıcılar
+        let exerciseTimer;
+        let movementTimer;
+        let remainingTime = 60;
+        
+        // Seviye ve hıza göre hareket süreleri (ms)
+        const movementDurations = {
+            1: [1000, 800, 600], // Kolay seviye - [yavaş, normal, hızlı]
+            3: [800, 700, 500],  // Orta seviye
+            5: [600, 400, 300]   // Zor seviye
+        };
+        
+        // DOM elementleri hazır olduğunda çalışacak
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+        });
+        
+        // Tüm olay dinleyicilerini kur
+        function setupEventListeners() {
+            // Dropdown açma işlemleri
+            document.getElementById('durationBtn').addEventListener('click', function() {
+                toggleDropdown('durationDropdown');
+            });
+            
+            document.getElementById('levelBtn').addEventListener('click', function() {
+                toggleDropdown('levelDropdown');
+            });
+            
+            document.getElementById('speedBtn').addEventListener('click', function() {
+                toggleDropdown('speedDropdown');
+            });
+            
+            // Süre seçenekleri
+            document.getElementById('duration30').addEventListener('click', function(e) {
+                e.preventDefault();
+                setDuration(30);
+            });
+            
+            document.getElementById('duration60').addEventListener('click', function(e) {
+                e.preventDefault();
+                setDuration(60);
+            });
+            
+            document.getElementById('duration120').addEventListener('click', function(e) {
+                e.preventDefault();
+                setDuration(120);
+            });
+            
+            document.getElementById('duration180').addEventListener('click', function(e) {
+                e.preventDefault();
+                setDuration(180);
+            });
+            
+            // Seviye seçenekleri
+            document.getElementById('level1').addEventListener('click', function(e) {
+                e.preventDefault();
+                setLevel(1);
+            });
+            
+            document.getElementById('level3').addEventListener('click', function(e) {
+                e.preventDefault();
+                setLevel(3);
+            });
+            
+            document.getElementById('level5').addEventListener('click', function(e) {
+                e.preventDefault();
+                setLevel(5);
+            });
+            
+            // Hız seçenekleri
+            document.getElementById('speed1').addEventListener('click', function(e) {
+                e.preventDefault();
+                setSpeed(1);
+            });
+            
+            document.getElementById('speed2').addEventListener('click', function(e) {
+                e.preventDefault();
+                setSpeed(2);
+            });
+            
+            document.getElementById('speed3').addEventListener('click', function(e) {
+                e.preventDefault();
+                setSpeed(3);
+            });
+            
+            // Tam ekran butonları
+            document.getElementById('fullscreenButton').addEventListener('click', toggleFullscreen);
+            document.getElementById('fullscreenExit').addEventListener('click', exitFullscreen);
+            
+            // Ana butonlar
+            document.getElementById('startButton').addEventListener('click', startExercise);
+            document.getElementById('stopButton').addEventListener('click', stopExercise);
+            document.getElementById('submitButton').addEventListener('click', checkResults);
+            document.getElementById('restartButton').addEventListener('click', resetExercise);
+            
+            // Dışarıya tıklandığında dropdown menüleri kapat
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.dropdown-btn') && !event.target.closest('.dropdown-content')) {
+                    closeAllDropdowns();
+                }
+            });
+            
+            // ESC tuşu ile tam ekrandan çıkma
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && isFullscreen) {
+                    exitFullscreen();
+                }
+            });
+        }
+        
+        // Dropdown'u aç/kapat
+        function toggleDropdown(id) {
+            if (exerciseStarted) return;
+            
+            const dropdown = document.getElementById(id);
+            const isOpen = dropdown.style.display === 'block';
+            
+            // Önce tüm dropdown'ları kapat
+            closeAllDropdowns();
+            
+            // Tıklanan dropdown açık değilse aç
+            if (!isOpen) {
+                dropdown.style.display = 'block';
+            }
+        }
+        
+        // Tüm dropdown'ları kapat
+        function closeAllDropdowns() {
+            const dropdowns = document.getElementsByClassName('dropdown-content');
+            for (let i = 0; i < dropdowns.length; i++) {
+                dropdowns[i].style.display = 'none';
+            }
+        }
+        
+        // Süreyi ayarla
+        function setDuration(seconds) {
+            duration = seconds;
+            remainingTime = seconds;
+            
+            let durationText = '';
+            if (seconds < 60) {
+                durationText = `0:${seconds < 10 ? '0' : ''}${seconds}`;
+            } else {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                durationText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+            
+            document.getElementById('selectedDuration').innerText = durationText;
+            document.getElementById('timer').innerText = durationText;
+            closeAllDropdowns();
+        }
+        
+        // Seviyeyi ayarla
+        function setLevel(newLevel) {
+            level = newLevel;
+            document.getElementById('selectedLevel').innerText = `${newLevel}. Seviye`;
+            closeAllDropdowns();
+        }
+        
+        // Hızı ayarla
+        function setSpeed(newSpeed) {
+            speed = newSpeed;
+            const speedTexts = ['Yavaş', 'Normal', 'Hızlı'];
+            document.getElementById('selectedSpeed').innerText = speedTexts[newSpeed - 1];
+            closeAllDropdowns();
+        }
+        
+        // Tam ekran modunu aç/kapat
+        function toggleFullscreen() {
+            const exerciseArea = document.getElementById('exerciseArea');
+            
+            if (!isFullscreen) {
+                isFullscreen = true;
+                exerciseArea.classList.add('fullscreen');
+                document.getElementById('fullscreenExit').style.display = 'block';
+                document.getElementById('fullscreenButton').style.display = 'none';
+            }
+        }
+        
+        // Tam ekrandan çık
+        function exitFullscreen() {
+            const exerciseArea = document.getElementById('exerciseArea');
+            
+            if (isFullscreen) {
+                isFullscreen = false;
+                exerciseArea.classList.remove('fullscreen');
+                document.getElementById('fullscreenExit').style.display = 'none';
+                document.getElementById('fullscreenButton').style.display = 'block';
+            }
+        }
+        
+        // Zamanı formatla
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+        
+        // Array karıştırma fonksiyonu
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+        
+        // Rastgele nesne seç
+        function getRandomObject() {
+            // Sadece aktif egzersizde kullanılacak olan 10 nesne
+            const availableObjects = allObjects.slice(0, 10);
+            const randomIndex = Math.floor(Math.random() * availableObjects.length);
+            return availableObjects[randomIndex];
+        }
+        
+        // Zigzag noktalarını oluştur
+        function createZigzagPoints() {
+            const container = document.getElementById('zigzagContainer');
+            container.innerHTML = ''; // Önce içeriği temizle
+            
+            // Container boyutlarını al
+            const containerWidth = container.clientWidth;
+            const containerHeight = container.clientHeight;
+            
+            // Yeterli boşluk bırak
+            const padding = 40;
+            const workingWidth = containerWidth - (padding * 2);
+            const workingHeight = containerHeight - (padding * 2);
+            
+            // Noktaların konumlarını hesapla
+            points = [];
+            
+            // Yatayda eşit aralıklı noktalar oluştur
+            const horizontalStep = workingWidth / (pointCount - 1);
+            
+            for (let i = 0; i < pointCount; i++) {
+                // Zigzag etkisi için dikey pozisyonu hesapla
+                // Tek sayılar üstte, çift sayılar altta olacak şekilde
+                const isEven = i % 2 === 0;
+                const y = isEven ? padding + workingHeight * 0.25 : padding + workingHeight * 0.75;
+                
+                // Yatay pozisyonu hesapla
+                const x = padding + (horizontalStep * i);
+                
+                // Nokta konumlarını kaydet
+                points.push({ x, y });
+                
+                // Görsel noktayı oluştur
+                const pointElement = document.createElement('div');
+                pointElement.className = 'object-point';
+                pointElement.id = `point-${i}`;
+                pointElement.style.left = `${x}px`;
+                pointElement.style.top = `${y}px`;
+                
+                container.appendChild(pointElement);
+            }
+            
+            // Başlangıçta ilk noktayı aktif et
+            if (points.length > 0) {
+                document.getElementById('point-0').classList.add('active-point');
+            }
+        }
+        
+        // Nesneyi bir sonraki noktaya taşı
+        function moveObjectToNextPoint() {
+            if (!exerciseStarted) return;
+            
+            // Önceki noktayı deaktive et
+            document.getElementById(`point-${currentPointIndex}`).classList.remove('active-point');
+            
+            // Bir sonraki noktaya geç
+            currentPointIndex = (currentPointIndex + 1) % pointCount;
+            
+            // Yeni noktayı aktive et
+            document.getElementById(`point-${currentPointIndex}`).classList.add('active-point');
+            
+            // Mevcut nesne elementini seç veya oluştur
+            let objectElement = document.getElementById('currentObject');
+            if (!objectElement) {
+                objectElement = document.createElement('div');
+                objectElement.id = 'currentObject';
+                objectElement.className = 'current-object';
+                document.getElementById('zigzagContainer').appendChild(objectElement);
+            }
+            
+            // Seviyeye göre nesne değişim davranışını belirle
+            let newObject;
+            if (level === 1) {
+                // Kolay seviyede nesne sabit kalır
+                if (shownObjects.length === 0) {
+                    newObject = getRandomObject();
+                    shownObjects.push(newObject);
+                } else {
+                    newObject = shownObjects[0];
+                }
+            } else {
+                // Orta ve zor seviyede her adımda nesne değişir
+                newObject = getRandomObject();
+                
+                // Nesne daha önce gösterilmemişse listeye ekle
+                if (!shownObjects.includes(newObject)) {
+                    shownObjects.push(newObject);
+                }
+            }
+            
+            // Nesne içeriğini ve konumunu güncelle
+            objectElement.innerText = newObject;
+            objectElement.style.left = `${points[currentPointIndex].x}px`;
+            objectElement.style.top = `${points[currentPointIndex].y}px`;
+            
+            // Bir sonraki hareket için planlama yap
+            if (exerciseStarted) {
+                // Seviye ve hıza göre hareket süresini belirle
+                const movementDuration = movementDurations[level][speed - 1];
+                
+                movementTimer = setTimeout(moveObjectToNextPoint, movementDuration);
+            }
+        }
+        
+        // Egzersizi başlat
+        function startExercise() {
+            // Egzersiz zaten başladıysa işlem yapma
+            if (exerciseStarted) return;
+            
+            // Değişkenleri sıfırla
+            exerciseStarted = true;
+            shownObjects = [];
+            remainingTime = duration;
+            currentPointIndex = 0;
+            
+            // UI elemanlarını güncelle
+            document.getElementById('stopButton').style.display = 'block';
+            document.getElementById('startOverlay').style.display = 'none';
+            document.getElementById('timer').innerText = formatTime(remainingTime);
+            
+            // Tam ekran modunu etkinleştir
+            if (!isFullscreen) {
+                toggleFullscreen();
+            }
+            
+            // Zigzag noktalarını oluştur
+            createZigzagPoints();
+            
+            // Geri sayımı göster
+            const countdownEl = document.getElementById('countdown');
+            countdownEl.style.display = 'block';
+            countdownEl.innerText = '3';
+            
+            // Manuel olarak geri sayım yap, fonksiyon çağrıları ile
+            startCountdown();
+        }
+        
+        // Geri sayımı başlat
+        function startCountdown() {
+            const countdownEl = document.getElementById('countdown');
+            let count = 3;
+            
+            function updateCountdown() {
+                countdownEl.innerText = count;
+                
+                if (count > 0) {
+                    count--;
+                    setTimeout(updateCountdown, 1000);
+                } else {
+                    countdownEl.style.display = 'none';
+                    
+                    // Egzersizi başlat
+                    startTimer();
+                    moveObjectToNextPoint();
+                }
+            }
+            
+            // İlk güncellemeyi başlat
+            updateCountdown();
+        }
+        
+        // Zamanlayıcıyı başlat
+        function startTimer() {
+            exerciseTimer = setInterval(function() {
+                remainingTime--;
+                document.getElementById('timer').innerText = formatTime(remainingTime);
+                
+                if (remainingTime <= 0) {
+                    endExercise();
+                }
+            }, 1000);
+        }
+        
+        // Egzersizi durdur
+        function stopExercise() {
+            if (!exerciseStarted) return;
+            endExercise();
+        }
+        
+        // Egzersizi sonlandır
+        function endExercise() {
+            // Egzersiz durumunu güncelle
+            exerciseStarted = false;
+            
+            // Tüm zamanlayıcıları temizle
+            clearInterval(exerciseTimer);
+            clearTimeout(movementTimer);
+            
+            // UI elemanlarını güncelle
+            document.getElementById('stopButton').style.display = 'none';
+            
+            // Bellek testi için nesne seçimini hazırla
+            prepareMemoryTest();
+        }
+        
+        // Bellek testi için nesne seçimini hazırla
+        function prepareMemoryTest() {
+            // Seçim konteynerini temizle
+            const objectSelection = document.getElementById('objectSelection');
+            objectSelection.innerHTML = '';
+            
+            // Gösterilen nesnelerin 6-8 tanesini seç
+            const objectCount = shownObjects.length;
+            const correctCount = Math.min(Math.max(6, Math.floor(objectCount * 0.7)), 8);
+            
+            // Seçilen nesneler
+            let selectedObjects = [];
+            
+            // Eğer gosterilen nesnelerden yeterli sayıda varsa onları kullan
+            if (shownObjects.length >= correctCount) {
+                selectedObjects = shuffleArray(shownObjects).slice(0, correctCount);
+            } else {
+                // Yetersiz gösterilen nesne varsa hepsini al
+                selectedObjects = [...shownObjects];
+                
+                // Kalan kısmı rastgele doldur
+                const remaining = correctCount - shownObjects.length;
+                const otherObjects = allObjects.filter(obj => !shownObjects.includes(obj));
+                const randomOthers = shuffleArray(otherObjects).slice(0, remaining);
+                selectedObjects = [...selectedObjects, ...randomOthers];
+            }
+            
+            // Çeldirici nesneleri seç
+            const distractorCount = 12 - selectedObjects.length;
+            let distractors = allObjects.filter(obj => !selectedObjects.includes(obj));
+            distractors = shuffleArray(distractors).slice(0, distractorCount);
+            
+            // Tüm seçenekleri karıştır
+            const allOptions = shuffleArray([...selectedObjects, ...distractors]);
+            
+            // Seçenekleri ekrana ekle
+            allOptions.forEach(object => {
+                const objectOption = document.createElement('div');
+                objectOption.className = 'object-option';
+                objectOption.dataset.object = object;
+                objectOption.innerText = object;
+                
+                // Seçim davranışı ekle
+                objectOption.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                });
+                
+                objectSelection.appendChild(objectOption);
+            });
+            
+            // Bellek testi overlay'ini göster
+            document.getElementById('memoryTestOverlay').style.display = 'flex';
+        }
+        
+        // Bellek testi sonuçlarını kontrol et
+        function checkResults() {
+            // Kullanıcının seçtiği nesneleri topla
+            const selectedOptions = document.querySelectorAll('.object-option.selected');
+            const userSelectedObjects = Array.from(selectedOptions).map(option => option.dataset.object);
+            
+            // Gerçekte gösterilen nesneleri bul (tekrarsız)
+            const actualObjects = [...new Set(shownObjects)];
+            
+            // Doğru hatırlanan nesneler
+            const correctObjects = userSelectedObjects.filter(obj => actualObjects.includes(obj));
+            
+            // Kaçırılan nesneler
+            const missedObjects = actualObjects.filter(obj => !userSelectedObjects.includes(obj));
+            
+            // Fazladan işaretlenen nesneler
+            const extraObjects = userSelectedObjects.filter(obj => !actualObjects.includes(obj));
+            
+            // Başarı oranı
+            const successRate = actualObjects.length > 0 ? 
+                Math.round((correctObjects.length / actualObjects.length) * 100) : 0;
+            
+            // Sonuçları güncelle
+            document.getElementById('totalObjects').innerText = actualObjects.length;
+            document.getElementById('correctObjects').innerText = correctObjects.length;
+            document.getElementById('missedObjects').innerText = missedObjects.length;
+            document.getElementById('extraObjects').innerText = extraObjects.length;
+            document.getElementById('successRate').innerText = `${successRate}%`;
+            document.getElementById('successRate').style.width = `${successRate}%`;
+            
+            // Bellek testi overlay'ini gizle ve sonuç ekranını göster
+            document.getElementById('memoryTestOverlay').style.display = 'none';
+            document.getElementById('completionOverlay').style.display = 'flex';
+        }
+        
+        // Egzersizi sıfırla
+        function resetExercise() {
+            // Sonuç ekranını gizle
+            document.getElementById('completionOverlay').style.display = 'none';
+            
+            // Başlangıç ekranını göster
+            document.getElementById('startOverlay').style.display = 'flex';
+            
+            // Zamanı sıfırla
+            document.getElementById('timer').innerText = formatTime(duration);
+            
+            // Değişkenleri sıfırla
+            remainingTime = duration;
+            shownObjects = [];
+            
+            // Nesne içeriğini temizle
+            const zigzagContainer = document.getElementById('zigzagContainer');
+            zigzagContainer.innerHTML = '';
+            
+            // Tam ekrandan çık
+            exitFullscreen();
+        }
+    </script>
+</body>
+</html>
