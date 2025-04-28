@@ -3,133 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
-    <title>Renkli Daire Egzersizi | Göz Egzersizi</title>
+    <title>Renkli Daire Egzersizi | ForBrain Learning Center</title>
     <style>
         :root {
-            --primary-color: #0056b3;
-            --primary-dark: #004494;
-            --secondary-color: #00a0e3;
+            --primary-color: #0f4c8a; /* Dark blue from the logo */
+            --primary-color-transparent: rgba(15, 76, 138, 0.85); /* Semi-transparent primary */
+            --secondary-color: #65c8e5; /* Light blue from the logo */
+            --secondary-color-transparent: rgba(101, 200, 229, 0.85); /* Semi-transparent secondary */
+            --accent-color: #8cc63f; /* Green from the logo */
+            --accent-color-transparent: rgba(140, 198, 63, 0.85); /* Semi-transparent accent */
             --success-color: #06d6a0;
             --danger-color: #ef476f;
             --warning-color: #ffd166;
+            --light-color: #f9fbff;
             --dark-color: #333333;
-            --light-color: #f5f9ff;
-            --gray-color: #f0f2f5;
-            --gray-dark: #adb5bd;
+            --grey-color: #f0f2f5;
+            --white-transparent: rgba(255, 255, 255, 0.9);
+            --shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            
+            /* Responsive units */
+            --container-padding: 5%;
+            --card-padding: clamp(0.5rem, 1.8vw, 1rem);
+            --section-margin: clamp(0.8rem, 2.5vw, 1.5rem);
+            --heading-size: clamp(1.1rem, 3vw, 1.6rem);
+            --subheading-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            --text-size: clamp(0.85rem, 1.6vw, 0.95rem);
+            --text-small: clamp(0.75rem, 1.3vw, 0.85rem);
+            --icon-size: clamp(2.2rem, 5vw, 3rem);
         }
         
         * {
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        html {
+            font-size: 16px; /* Base font size */
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: var(--light-color);
             color: var(--dark-color);
-            overscroll-behavior: none;
-            width: 100%;
+            line-height: 1.6;
             overflow-x: hidden;
+            overscroll-behavior: none;
+            transition: var(--transition);
         }
         
-        .navbar {
-            background: var(--primary-dark);
-            padding: 15px 0;
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
             width: 100%;
+            max-width: 70rem; /* 1120px - slightly smaller */
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: clamp(0.6rem, 1.5vw, 0.9rem) 0;
+            box-shadow: var(--shadow);
             position: relative;
             z-index: 10;
+            backdrop-filter: blur(4px);
         }
         
         .navbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
         
         .logo {
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
             text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        .logo img {
+            width: 60%;
+            max-width: 15.625rem; /* 250px */
+            min-width: 9.375rem; /* 150px */
+            height: auto;
         }
         
         .back-button {
-            color: white;
+            color: var(--primary-color);
             text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 0.3125rem;
+            background: var(--grey-color);
             transition: background 0.3s;
+            font-size: var(--text-small);
+            font-weight: 500;
         }
         
         .back-button:hover {
-            background: rgba(255,255,255,0.2);
+            background: #e5e9f0;
         }
         
-        .main-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 10px;
-            transform: scale(0.96);
-            transform-origin: top center;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            padding: 10px 0;
+        /* Header Styles */
+        header {
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: clamp(0.5rem, 1.2vw, 0.8rem) 0;
             text-align: center;
-            border-radius: 12px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 900px;
+            margin: var(--section-margin) 0 clamp(0.3rem, 1vw, 0.6rem);
         }
         
-        .header h1 {
+        header h1 {
             margin: 0;
-            font-weight: 600;
-            font-size: 24px;
+            font-weight: 500;
+            font-size: var(--heading-size);
+            letter-spacing: 0.5px;
         }
         
+        /* Exercise Info */
         .exercise-info {
-            background-color: white;
-            border-radius: 12px;
-            padding: 12px;
-            margin: 12px 0;
+            background-color: var(--white-transparent);
+            border-radius: 0.4rem;
+            padding: var(--card-padding);
+            margin: 0.5rem auto var(--section-margin);
             text-align: center;
-            color: #555;
-            font-size: 14px;
-            line-height: 1.6;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            width: 100%;
-            max-width: 900px;
+            color: #444;
+            font-size: var(--text-small);
+            line-height: 1.5;
+            box-shadow: var(--shadow);
+            max-width: 85%; /* Smaller width */
+            border-left: 3px solid var(--primary-color);
+            backdrop-filter: blur(4px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
         
+        .exercise-info:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+        
+        /* Toolbar */
         .toolbar {
             background-color: white;
-            padding: 10px;
+            padding: var(--card-padding);
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            border-radius: 12px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin-bottom: 12px;
+            gap: 0.625rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: clamp(0.4rem, 1.5vw, 0.8rem);
             align-items: center;
             position: relative;
             z-index: 5;
-            width: 100%;
-            max-width: 900px;
         }
         
         .dropdown {
@@ -139,28 +172,28 @@
         
         .dropdown-btn {
             background: var(--light-color);
-            border: 1px solid var(--gray-color);
-            border-radius: 6px;
+            border: 1px solid var(--grey-color);
+            border-radius: 0.375rem;
             padding: 0;
             display: flex;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 0.0625rem 0.1875rem rgba(0,0,0,0.05);
         }
         
         .dropdown-btn:hover, .dropdown-btn:active {
-            background: var(--gray-color);
+            background: var(--grey-color);
         }
         
         .dropdown-title {
-            border-right: 1px solid var(--gray-color);
-            padding: 8px 10px;
+            border-right: 1px solid var(--grey-color);
+            padding: 0.5rem 0.625rem;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 0.875rem;
         }
         
         .dropdown-arrow {
-            padding: 8px;
+            padding: 0.5rem;
             color: var(--primary-color);
         }
         
@@ -168,70 +201,85 @@
             display: none;
             position: absolute;
             background-color: #fff;
-            min-width: 160px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-width: 10rem;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.1);
             z-index: 6;
-            border-radius: 6px;
-            margin-top: 5px;
+            border-radius: 0.375rem;
+            margin-top: 0.3125rem;
             overflow: hidden;
         }
         
         .dropdown-content a {
             color: var(--dark-color);
-            padding: 10px 15px;
+            padding: 0.625rem 0.9375rem;
             text-decoration: none;
             display: block;
             transition: background 0.2s ease;
         }
         
         .dropdown-content a:hover, .dropdown-content a:active {
-            background-color: var(--gray-color);
+            background-color: var(--grey-color);
             color: var(--primary-color);
         }
         
+        /* Timer Bar */
         .timer-bar {
-            background: linear-gradient(to right, var(--dark-color), #3a455c);
+            background: rgba(15, 76, 138, 0.8);
             color: white;
-            height: 36px;
-            line-height: 36px;
+            height: 2rem;
+            line-height: 2rem;
             display: flex;
             justify-content: space-between;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 0.4rem;
+            margin-bottom: 0.05rem;
+            box-shadow: var(--shadow);
             position: relative;
             z-index: 2;
-            width: 100%;
-            max-width: 900px;
+            backdrop-filter: blur(4px);
+            transition: background 0.3s ease;
+        }
+        
+        .timer-bar:hover {
+            background: rgba(15, 76, 138, 0.9);
         }
         
         .info-text {
-            padding: 0 15px;
+            padding: 0 0.8rem;
             font-weight: 500;
+            font-size: var(--text-small);
+            letter-spacing: 0.3px;
         }
         
         .timer {
-            background-color: var(--primary-color);
+            background-color: rgba(0, 0, 0, 0.15);
             color: white;
-            padding: 0 20px;
-            border-radius: 0 8px 8px 0;
+            padding: 0 1.1rem;
+            border-radius: 0 0.4rem 0.4rem 0;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
         }
         
+        /* Exercise Area */
         .exercise-area {
             position: relative;
             width: 100%;
-            max-width: 900px;
-            height: 460px;
-            margin: 8px auto;
-            background-color: white;
-            border-radius: 12px;
+            max-width: 100%;
+            height: 38rem; /* Made larger like hedef-nesne */
+            margin: 0.5rem auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 0.4rem;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-top: 10px;
+            box-shadow: var(--shadow);
+            margin-top: 0.625rem;
             position: relative;
             z-index: 1;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+            border: 1px solid rgba(240, 242, 245, 0.8);
+        }
+        
+        .exercise-area:hover {
+            box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
         }
         
         .circle-container {
@@ -252,115 +300,127 @@
             transform: translate(-50%, -50%);
             left: 50%;
             top: 50%;
-        }
-
-        .growing-circle.hollow {
-            background-color: transparent !important; /* Arka planı şeffaf yap */
-            border-width: 4px; /* Kenarlık kalınlığı */
-            border-style: solid; /* Kenarlık stili */
-            border-color: inherit; /* JavaScript ile ayarlanacak */
+            background-color: transparent; /* Transparent background */
+            border-width: 4px; /* Border width */
+            border-style: solid; /* Border style */
         }
         
-        .growing-circle.hollow::after {
+        .growing-circle::after {
             content: '';
             position: absolute;
-            width: 6px; /* Merkez noktanın boyutu */
-            height: 6px; /* Merkez noktanın boyutu */
-            background-color: currentColor; /* Daire rengiyle aynı renk */
+            width: 6px; /* Center point size */
+            height: 6px; /* Center point size */
+            background-color: currentColor; /* Same color as the circle */
             border-radius: 50%;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
         
+        /* Overlay */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(rgba(0, 68, 148, 0.8), rgba(0, 160, 227, 0.8));
+            background: rgba(15, 76, 138, 0.6); /* Match hedef-nesne */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 10;
+            border-radius: 0.4rem;
+            backdrop-filter: blur(5px);
+            transition: background 0.4s ease;
+        }
+        
+        .overlay:hover {
+            background: rgba(15, 76, 138, 0.7);
         }
         
         .start-button, .stop-button {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            background: var(--primary-color);
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 18px;
+            padding: 0.9375rem 2.5rem;
+            font-size: 1.125rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            margin: 5px;
+            border-radius: 3.125rem;
+            box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.2);
+            margin: 0.3125rem;
             user-select: none;
             -webkit-user-select: none;
         }
         
         .start-button:active, .stop-button:active {
-            transform: translateY(3px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transform: translateY(0.1875rem);
+            box-shadow: 0 0.125rem 0.625rem rgba(0,0,0,0.2);
         }
         
         .stop-button {
-            background: linear-gradient(to right, var(--danger-color), #d64161);
+            background: var(--danger-color);
             position: absolute;
-            top: 15px;
-            left: 15px;
-            padding: 10px 20px;
-            font-size: 16px;
+            top: 0.9375rem;
+            left: 0.9375rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 1rem;
             z-index: 5;
             display: none;
         }
         
+        /* Countdown */
         .countdown {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 100px;
-            height: 100px;
-            line-height: 100px;
-            text-align: center;
+            width: 5rem;
+            height: 5rem;
+            display: none; /* Start with display none - will be changed to flex by JS */
             background: white;
-            font-size: 70px;
             color: var(--primary-color);
             border: 3px solid var(--primary-color);
-            display: none;
             z-index: 20;
             border-radius: 50%;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 0.3rem 1.25rem rgba(0,0,0,0.2);
             font-weight: bold;
+            pointer-events: none;
+            
+            /* These properties will apply when the element is displayed */
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            text-align: center; /* Additional centering for text */
+            line-height: 5rem; /* Match height for vertical alignment */
         }
         
+        
+        
+        /* Color Selection */
         .color-selection {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 15px 0;
+            gap: 0.9375rem;
+            margin: 0.9375rem 0;
             max-height: 60vh;
             overflow-y: auto;
-            padding: 0 10px;
+            padding: 0 0.625rem;
         }
         
         .color-option {
             display: flex;
             align-items: center;
-            background-color: var(--gray-color);
-            border-radius: 8px;
-            padding: 10px;
+            background-color: var(--grey-color);
+            border-radius: 0.5rem;
+            padding: 0.625rem;
             cursor: pointer;
             transition: all 0.2s ease;
         }
         
         .color-option:hover {
             background-color: #e9ecef;
+            transform: translateY(-2px);
         }
         
         .color-option.selected {
@@ -369,138 +429,127 @@
         }
         
         .color-swatch {
-            width: 20px;
-            height: 20px;
+            width: 1.25rem;
+            height: 1.25rem;
             border-radius: 50%;
-            margin-right: 10px;
+            margin-right: 0.625rem;
             border: 1px solid rgba(0,0,0,0.1);
         }
         
         .color-name {
             font-weight: 500;
-            font-size: 14px;
+            font-size: 0.875rem;
         }
         
+        /* Completion Message */
         .completion-message {
-            background: white;
-            border-radius: 12px;
-            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0.4rem;
+            padding: 1.1rem 1.6rem;
             text-align: center;
-            max-width: 500px;
+            max-width: 28rem;
             width: 90%;
+            height: auto;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 0.4rem 1.2rem rgba(0,0,0,0.08);
+            backdrop-filter: blur(5px);
+            transform: translateY(10px);
+            animation: slideUp 0.4s forwards;
+            border-top: 3px solid var(--accent-color);
+        }
+        
+        @keyframes slideUp {
+            to { transform: translateY(0); }
         }
         
         .completion-title {
-            color: var(--dark-color);
-            font-size: 24px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
         
         .result-stats {
-            background-color: var(--light-color);
-            border-radius: 8px;
-            padding: 15px;
-            margin: 10px 0;
+            background-color: rgba(249, 251, 255, 0.7);
+            border-radius: 0.4rem;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
             text-align: left;
-            font-size: 15px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .result-stats:hover {
+            background-color: var(--light-color);
         }
         
         .result-stats p {
-            margin: 8px 0;
+            margin: 0.4rem 0;
             display: flex;
             justify-content: space-between;
+            transition: transform 0.2s ease;
+        }
+        
+        .result-stats p:hover {
+            transform: translateX(2px);
         }
         
         .result-stats p span {
-            font-weight: 600;
+            font-weight: 500;
             color: var(--primary-color);
         }
         
-        .submit-button, .restart-button {
-            background: linear-gradient(to right, var(--success-color), #3cb371);
+        .restart-button, .submit-button {
+            background: var(--accent-color-transparent);
             color: white;
             border: none;
-            padding: 12px 35px;
-            font-size: 16px;
-            font-weight: 600;
+            padding: 0.7rem 2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
             cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.2s ease;
-            border-radius: 50px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border-radius: 2.5rem;
+            box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.1);
             user-select: none;
             -webkit-user-select: none;
+            letter-spacing: 0.5px;
         }
         
-        .submit-button:hover, .restart-button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        .restart-button:hover, .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.3rem 0.7rem rgba(0,0,0,0.15);
+            background: var(--accent-color);
         }
         
-        .submit-button:active, .restart-button:active {
+        .restart-button:active, .submit-button:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 0.1rem 0.3rem rgba(0,0,0,0.1);
         }
         
-        .stats-container {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .stats-container div {
-            margin: 5px 0;
-        }
-        
-        .stats-container span {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-        }
-        
-        .logo img {
-            height: 30px; /* Logo yüksekliğini buradan ayarlayabilirsiniz */
-            margin-right: 10px; /* Logo ile yazı arasındaki boşluk */
-        }
-        
+        /* Fullscreen related */
         .fullscreen-button {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            background: var(--primary-color);
             color: white;
             border: none;
-            padding: 8px 16px;
-            font-size: 14px;
-            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border-radius: 0.5rem;
             cursor: pointer;
             position: absolute;
-            bottom: 15px;
-            right: 15px;
+            bottom: 0.9375rem;
+            right: 0.9375rem;
             z-index: 5;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 0.25rem 0.375rem rgba(0,0,0,0.1);
             transition: all 0.2s ease;
         }
         
         .fullscreen-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 0.375rem 0.625rem rgba(0,0,0,0.15);
         }
         
         .fullscreen {
@@ -525,15 +574,15 @@
         
         .fullscreen-exit {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 1.25rem;
+            right: 1.25rem;
             background: rgba(0,0,0,0.2);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
+            width: 2.5rem;
+            height: 2.5rem;
+            font-size: 1.25rem;
             cursor: pointer;
             z-index: 10000;
             display: none;
@@ -544,64 +593,99 @@
             background: rgba(0,0,0,0.3);
         }
         
-        /* Mobil cihazlar için özel düzenlemeler */
-        @media (max-width: 768px) {
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 48em) { /* 768px */
+            .exercise-area {
+                height: 34rem; /* Adjusted for better mobile display */
+            }
+            
             .color-selection {
                 grid-template-columns: 1fr;
+                gap: 0.75rem;
             }
             
             .stats-container {
-                top: 10px;
-                right: 10px;
-                padding: 5px 8px;
-                font-size: 10px;
-                max-width: 120px;
-                border-radius: 6px;
-            }
-            
-            .stats-container div {
-                margin: 2px 0;
+                top: 0.6rem;
+                right: 0.6rem;
+                padding: 0.3rem 0.5rem;
+                font-size: 0.6rem;
+                max-width: 7rem;
+                border-radius: 0.3rem;
             }
             
             .countdown {
-                width: 80px;
-                height: 80px;
-                line-height: 80px;
-                font-size: 50px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 20px;
+                width: 4.5rem;
+                height: 4.5rem;
+                line-height: 4.5rem;
+                font-size: 2.2rem;
             }
             
             .toolbar {
                 flex-direction: column;
                 align-items: stretch;
+                padding: 0.75rem;
             }
             
             .dropdown {
-                margin: 5px 0;
-            }
-            
-            .exercise-area {
-                height: 400px;
+                margin-bottom: 0.5rem;
             }
             
             .completion-message {
-                padding: 15px;
+                padding: 0.8rem 1.2rem;
+                width: 85%;
+            }
+        }
+        
+        @media (max-width: 36em) { /* 576px */
+            .completion-message {
+                padding: 0.8rem;
                 width: 85%;
             }
             
             .result-stats {
-                padding: 10px;
-                font-size: 14px;
+                padding: 0.6rem;
+                font-size: 0.8rem;
             }
             
             .completion-title {
-                font-size: 22px;
-                margin-bottom: 15px;
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .exercise-area {
+                height: 32rem; /* Adjusted for mobile */
+            }
+            
+            .toolbar {
+                padding: 0.5rem;
+            }
+            
+            .dropdown-btn .dropdown-title,
+            .dropdown-btn .dropdown-arrow {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+            }
+            
+            .exercise-info {
+                max-width: 95%;
+                padding: 0.5rem;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            .navbar, .toolbar, .stop-button, 
+            .fullscreen-button, .fullscreen-exit, .overlay, .back-button {
+                display: none !important;
+            }
+            
+            .exercise-area, .completion-message {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+                background: white !important;
+                backdrop-filter: none;
             }
         }
     </style>
@@ -610,17 +694,16 @@
     <div class="navbar">
         <div class="container">
             <a href="index.html" class="logo">
-                <img src="logo.png" alt="Beyin Enstitüsü Logo">
-                <span>Beyin Enstitüsü</span>
+                <img src="logo.png" alt="ForBrain Learning Center Logo">
             </a>
             <a href="index.html" class="back-button">← Tüm Egzersizler</a>
         </div>
     </div>
     
-    <div class="main-container">
-        <div class="header">
+    <div class="container">
+        <header>
             <h1>Renkli Daire Egzersizi</h1>
-        </div>
+        </header>
         
         <div class="exercise-info">
             Bu egzersiz, görsel algı ve kısa süreli bellek becerilerinizi geliştirmeyi amaçlar.
@@ -644,28 +727,16 @@
                     <a href="#" id="duration180">3:00</a>
                 </div>
             </div>
-
-            <div class="dropdown">
-                <button class="dropdown-btn" id="circleTypeBtn">
-                    <div class="dropdown-title" id="selectedCircleType">İçi Dolu</div>
-                    <div class="dropdown-arrow">▾</div>
-                </button>
-                <div id="circleTypeDropdown" class="dropdown-content">
-                    <a href="#" id="circleTypeFilled">İçi Dolu</a>
-                    <a href="#" id="circleTypeHollow">İçi Boş Animasyonlu</a>
-                    <a href="#" id="circleTypeStep">İçi Boş Kademeli</a>
-                </div>
-            </div>
             
             <div class="dropdown">
                 <button class="dropdown-btn" id="speedBtn">
-                    <div class="dropdown-title" id="selectedSpeed">Normal (2.5sn)</div>
+                    <div class="dropdown-title" id="selectedSpeed">Normal</div>
                     <div class="dropdown-arrow">▾</div>
                 </button>
                 <div id="speedDropdown" class="dropdown-content">
-                    <a href="#" id="speed1">Yavaş (4sn)</a>
-                    <a href="#" id="speed2">Normal (2.5sn)</a>
-                    <a href="#" id="speed3">Hızlı (1.5sn)</a>
+                    <a href="#" id="speed1">Yavaş</a>
+                    <a href="#" id="speed2">Normal</a>
+                    <a href="#" id="speed3">Hızlı</a>
                 </div>
             </div>
             
@@ -698,10 +769,7 @@
                 <!-- Daireler JavaScript ile eklenecek -->
             </div>
             
-            <div class="stats-container" id="statsContainer" style="display: none;">
-                <div>Daire Sayısı: <span id="circleCount">0</span></div>
-                <div>Gösterilen Renkler: <span id="colorCount">0</span></div>
-            </div>
+            
             
             <div class="overlay" id="startOverlay">
                 <button class="start-button" id="startButton">Egzersizi Başlat</button>
@@ -762,7 +830,6 @@
         let circleCount = 0;
         let shownColors = []; // Gösterilen renkler
         let isFullscreen = false;
-        let circleType = 'filled'; // 'filled', 'hollow', 'step'
         
         // Zamanlayıcılar
         let exerciseTimer;
@@ -878,37 +945,6 @@
                     exitFullscreen();
                 }
             });
-
-            document.getElementById('circleTypeBtn').addEventListener('click', function() {
-                toggleDropdown('circleTypeDropdown');
-            });
-            
-            document.getElementById('circleTypeFilled').addEventListener('click', function(e) {
-                e.preventDefault();
-                setCircleType('filled');
-            });
-            
-            document.getElementById('circleTypeHollow').addEventListener('click', function(e) {
-                e.preventDefault();
-                setCircleType('hollow');
-            });
-            
-            document.getElementById('circleTypeStep').addEventListener('click', function(e) {
-                e.preventDefault();
-                setCircleType('step');
-            });
-        }
-
-        // Daire tipini ayarlama fonksiyonu
-        function setCircleType(type) {
-            circleType = type;
-            
-            let typeText = 'İçi Dolu';
-            if (type === 'hollow') typeText = 'İçi Boş Animasyonlu';
-            else if (type === 'step') typeText = 'İçi Boş Kademeli';
-            
-            document.getElementById('selectedCircleType').innerText = typeText;
-            closeAllDropdowns();
         }
         
         // Dropdown'u aç/kapat
@@ -957,7 +993,7 @@
         // Hızı ayarla
         function setSpeed(newSpeed) {
             speed = newSpeed;
-            const speedTexts = ['Yavaş (4sn)', 'Normal (2.5sn)', 'Hızlı (1.5sn)'];
+            const speedTexts = ['Yavaş', 'Normal', 'Hızlı '];
             document.getElementById('selectedSpeed').innerText = speedTexts[newSpeed - 1];
             closeAllDropdowns();
         }
@@ -980,11 +1016,8 @@
                 document.getElementById('fullscreenExit').style.display = 'block';
                 document.getElementById('fullscreenButton').style.display = 'none';
                 
-                // Stats container'ı tam ekranda daha iyi göster
-                const statsContainer = document.getElementById('statsContainer');
-                if (statsContainer.style.display !== 'none') {
-                    statsContainer.style.top = '80px';
-                }
+                
+                
             }
         }
         
@@ -998,9 +1031,7 @@
                 document.getElementById('fullscreenExit').style.display = 'none';
                 document.getElementById('fullscreenButton').style.display = 'block';
                 
-                // Stats container pozisyonunu geri al
-                const statsContainer = document.getElementById('statsContainer');
-                statsContainer.style.top = '15px';
+                
             }
         }
         
@@ -1023,7 +1054,7 @@
             
             // Daire sayısını artır
             circleCount++;
-            document.getElementById('circleCount').innerText = circleCount;
+            
             
             // Rastgele renk seç
             const selectedColor = getRandomColor();
@@ -1031,25 +1062,14 @@
             // Eğer renk daha önce gösterilmediyse listeye ekle
             if (!shownColors.some(color => color.name === selectedColor.name)) {
                 shownColors.push(selectedColor);
-                document.getElementById('colorCount').innerText = shownColors.length;
+                
             }
             
             // Daire oluştur
             const circle = document.createElement('div');
             circle.className = 'growing-circle';
-            
-            // Daire tipine göre stil ayarla
-            if (circleType === 'filled') {
-                // İçi dolu daire (orijinal)
-                circle.style.backgroundColor = selectedColor.value;
-            } else {
-                // İçi boş daire (hollow veya step)
-                circle.classList.add('hollow');
-                circle.style.backgroundColor = 'transparent';
-                circle.style.borderColor = selectedColor.value;
-                circle.style.color = selectedColor.value; // Merkez noktanın rengi için
-            }
-            
+            circle.style.borderColor = selectedColor.value;
+            circle.style.color = selectedColor.value; // Merkez noktanın rengini ayarlar
             circle.style.width = '10px';
             circle.style.height = '10px';
             
@@ -1059,6 +1079,7 @@
             
             // Büyüme animasyonu
             const growthDuration = growthDurations[speed - 1];
+            const startTime = performance.now();
             
             // Egzersiz alanının boyutlarını al
             const exerciseArea = document.getElementById('exerciseArea');
@@ -1068,81 +1089,36 @@
             // Minimum boyut (ekranın %80'i veya 100vmin)
             const maxSize = Math.min(areaWidth, areaHeight) * 0.8;
             
-            // Daire tipine göre farklı büyüme animasyonları
-            if (circleType !== 'step') {
-                // Kayarak (smooth) büyüme - İçi dolu veya içi boş animasyonlu için
-                const startTime = performance.now();
+            function grow(timestamp) {
+                if (!exerciseStarted) return;
                 
-                function grow(timestamp) {
-                    if (!exerciseStarted) return;
-                    
-                    const elapsed = timestamp - startTime;
-                    const progress = Math.min(elapsed / growthDuration, 1);
-                    const size = progress * maxSize;
-                    
-                    circle.style.width = `${size}px`;
-                    circle.style.height = `${size}px`;
-                    
-                    if (progress < 1) {
-                        requestAnimationFrame(grow);
-                    } else {
-                        // Daire büyümesi tamamlandı
-                        setTimeout(() => {
-                            if (container.contains(circle)) {
-                                container.removeChild(circle);
-                            }
-                            
-                            // Egzersiz devam ediyorsa sonraki daireyi planla
-                            if (exerciseStarted) {
-                                const waitTime = 1000; // Sabit bekleme süresi 1 saniye
-                                circleTimer = setTimeout(createAndGrowCircle, waitTime);
-                            }
-                        }, 200);
-                    }
-                }
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / growthDuration, 1);
+                const size = progress * maxSize;
                 
-                // Büyüme animasyonunu başlat
-                requestAnimationFrame(grow);
-            } else {
-                // Kademeli adım adım büyüme - İçi boş kademeli için
-                const steps = 10; // Adım sayısı
-                const stepDuration = growthDuration / steps;
-                let currentStep = 0;
+                circle.style.width = `${size}px`;
+                circle.style.height = `${size}px`;
                 
-                function growStep() {
-                    if (!exerciseStarted) return;
-                    
-                    currentStep++;
-                    
-                    if (currentStep <= steps) {
-                        // Bir sonraki adımın boyutu
-                        const progress = currentStep / steps;
-                        const size = progress * maxSize;
+                if (progress < 1) {
+                    requestAnimationFrame(grow);
+                } else {
+                    // Daire büyümesi tamamlandı
+                    setTimeout(() => {
+                        if (container.contains(circle)) {
+                            container.removeChild(circle);
+                        }
                         
-                        circle.style.width = `${size}px`;
-                        circle.style.height = `${size}px`;
-                        
-                        // Bir sonraki adımı planla
-                        setTimeout(growStep, stepDuration);
-                    } else {
-                        // Daire büyümesi tamamlandı
-                        setTimeout(() => {
-                            if (container.contains(circle)) {
-                                container.removeChild(circle);
-                            }
-                            
-                            // Egzersiz devam ediyorsa sonraki daireyi planla
-                            if (exerciseStarted) {
-                                const waitTime = 1000; // Sabit bekleme süresi 1 saniye
-                                circleTimer = setTimeout(createAndGrowCircle, waitTime);
-                            }
-                        }, 200);
-                    }
+                        // Egzersiz devam ediyorsa sonraki daireyi planla
+                        if (exerciseStarted) {
+                            const waitTime = 1000; // Sabit bekleme süresi 1 saniye
+                            circleTimer = setTimeout(createAndGrowCircle, waitTime);
+                        }
+                    }, 200);
                 }
-                
-                // Adım adım büyüme animasyonunu başlat
-                growStep();
             }
+            
+            // Büyüme animasyonunu başlat
+            requestAnimationFrame(grow);
         }
         
         // Egzersizi başlat
@@ -1156,10 +1132,8 @@
             shownColors = [];
             remainingTime = duration;
             
-            // İstatistikleri güncelle
-            document.getElementById('circleCount').innerText = '0';
-            document.getElementById('colorCount').innerText = '0';
-            document.getElementById('statsContainer').style.display = 'block';
+            
+            
             
             // UI elemanlarını güncelle
             document.getElementById('stopButton').style.display = 'block';
@@ -1235,7 +1209,7 @@
             document.getElementById('circleContainer').innerHTML = '';
             
             // UI elemanlarını güncelle
-            document.getElementById('statsContainer').style.display = 'none';
+            
             document.getElementById('stopButton').style.display = 'none';
             
             // Renk seçim ekranını göster
@@ -1244,37 +1218,42 @@
         
         // Renk seçim ekranını hazırla
         function prepareColorSelection() {
+            // Get the container and clear any previous options
             const colorSelection = document.getElementById('colorSelection');
             colorSelection.innerHTML = '';
-            
-            // Tüm renkleri ekle (önceden belirlenen renk sayısına göre)
-            availableColors.forEach(color => {
-                const colorOption = document.createElement('div');
-                colorOption.className = 'color-option';
-                colorOption.dataset.color = color.name;
-                
-                const colorSwatch = document.createElement('div');
-                colorSwatch.className = 'color-swatch';
-                colorSwatch.style.backgroundColor = color.value;
-                
-                const colorName = document.createElement('div');
-                colorName.className = 'color-name';
-                colorName.innerText = color.name;
-                
-                colorOption.appendChild(colorSwatch);
-                colorOption.appendChild(colorName);
-                
-                // Tıklama olayı ekle
-                colorOption.addEventListener('click', function() {
-                    this.classList.toggle('selected');
-                });
-                
-                colorSelection.appendChild(colorOption);
+          
+            // Loop over allColors (10 items), not just the subset you used
+            allColors.forEach(color => {
+              // Create the outer option div
+              const colorOption = document.createElement('div');
+              colorOption.className = 'color-option';
+              colorOption.dataset.color = color.name;
+          
+              // Create the swatch
+              const colorSwatch = document.createElement('div');
+              colorSwatch.className = 'color-swatch';
+              colorSwatch.style.backgroundColor = color.value;
+          
+              // Create the label
+              const colorName = document.createElement('div');
+              colorName.className = 'color-name';
+              colorName.innerText = color.name;
+          
+              // Assemble and append
+              colorOption.appendChild(colorSwatch);
+              colorOption.appendChild(colorName);
+          
+              // Toggle selection on click
+              colorOption.addEventListener('click', function() {
+                this.classList.toggle('selected');
+              });
+          
+              colorSelection.appendChild(colorOption);
             });
-            
-            // Renk seçim ekranını göster
+          
+            // Finally, show the overlay
             document.getElementById('colorSelectionOverlay').style.display = 'flex';
-        }
+          }
         
         // Cevapları kontrol et
         function checkResults() {
