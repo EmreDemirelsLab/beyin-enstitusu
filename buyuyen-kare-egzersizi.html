@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
-    <title>Dikey Zikzak Egzersizi | ForBrain Learning Center</title>
+    <title>Büyüyüp Küçülen Kare Egzersizi | ForBrain Learning Center</title>
     <style>
         :root {
-            --primary-color: #0f4c8a; /* Dark blue from the logo */
-            --primary-color-transparent: rgba(15, 76, 138, 0.85); /* Semi-transparent primary */
-            --secondary-color: #65c8e5; /* Light blue from the logo */
-            --secondary-color-transparent: rgba(101, 200, 229, 0.85); /* Semi-transparent secondary */
-            --accent-color: #8cc63f; /* Green from the logo */
-            --accent-color-transparent: rgba(140, 198, 63, 0.85); /* Semi-transparent accent */
+            --primary-color: #0f4c8a;
+            --primary-color-transparent: rgba(15, 76, 138, 0.85);
+            --secondary-color: #65c8e5;
+            --secondary-color-transparent: rgba(101, 200, 229, 0.85);
+            --accent-color: #8cc63f;
+            --accent-color-transparent: rgba(140, 198, 63, 0.85);
             --success-color: #06d6a0;
             --danger-color: #ef476f;
             --warning-color: #ffd166;
@@ -21,8 +21,6 @@
             --white-transparent: rgba(255, 255, 255, 0.9);
             --shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
-            
-            /* Responsive units */
             --container-padding: 5%;
             --card-padding: clamp(0.5rem, 1.8vw, 1rem);
             --section-margin: clamp(0.8rem, 2.5vw, 1.5rem);
@@ -43,7 +41,7 @@
         }
         
         html {
-            font-size: 16px; /* Base font size */
+            font-size: 16px;
         }
         
         body {
@@ -62,7 +60,7 @@
         
         .container {
             width: 100%;
-            max-width: 70rem; /* 1120px - slightly smaller */
+            max-width: 70rem;
             margin: 0 auto;
             padding: 0 var(--container-padding);
         }
@@ -92,8 +90,8 @@
         
         .logo img {
             width: 60%;
-            max-width: 15.625rem; /* 250px */
-            min-width: 9.375rem; /* 150px */
+            max-width: 15.625rem;
+            min-width: 9.375rem;
             height: auto;
         }
         
@@ -139,7 +137,7 @@
             font-size: var(--text-small);
             line-height: 1.5;
             box-shadow: var(--shadow);
-            max-width: 85%; /* Smaller width */
+            max-width: 85%;
             border-left: 3px solid var(--primary-color);
             backdrop-filter: blur(4px);
             transition: transform 0.3s ease, opacity 0.3s ease;
@@ -149,15 +147,15 @@
             transform: translateY(-2px);
             opacity: 0.95;
         }
-
+        
         .exercise-header {
-            width: 100%;              /* Ekran genişliğini aşmasın */
-            box-sizing: border-box;   /* Padding/margin hesaba katılsın */
-            padding: 0.5rem;          /* Kenar boşlukları */
-            white-space: normal;      /* Satır kaydırmaya izin ver */
-            overflow-wrap: break-word;/* Uzun kelimeleri bölerek alt satıra geçir */
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.5rem;
+            white-space: normal;
+            overflow-wrap: break-word;
             font-size: clamp(1rem, 2.5vw, 1.25rem);
-          }
+        }
         
         /* Toolbar */
         .toolbar {
@@ -235,8 +233,6 @@
         .timer-bar {
             background: rgba(15, 76, 138, 0.8);
             color: white;
-            height: 2rem;
-            line-height: 2rem;
             display: flex;
             justify-content: space-between;
             border-radius: 0.4rem;
@@ -246,6 +242,9 @@
             z-index: 2;
             backdrop-filter: blur(4px);
             transition: background 0.3s ease;
+            flex-wrap: wrap;
+            height: auto;
+            padding: 0.4rem 0.8rem;
         }
         
         .timer-bar:hover {
@@ -257,6 +256,9 @@
             font-weight: 500;
             font-size: var(--text-small);
             letter-spacing: 0.3px;
+            flex: 1 1 auto;
+            min-width: 0;
+            overflow-wrap: break-word;
         }
         
         .timer {
@@ -267,6 +269,8 @@
             font-weight: bold;
             font-size: 0.9rem;
             transition: background-color 0.3s ease;
+            flex: 0 0 auto;
+            margin-top: 0.3rem;
         }
         
         /* Exercise Area */
@@ -274,7 +278,7 @@
             position: relative;
             width: 100%;
             max-width: 100%;
-            height: 38rem; /* Made larger like the reference pages */
+            height: 38rem;
             margin: 0.5rem auto;
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 0.4rem;
@@ -291,8 +295,8 @@
             box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
         }
         
-        /* Zigzag Container */
-        .zigzag-container {
+        /* Square Container */
+        .square-container {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -301,88 +305,44 @@
             align-items: center;
             overflow: hidden;
         }
-
-        /* Object Display Styles */
-        .object-point {
+        
+        .square {
             position: absolute;
-            width: 0.5rem;
-            height: 0.5rem;
-            background-color: rgba(15, 76, 138, 0.2);
-            border-radius: 50%;
-            z-index: 1;
-            transform: translate(-50%, -50%);
-        }
-        
-        .current-object {
-            position: absolute;
-            font-size: 3rem;
-            z-index: 2;
-            text-align: center;
-            transition: all 0.2s ease;
-            transform: translate(-50%, -50%);
-            line-height: 1;
-        }
-        
-        /* Glow effect for active points */
-        .active-point {
-            box-shadow: 0 0 10px var(--accent-color);
-            background-color: var(--accent-color);
-            width: 0.75rem;
-            height: 0.75rem;
-            transition: all 0.3s ease;
-        }
-
-        /* Kılavuz çizgisi için responsive CSS stili */
-        .guideline {
-            position: absolute;
-            top: 0;                /* JS ile atanmış Y koordinatı */
-            left: 0;               /* JS ile atanmış X koordinatı */
-            transform-origin: left center;
-            opacity: 0.3;
-            height: 0.125rem;      /* ≈2px çizgi kalınlığı */
-          
-            /* 0.25rem çizgi, 0.25rem boşluk (toplam 0.5rem) */
-            background-image: repeating-linear-gradient(
-              to right,
-              var(--primary-color-transparent) 0,
-              var(--primary-color-transparent) 0.25rem,
-              transparent 2rem,
-              transparent 1.25rem
-            );
-            background-repeat: repeat-x;
-          }
-        
-        /* Object selection styles for memory test */
-        .object-selection {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.9375rem;
-            margin: 0.9375rem 0;
-            max-height: 60vh;
-            overflow-y: auto;
-            padding: 0 0.625rem;
-        }
-        
-        .object-option {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--grey-color);
-            border-radius: 0.5rem;
-            padding: 0.625rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 2rem;
-        }
-        
-        .object-option:hover {
-            background-color: #e9ecef;
-            transform: translateY(-2px);
-        }
-        
-        .object-option.selected {
+            width: 50px;
+            height: 50px;
             background-color: var(--primary-color);
-            color: white;
+            transition: all 0.1s linear;
+            z-index: 2;
+        }
+        
+        .focus-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .focus-point:before, .focus-point:after {
+            content: "";
+            position: absolute;
+            background-color: var(--primary-color-transparent);
+        }
+        
+        .focus-point:before {
+            left: 9px;
+            top: 0;
+            width: 2px;
+            height: 20px;
+        }
+        
+        .focus-point:after {
+            left: 0;
+            top: 9px;
+            width: 20px;
+            height: 2px;
         }
         
         /* Overlay */
@@ -407,6 +367,7 @@
             background: rgba(15, 76, 138, 0.7);
         }
         
+        /* Buttons */
         .start-button, .stop-button {
             background: var(--primary-color);
             color: white;
@@ -439,6 +400,97 @@
             display: none;
         }
         
+        /* Kontrol düğmeleri konumlandırma */
+        .control-buttons-container {
+            position: absolute;
+            bottom: 0.9375rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.9375rem;
+            z-index: 4;
+        }
+        
+        .left-controls {
+            display: flex;
+            flex-direction: column; /* Dikey düzen için column yapıyoruz */
+            gap: 0.5rem;
+        }
+        
+        .right-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .center-controls {
+            position: absolute;
+            bottom: 0; /* Alt ortada konumlandırılıyor */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .attention-test-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0.25rem 0.375rem rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .attention-test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.375rem 0.625rem rgba(0,0,0,0.15);
+        }
+        
+        .sound-control {
+            background: var(--light-color);
+            border: 1px solid var(--grey-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0.25rem 0.375rem rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .sound-control:hover {
+            background: var(--grey-color);
+        }
+        
+        .fullscreen-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            position: absolute;
+            bottom: 0.9375rem;
+            right: 0.9375rem;
+            z-index: 5;
+            box-shadow: 0 0.25rem 0.375rem rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .fullscreen-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.375rem 0.625rem rgba(0,0,0,0.15);
+        }
+        
         /* Countdown */
         .countdown {
             position: absolute;
@@ -447,7 +499,7 @@
             transform: translate(-50%, -50%);
             width: 5rem;
             height: 5rem;
-            display: none; /* Start with display none - will be changed to flex by JS */
+            display: none;
             background: white;
             color: var(--primary-color);
             border: 3px solid var(--primary-color);
@@ -456,28 +508,9 @@
             box-shadow: 0 0.3rem 1.25rem rgba(0,0,0,0.2);
             font-weight: bold;
             pointer-events: none;
-            
-            /* These properties will apply when the element is displayed */
             font-size: clamp(2.5rem, 5vw, 3.5rem);
-            text-align: center; /* Additional centering for text */
-            line-height: 5rem; /* Match height for vertical alignment */
-        }
-        
-        /* Memory Test Overlay */
-        .memory-test-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(15, 76, 138, 0.6);
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            border-radius: 0.4rem;
-            backdrop-filter: blur(5px);
+            text-align: center;
+            line-height: 5rem;
         }
         
         /* Completion Message */
@@ -591,28 +624,7 @@
             box-shadow: 0 0.1rem 0.3rem rgba(0,0,0,0.1);
         }
         
-        /* Fullscreen related */
-        .fullscreen-button {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            position: absolute;
-            bottom: 0.9375rem;
-            right: 0.9375rem;
-            z-index: 5;
-            box-shadow: 0 0.25rem 0.375rem rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-        }
-        
-        .fullscreen-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0.375rem 0.625rem rgba(0,0,0,0.15);
-        }
-        
+        /* Fullscreen */
         .fullscreen {
             width: 100vw;
             height: 100vh;
@@ -654,12 +666,32 @@
             background: rgba(0,0,0,0.3);
         }
         
-        /* Focus point guidance */
-        .focus-guide {
+        /* Üst bilgi çubuğu */
+        .info-bar {
             position: absolute;
-            bottom: 0.9375rem;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 0.9375rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.9375rem;
+            z-index: 3;
+            pointer-events: none;
+        }
+        
+        .cycle-counter {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.3rem 0.7rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            pointer-events: auto;
+        }
+        
+        /* Focus guide stilini güncelleme - artık burası center-controls içinde */
+        .focus-guide {
             background-color: rgba(255, 255, 255, 0.9);
             padding: 0.3rem 0.7rem;
             border-radius: 1rem;
@@ -668,56 +700,42 @@
             font-weight: 500;
             opacity: 0.8;
             transition: opacity 0.3s ease;
-            z-index: 3;
             box-shadow: var(--shadow);
+            pointer-events: auto;
+            margin-bottom: 0.5rem; /* Alt kenarda biraz boşluk bırakıyoruz */
         }
         
         .focus-guide:hover {
             opacity: 1;
         }
-
-
-        .timer-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            /* flex-wrap’e izin ver, böylece gerekirse alt satıra iner */
-            flex-wrap: wrap;
-            /* height’ı auto yapın, tek satıra sığmazsa yüksekliği artsın */
-            height: auto;
-            /* dikey padding ekleyin ki alt satırda da nefeslik kalsın */
-            padding: 0.4rem 0.8rem;
-        }
-
-        .timer-bar .info-text {
-            /* metnin mevcut alana uyacak şekilde esnemesine izin ver */
-            flex: 1 1 auto;
-            /* içerik en küçük genişliğe indikçe wrap etsin */
-            min-width: 0;
-            /* satır içinde uzun kelimeleri bölerek aşağı indir */
-            overflow-wrap: break-word;
-        }
-
-        .timer-bar .timer {
-            /* zaman bilgisini sağa sabitle */
-            flex: 0 0 auto;
-            /* alt satıra inerse biraz üstten boşluk kalsın */
-            margin-top: 0.3rem;
-        }
-
-
-
         
+        /* Attention Alert */
+        .attention-alert {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(239, 71, 111, 0.9);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            z-index: 30;
+            display: none;
+            animation: fadeInOut 0.5s;
+            box-shadow: 0 0.3rem 1rem rgba(0,0,0,0.3);
+        }
         
-        /* Mobile Responsive Adjustments */
-        @media (max-width: 48em) { /* 768px */
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 48em) {
             .exercise-area {
-                height: 34rem; /* Adjusted for better mobile display */
-            }
-            
-            .object-selection {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 0.75rem;
+                height: 34rem;
             }
             
             .countdown {
@@ -742,21 +760,56 @@
                 width: 85%;
             }
             
-            .current-object {
-                font-size: 2.5rem;
-            }
-
             .fullscreen .timer-bar {
                 position: fixed;
-                top: 0.9375rem; /* 15px to rem */
+                top: 0.9375rem;
                 left: 5%;
                 right: 5%;
                 width: 90%;
-                z-index: 10000; /* Ensure it's above other elements */
+                z-index: 10000;
+            }
+            
+            /* Mobil için düğme düzeni */
+            .control-buttons-container {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+                padding-bottom: 0.5rem;
+            }
+            
+            .left-controls {
+                width: 100%;
+                flex-direction: column; /* Mobilde de dikey düzen kalıyor */
+                align-items: center;
+            }
+            
+            .center-controls {
+                position: relative;
+                left: auto;
+                transform: none;
+                margin-top: 0.5rem;
+                width: 100%;
+                align-items: center;
+            }
+            
+            .right-controls {
+                display: none;
+            }
+            
+            .attention-test-button, .sound-control, .fullscreen-button {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            /* Bilgi çubuğu mobil düzeni */
+            .info-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
             }
         }
         
-        @media (max-width: 36em) { /* 576px */
+        @media (max-width: 36em) {
             .completion-message {
                 padding: 0.8rem;
                 width: 85%;
@@ -773,21 +826,19 @@
             }
             
             .exercise-area {
-                height: 32rem; /* Adjusted for mobile */
+                height: 32rem;
             }
-
-            .exercise-header {
-                font-size: clamp(1rem, 2.5vw, 1.25rem);    /* Yaklaşık 14px */
-                line-height: 1.3;       /* Satırlar arası boşluk */
-              }
             
+            .exercise-header {
+                font-size: clamp(1rem, 2.5vw, 1.25rem);
+                line-height: 1.3;
+            }
             
             .toolbar {
                 padding: 0.5rem;
             }
             
-            .dropdown-btn .dropdown-title,
-            .dropdown-btn .dropdown-arrow {
+            .dropdown-btn .dropdown-title, .dropdown-btn .dropdown-arrow {
                 padding: 0.4rem 0.6rem;
                 font-size: 0.8rem;
             }
@@ -797,37 +848,29 @@
                 padding: 0.5rem;
             }
             
-            .object-selection {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .current-object {
-                font-size: 2rem;
-            }
-
             .timer-bar .info-text {
-                font-size: 0.8rem;   /* ≈13px */
+                font-size: 0.8rem;
                 line-height: 1.3;
             }
-
+            
             .fullscreen .timer-bar {
-                top: 1.5625rem; /* 25px to rem */
+                top: 1.5625rem;
             }
             
-            /* Also improve focus guide positioning in fullscreen */
-            .fullscreen .focus-guide {
-                bottom: 1.5625rem; /* 25px to rem */
+            /* Çok küçük ekranlar için buton boyutları */
+            .attention-test-button, .sound-control, .fullscreen-button {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.7rem;
             }
         }
-
+        
         .fullscreen .container {
-            padding-top: 3.125rem; /* 50px to rem */
+            padding-top: 3.125rem;
         }
         
         /* Print styles */
         @media print {
-            .navbar, .toolbar, .stop-button, 
-            .fullscreen-button, .fullscreen-exit, .overlay, .back-button {
+            .navbar, .toolbar, .stop-button, .fullscreen-button, .fullscreen-exit, .overlay, .back-button {
                 display: none !important;
             }
             
@@ -839,10 +882,7 @@
                 background: white !important;
                 backdrop-filter: none;
             }
-          
         }
-
-        
     </style>
 </head>
 <body>
@@ -857,11 +897,11 @@
     
     <div class="container">
         <header>
-            <h1>Dikey Zikzak Egzersizi</h1>
+            <h1>Büyüyüp Küçülen Kare Egzersizi</h1>
         </header>
         
         <div class="exercise-info">
-            Bu egzersiz, göz kaslarını güçlendirmeyi, görsel takip becerinizi geliştirmeyi ve kısa süreli görsel belleğinizi desteklemeyi amaçlar. Ekran üzerinde zikzak hareketlerle ilerleyen farklı nesneleri sadece gözlerinizle takip edin ve bunları hafızanıza almaya çalışın. Egzersiz sonunda görmüş olduğunuz nesneleri seçmeniz istenecektir.
+            Bu egzersiz, gözle görsel takibi geliştirmek, odaklanmayı güçlendirmek ve hareketli nesneleri izleme becerisini artırmak amacıyla tasarlanmıştır. Ekran ortasında büyüyüp küçülen kareyi başınızı hareket ettirmeden, sadece gözlerinizle takip edin. Bu, göz kaslarınızı güçlendirir ve görsel odaklanma yeteneğinizi geliştirir.
             <br><br>
             <strong>Dikkat: Başınızı hareket ettirmeden, sadece gözlerinizle takip edin!</strong>
         </div>
@@ -881,18 +921,6 @@
             </div>
             
             <div class="dropdown">
-                <button class="dropdown-btn" id="levelBtn">
-                    <div class="dropdown-title" id="selectedLevel">3. Seviye</div>
-                    <div class="dropdown-arrow">▾</div>
-                </button>
-                <div id="levelDropdown" class="dropdown-content">
-                    <a href="#" id="level1">1. Seviye (Kolay)</a>
-                    <a href="#" id="level3">3. Seviye (Orta)</a>
-                    <a href="#" id="level5">5. Seviye (Zor)</a>
-                </div>
-            </div>
-            
-            <div class="dropdown">
                 <button class="dropdown-btn" id="speedBtn">
                     <div class="dropdown-title" id="selectedSpeed">Normal</div>
                     <div class="dropdown-arrow">▾</div>
@@ -903,23 +931,52 @@
                     <a href="#" id="speed3">Hızlı</a>
                 </div>
             </div>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn" id="colorBtn">
+                    <div class="dropdown-title" id="selectedColor">Mavi</div>
+                    <div class="dropdown-arrow">▾</div>
+                </button>
+                <div id="colorDropdown" class="dropdown-content">
+                    <a href="#" id="colorBlue">Mavi</a>
+                    <a href="#" id="colorDual">Değişken (Büyürken/Küçülürken)</a>
+                </div>
+            </div>
         </div>
         
         <div class="timer-bar">
-            <span class="info-text">Gözlerinizle nesneleri takip edin ve hatırlamaya çalışın</span>
+            <span class="info-text">Ekran ortasındaki kareyi gözlerinizle takip edin</span>
             <span class="timer" id="timer">01:00</span>
         </div>
         
         <div class="exercise-area" id="exerciseArea">
-            <button class="fullscreen-button" id="fullscreenButton">Tam Ekran</button>
             <button class="fullscreen-exit" id="fullscreenExit">✕</button>
             <button class="stop-button" id="stopButton">Egzersizi Durdur</button>
             
-            <div class="zigzag-container" id="zigzagContainer">
-                <!-- Zigzag nokta ve nesneler JavaScript ile eklenecek -->
+            <div class="info-bar">
+                <div class="cycle-counter" id="cycleCounter">Döngü: 0/0</div>
+                <!-- focus-guide div'i buradan kaldırıldı ve center-controls içine taşındı -->
             </div>
             
-            <div class="focus-guide" id="focusGuide">Başınızı hareket ettirmeden, sadece gözlerinizle takip edin</div>
+            <div class="square-container" id="squareContainer">
+                <div class="focus-point" id="focusPoint"></div>
+                <div class="square" id="square"></div>
+            </div>
+            
+            <div class="control-buttons-container">
+                <div class="left-controls">
+                    <!-- Önce metronom butonu, sonra dikkat testi butonu -->
+                    <button class="sound-control" id="soundControl">🔊 Metronom: Kapalı</button>
+                    <button class="attention-test-button" id="attentionTestBtn">Dikkat Testi: Kapalı</button>
+                </div>
+                <div class="center-controls">
+                    <!-- focus-guide buraya taşındı - alt ortada -->
+                    <div class="focus-guide" id="focusGuide">Başınızı hareket ettirmeden, sadece gözlerinizle takip edin</div>
+                </div>
+                <div class="right-controls">
+                    <button class="fullscreen-button" id="fullscreenButton">Tam Ekran</button>
+                </div>
+            </div>
             
             <div class="overlay" id="startOverlay">
                 <button class="start-button" id="startButton">Egzersizi Başlat</button>
@@ -927,30 +984,16 @@
             
             <div class="countdown" id="countdown">3</div>
             
-            <div id="memoryTestOverlay" class="memory-test-overlay">
-                <div class="completion-message">
-                    <h2 class="completion-title">Hangi Nesneleri Gördünüz?</h2>
-                    <p>Bu egzersiz sırasında gördüğünüz tüm nesneleri seçin:</p>
-                    
-                    <div class="object-selection" id="objectSelection">
-                        <!-- Nesne seçenekleri JavaScript ile eklenecek -->
-                    </div>
-                    
-                    <button class="submit-button" id="submitButton">Cevapları Gönder</button>
-                </div>
-            </div>
-            
             <div id="completionOverlay" class="overlay" style="display: none;">
                 <div class="completion-message">
                     <h2 class="completion-title">Egzersiz Tamamlandı!</h2>
                     <div class="result-stats">
-                        <p>Gösterilen Nesne Sayısı: <span id="totalObjects">0</span></p>
-                        <p>Doğru Hatırlanan Nesneler: <span id="correctObjects">0</span></p>
-                        <p>Kaçırılan Nesneler: <span id="missedObjects">0</span></p>
-                        <p>Fazladan İşaretlenen Nesneler: <span id="extraObjects">0</span></p>
+                        <p>Toplam Döngü Sayısı: <span id="totalCycles">0</span></p>
+                        <p>Egzersiz Süresi: <span id="exerciseDuration">0 dakika 0 saniye</span></p>
+                        <p>Dikkat Testi Performansı: <span id="attentionScore">-</span></p>
                         <p>Başarı Oranı:</p>
                         <div class="progress-bar">
-                            <div class="progress-value" id="successRate">0%</div>
+                            <div class="progress-value" id="successRate">100%</div>
                         </div>
                     </div>
                     <button class="restart-button" id="restartButton">Yeni Egzersiz Başlat</button>
@@ -960,49 +1003,88 @@
     </div>
     
     <script>
-        // Kullanılabilecek nesneler
-        const allObjects = [
-            '⭐', '🌙', '🔆', '❄️', '🎯', '🔔', '💎', '🧿', '🎲', '🏆', 
-            '⚙️', '🧩', '🎪', '⚓', '🌈', '🏮', '⛱️', '🎭', '🌵', '🕰️'
-        ];
-
-        // Her seviye için kullanılacak nesne sayısı
-        const objectsPerLevel = {
-            1: 4,  // 1. seviyede 4 şekil
-            3: 6,  // 3. seviyede 6 şekil
-            5: 8   // 5. seviyede 8 şekil
-        };
-
         // Egzersiz ayarları
-        let duration = 60;  // saniye
-        let level = 3;      // 1: kolay, 3: orta, 5: zor
-        let speed = 2;      // 1: yavaş, 2: normal, 3: hızlı
+        let duration = 60;
+        let speed = 2;
+        let colorMode = 'blue';
+        let attentionTestActive = false;
+        let soundActive = false;
         let exerciseStarted = false;
-        let shownObjects = []; // Gösterilen nesneler
         let isFullscreen = false;
-        
-        // Zigzag noktaları için değişkenler
-        const pointCount = 7; // Sabit nokta sayısı
-        let points = []; // Noktaların koordinatlarını saklayacak
-        let currentPointIndex = 0; // Şu anki aktif nokta
-        
+
+        // Kare ayarları
+        let minSize = 50;
+        let maxSize = 300;
+        let currentSize = minSize;
+        let isGrowing = true;
+        let cycleCount = 0;
+        let targetCycles = 15;
+
+        // Dikkat testi değişkenleri
+        let attentionTestCount = 0;
+        let attentionCorrectCount = 0;
+        let attentionTestInProgress = false;
+        let lastAttentionTest = 0;
+
         // Zamanlayıcılar
         let exerciseTimer;
-        let movementTimer;
+        let squareTimer;
+        let metronomeTimer;
         let remainingTime = 60;
-        
-        // Seviye ve hıza göre hareket süreleri (ms)
-        const movementDurations = {
-            1: [1000, 800, 600], // Kolay seviye - [yavaş, normal, hızlı]
-            3: [800, 700, 500],  // Orta seviye
-            5: [600, 400, 300]   // Zor seviye
+
+        // Hıza göre büyüme/küçülme adımı (px) ve interval (ms)
+        const speedSettings = {
+            1: { step: 5, interval: 150 },  // Yavaş
+            2: { step: 10, interval: 100 }, // Normal
+            3: { step: 15, interval: 50 }   // Hızlı
         };
-        
+
         // DOM elementleri hazır olduğunda çalışacak
         document.addEventListener('DOMContentLoaded', function() {
+            setupMetronomeSound();
             setupEventListeners();
         });
-        
+
+        // Metronom sesi oluştur
+        function setupMetronomeSound() {
+            // AudioContext'i tanımla ve kullanıcı etkileşimi gerektirdiği için şimdilik başlatma
+            window.audioContext = null;
+            
+            // Metronom çalma fonksiyonu
+            window.playMetronomeSound = function() {
+                if (!soundActive || !exerciseStarted) return;
+                
+                // İlk ses çalma girişiminde AudioContext oluştur (tarayıcı politikası gereği)
+                if (!window.audioContext) {
+                    window.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                
+                // Ses üretimi için gerekli bileşenleri oluştur
+                let oscillator = window.audioContext.createOscillator();
+                let gainNode = window.audioContext.createGain();
+                
+                // Ses ayarları - tiz ve kısa bir "tık" sesi
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 800; // Hz
+                gainNode.gain.value = 0.2; // Ses seviyesi
+                
+                // Bileşenleri bağla
+                oscillator.connect(gainNode);
+                gainNode.connect(window.audioContext.destination);
+                
+                // Sesi başlat ve hemen azalt
+                oscillator.start();
+                
+                // Ses uzunluğunu ayarla - kısa bir tık sesi için
+                gainNode.gain.exponentialRampToValueAtTime(0.001, window.audioContext.currentTime + 0.08);
+                
+                // Temizlik için sesi durdur
+                setTimeout(function() {
+                    oscillator.stop();
+                }, 100);
+            }
+        }
+
         // Tüm olay dinleyicilerini kur
         function setupEventListeners() {
             // Dropdown açma işlemleri
@@ -1010,12 +1092,12 @@
                 toggleDropdown('durationDropdown');
             });
             
-            document.getElementById('levelBtn').addEventListener('click', function() {
-                toggleDropdown('levelDropdown');
-            });
-            
             document.getElementById('speedBtn').addEventListener('click', function() {
                 toggleDropdown('speedDropdown');
+            });
+            
+            document.getElementById('colorBtn').addEventListener('click', function() {
+                toggleDropdown('colorDropdown');
             });
             
             // Süre seçenekleri
@@ -1039,22 +1121,6 @@
                 setDuration(180);
             });
             
-            // Seviye seçenekleri
-            document.getElementById('level1').addEventListener('click', function(e) {
-                e.preventDefault();
-                setLevel(1);
-            });
-            
-            document.getElementById('level3').addEventListener('click', function(e) {
-                e.preventDefault();
-                setLevel(3);
-            });
-            
-            document.getElementById('level5').addEventListener('click', function(e) {
-                e.preventDefault();
-                setLevel(5);
-            });
-            
             // Hız seçenekleri
             document.getElementById('speed1').addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1071,6 +1137,35 @@
                 setSpeed(3);
             });
             
+            // Renk seçenekleri
+            document.getElementById('colorBlue').addEventListener('click', function(e) {
+                e.preventDefault();
+                setColorMode('blue');
+            });
+            
+            document.getElementById('colorDual').addEventListener('click', function(e) {
+                e.preventDefault();
+                setColorMode('dual');
+            });
+            
+            // Dikkat Testi butonu
+            document.getElementById('attentionTestBtn').addEventListener('click', function() {
+                attentionTestActive = !attentionTestActive;
+                this.textContent = attentionTestActive ? 'Dikkat Testi: Açık' : 'Dikkat Testi: Kapalı';
+            });
+            
+            // Ses kontrol butonu
+            document.getElementById('soundControl').addEventListener('click', function() {
+                soundActive = !soundActive;
+                this.textContent = soundActive ? '🔊 Metronom: Açık' : '🔊 Metronom: Kapalı';
+                
+                if (exerciseStarted && soundActive) {
+                    startMetronome();
+                } else if (!soundActive) {
+                    stopMetronome();
+                }
+            });
+            
             // Tam ekran butonları
             document.getElementById('fullscreenButton').addEventListener('click', toggleFullscreen);
             document.getElementById('fullscreenExit').addEventListener('click', exitFullscreen);
@@ -1078,8 +1173,20 @@
             // Ana butonlar
             document.getElementById('startButton').addEventListener('click', startExercise);
             document.getElementById('stopButton').addEventListener('click', stopExercise);
-            document.getElementById('submitButton').addEventListener('click', checkResults);
             document.getElementById('restartButton').addEventListener('click', resetExercise);
+            
+            // Dikkat testi için boşluk tuşu
+            document.addEventListener('keydown', function(e) {
+                if (e.code === 'Space' && exerciseStarted && attentionTestActive && attentionTestInProgress) {
+                    handleAttentionResponse();
+                    e.preventDefault(); // Sayfanın aşağı kaymasını önle
+                }
+                
+                // ESC tuşu ile tam ekrandan çıkma
+                if (e.key === 'Escape' && isFullscreen) {
+                    exitFullscreen();
+                }
+            });
             
             // Dışarıya tıklandığında dropdown menüleri kapat
             document.addEventListener('click', function(event) {
@@ -1087,15 +1194,8 @@
                     closeAllDropdowns();
                 }
             });
-            
-            // ESC tuşu ile tam ekrandan çıkma
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && isFullscreen) {
-                    exitFullscreen();
-                }
-            });
         }
-        
+
         // Dropdown'u aç/kapat
         function toggleDropdown(id) {
             if (exerciseStarted) return;
@@ -1111,7 +1211,7 @@
                 dropdown.style.display = 'block';
             }
         }
-        
+
         // Tüm dropdown'ları kapat
         function closeAllDropdowns() {
             const dropdowns = document.getElementsByClassName('dropdown-content');
@@ -1119,11 +1219,14 @@
                 dropdowns[i].style.display = 'none';
             }
         }
-        
+
         // Süreyi ayarla
         function setDuration(seconds) {
             duration = seconds;
             remainingTime = seconds;
+            
+            // Hedef döngü sayısını süreye göre ayarla
+            targetCycles = Math.round(duration / 4);
             
             let durationText = '';
             if (seconds < 60) {
@@ -1136,16 +1239,10 @@
             
             document.getElementById('selectedDuration').innerText = durationText;
             document.getElementById('timer').innerText = durationText;
+            document.getElementById('cycleCounter').innerText = `Döngü: 0/${targetCycles}`;
             closeAllDropdowns();
         }
-        
-        // Seviyeyi ayarla
-        function setLevel(newLevel) {
-            level = newLevel;
-            document.getElementById('selectedLevel').innerText = `${newLevel}. Seviye`;
-            closeAllDropdowns();
-        }
-        
+
         // Hızı ayarla
         function setSpeed(newSpeed) {
             speed = newSpeed;
@@ -1153,7 +1250,31 @@
             document.getElementById('selectedSpeed').innerText = speedTexts[newSpeed - 1];
             closeAllDropdowns();
         }
-        
+
+        // Renk modunu ayarla
+        function setColorMode(mode) {
+            colorMode = mode;
+            document.getElementById('selectedColor').innerText = mode === 'blue' ? 'Mavi' : 'Değişken (Büyürken/Küçülürken)';
+            closeAllDropdowns();
+            
+            // Eğer egzersiz başladıysa kare rengini güncelle
+            if (exerciseStarted) {
+                updateSquareColor();
+            }
+        }
+
+        // Kare rengini güncelle
+        function updateSquareColor() {
+            const square = document.getElementById('square');
+            
+            if (colorMode === 'blue') {
+                square.style.backgroundColor = 'var(--primary-color)';
+            } else if (colorMode === 'dual') {
+                // Büyürken mavi, küçülürken turuncu
+                square.style.backgroundColor = isGrowing ? 'var(--primary-color)' : '#ff7f50';
+            }
+        }
+
         // Tam ekran modunu aç/kapat
         function toggleFullscreen() {
             const exerciseArea = document.getElementById('exerciseArea');
@@ -1246,7 +1367,7 @@
                 originalTimerBar.style.visibility = 'hidden';
             }
         }
-        
+
         // Tam ekrandan çık
         function exitFullscreen() {
             const exerciseArea = document.getElementById('exerciseArea');
@@ -1273,153 +1394,166 @@
                 originalTimerBar.style.visibility = 'visible';
             }
         }
-        
+
         // Zamanı formatla
         function formatTime(seconds) {
             const mins = Math.floor(seconds / 60);
             const secs = seconds % 60;
             return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
         }
-        
-        // Array karıştırma fonksiyonu
-        function shuffleArray(array) {
-            const newArray = [...array];
-            for (let i = newArray.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-            }
-            return newArray;
-        }
-        
-        // Rastgele nesne seç
-        function getRandomObject() {
-            // Seviyeye göre kullanılacak nesne sayısını belirle
-            const objectCount = objectsPerLevel[level];
-            
-            // Seviyeye göre seçilecek nesne sayısı kadar nesne al
-            const availableObjects = allObjects.slice(0, objectCount);
-            const randomIndex = Math.floor(Math.random() * availableObjects.length);
-            return availableObjects[randomIndex];
-        }
-        
-        // Zigzag noktalarını oluştur
-        function createZigzagPoints() {
-            const container = document.getElementById('zigzagContainer');
-            container.innerHTML = ''; // Önce içeriği temizle
-            
-            // Container boyutlarını al
-            const containerWidth = container.clientWidth;
-            const containerHeight = container.clientHeight;
-            
-            // Yeterli boşluk bırak
-            const padding = 40;
-            const workingWidth = containerWidth - (padding * 2);
-            const workingHeight = containerHeight - (padding * 2);
-            
-            // Noktaların konumlarını hesapla
-            points = [];
-            
-            // Yatayda eşit aralıklı noktalar oluştur
-            const horizontalStep = workingWidth / (pointCount - 1);
-            
-            // Önce noktaların konumlarını hesapla
-            for (let i = 0; i < pointCount; i++) {
-                // Zigzag etkisi için dikey pozisyonu hesapla
-                const isEven = i % 2 === 0;
-                const y = isEven ? padding + workingHeight * 0.25 : padding + workingHeight * 0.75;
-                
-                // Yatay pozisyonu hesapla
-                const x = padding + (horizontalStep * i);
-                
-                // Nokta konumlarını kaydet
-                points.push({ x, y });
-            }
-            
-            // Kılavuz çizgilerini oluştur
-            for (let i = 0; i < pointCount - 1; i++) {
-                const startPoint = points[i];
-                const endPoint = points[i + 1];
-                
-                // Kılavuz çizgisi elementini oluştur
-                const guidelineElement = document.createElement('div');
-                guidelineElement.className = 'guideline';
-                
-                // Çizginin uzunluğunu ve açısını hesapla
-                const length = Math.sqrt(Math.pow(endPoint.x - startPoint.x, 2) + Math.pow(endPoint.y - startPoint.y, 2));
-                const angle = Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x) * (180 / Math.PI);
-                
-                // Çizgiyi konumlandır ve döndür
-                guidelineElement.style.width = `${length}px`;
-                guidelineElement.style.left = `${startPoint.x}px`;
-                guidelineElement.style.top = `${startPoint.y}px`;
-                guidelineElement.style.transform = `translateY(-50%) rotate(${angle}deg)`;
-                guidelineElement.style.transformOrigin = 'left center';
-                
-                container.appendChild(guidelineElement);
-            }
-            
-            // Noktaları oluştur
-            for (let i = 0; i < pointCount; i++) {
-                // Görsel noktayı oluştur
-                const pointElement = document.createElement('div');
-                pointElement.className = 'object-point';
-                pointElement.id = `point-${i}`;
-                pointElement.style.left = `${points[i].x}px`;
-                pointElement.style.top = `${points[i].y}px`;
-                
-                container.appendChild(pointElement);
-            }
-            
-            // Başlangıçta ilk noktayı aktif et
-            if (points.length > 0) {
-                document.getElementById('point-0').classList.add('active-point');
+
+        // Metronom sesini çal
+        function playMetronome() {
+            if (soundActive && exerciseStarted) {
+                window.playMetronomeSound();
             }
         }
-        
-        // Nesneyi bir sonraki noktaya taşı
-        function moveObjectToNextPoint() {
+
+        // Metronom sesini başlat
+        function startMetronome() {
+            stopMetronome(); // Önceki metronom'u durdur
+            
+            // Hıza göre metronom aralığını belirle
+            const interval = speedSettings[speed].interval * 5; // Büyüme/küçülme aralığından daha uzun
+            
+            metronomeTimer = setInterval(playMetronome, interval);
+            playMetronome(); // İlk sesi hemen çal
+        }
+
+        // Metronom sesini durdur
+        function stopMetronome() {
+            clearInterval(metronomeTimer);
+        }
+
+        // Karenin boyutunu güncelle
+        function updateSquareSize() {
             if (!exerciseStarted) return;
             
-            // Önceki noktayı deaktive et
-            document.getElementById(`point-${currentPointIndex}`).classList.remove('active-point');
+            const square = document.getElementById('square');
+            const container = document.getElementById('squareContainer');
             
-            // Bir sonraki noktaya geç
-            currentPointIndex = (currentPointIndex + 1) % pointCount;
+            // Hıza göre büyüme/küçülme ayarları
+            const { step, interval } = speedSettings[speed];
             
-            // Yeni noktayı aktive et
-            document.getElementById(`point-${currentPointIndex}`).classList.add('active-point');
-            
-            // Mevcut nesne elementini seç veya oluştur
-            let objectElement = document.getElementById('currentObject');
-            if (!objectElement) {
-                objectElement = document.createElement('div');
-                objectElement.id = 'currentObject';
-                objectElement.className = 'current-object';
-                document.getElementById('zigzagContainer').appendChild(objectElement);
-            }
-            
-            // Her seviyede rastgele nesne göster
-            const newObject = getRandomObject();
-            
-            // Nesne daha önce gösterilmemişse listeye ekle
-            if (!shownObjects.includes(newObject)) {
-                shownObjects.push(newObject);
-            }
-            
-            // Nesne içeriğini ve konumunu güncelle
-            objectElement.innerText = newObject;
-            objectElement.style.left = `${points[currentPointIndex].x}px`;
-            objectElement.style.top = `${points[currentPointIndex].y}px`;
-            
-            // Bir sonraki hareket için planlama yap
-            if (exerciseStarted) {
-                // Seviye ve hıza göre hareket süresini belirle
-                const movementDuration = movementDurations[level][speed - 1];
+            // Büyüme veya küçülme işlemi
+            if (isGrowing) {
+                currentSize += step;
                 
-                movementTimer = setTimeout(moveObjectToNextPoint, movementDuration);
+                // Maksimum boyuta ulaşıldıysa
+                if (currentSize >= maxSize) {
+                    currentSize = maxSize;
+                    isGrowing = false;
+                    
+                    // Renk modunu güncelle
+                    updateSquareColor();
+                }
+            } else {
+                currentSize -= step;
+                
+                // Minimum boyuta ulaşıldıysa
+                if (currentSize <= minSize) {
+                    currentSize = minSize;
+                    isGrowing = true;
+                    
+                    // Bir döngü tamamlandı
+                    cycleCount++;
+                    document.getElementById('cycleCounter').innerText = `Döngü: ${cycleCount}/${targetCycles}`;
+                    
+                    // Renk modunu güncelle
+                    updateSquareColor();
+                }
+            }
+            
+            // Karenin boyutunu güncelle
+            square.style.width = `${currentSize}px`;
+            square.style.height = `${currentSize}px`;
+            
+            // Sonraki güncellemeyi planla
+            squareTimer = setTimeout(updateSquareSize, interval);
+        }
+
+        // Dikkat testi başlat
+        function startAttentionTest() {
+            if (!attentionTestActive || !exerciseStarted || attentionTestInProgress) return;
+            
+            // En az 3 saniye geçmiş olmalı son testten bu yana
+            const now = Date.now();
+            if (now - lastAttentionTest < 3000) return;
+            
+            // Dikkat testi için kare rengini kırmızı yap
+            attentionTestInProgress = true;
+            const square = document.getElementById('square');
+            const originalColor = square.style.backgroundColor;
+            square.style.backgroundColor = 'var(--danger-color)';
+            
+            // Uyarı mesajı göster
+            const squareContainer = document.getElementById('squareContainer');
+            
+            // Uyarı elementini oluştur veya var olanı al
+            let attentionAlert = document.getElementById('attentionAlert');
+            if (!attentionAlert) {
+                attentionAlert = document.createElement('div');
+                attentionAlert.id = 'attentionAlert';
+                attentionAlert.className = 'attention-alert';
+                attentionAlert.textContent = 'BOŞLUK TUŞUNA BAS!';
+                squareContainer.appendChild(attentionAlert);
+            }
+            
+            // Uyarıyı göster
+            attentionAlert.style.display = 'block';
+            
+            // Test sayacını artır
+            attentionTestCount++;
+            
+            // 0.5 saniye sonra normale dön
+            setTimeout(function() {
+                if (exerciseStarted) {
+                    square.style.backgroundColor = originalColor;
+                    attentionAlert.style.display = 'none';
+                    attentionTestInProgress = false;
+                    
+                    // Eğer kullanıcı tepki vermediyse
+                    if (attentionTestInProgress) {
+                        attentionTestInProgress = false;
+                    }
+                }
+            }, 500);
+            
+            // Son test zamanını güncelle
+            lastAttentionTest = now;
+        }
+
+        // Dikkat testine yanıt
+        function handleAttentionResponse() {
+            if (attentionTestInProgress) {
+                attentionCorrectCount++;
+                attentionTestInProgress = false;
+                
+                // Uyarıyı gizle
+                const attentionAlert = document.getElementById('attentionAlert');
+                if (attentionAlert) {
+                    attentionAlert.style.display = 'none';
+                }
             }
         }
-        
+
+        // Rastgele aralıklarla dikkat testi başlat
+        function scheduleRandomAttentionTest() {
+            if (!attentionTestActive || !exerciseStarted) return;
+            
+            // Rastgele 3-10 saniye arasında
+            const randomDelay = Math.floor(Math.random() * 7000) + 3000;
+            
+            setTimeout(function() {
+                startAttentionTest();
+                
+                // Egzersiz hala devam ediyorsa bir sonraki testi planla
+                if (exerciseStarted) {
+                    scheduleRandomAttentionTest();
+                }
+            }, randomDelay);
+        }
+
         // Egzersizi başlat
         function startExercise() {
             // Egzersiz zaten başladıysa işlem yapma
@@ -1427,22 +1561,26 @@
             
             // Değişkenleri sıfırla
             exerciseStarted = true;
-            shownObjects = [];
+            currentSize = minSize;
+            isGrowing = true;
+            cycleCount = 0;
             remainingTime = duration;
-            currentPointIndex = 0;
+            attentionTestCount = 0;
+            attentionCorrectCount = 0;
             
             // UI elemanlarını güncelle
             document.getElementById('stopButton').style.display = 'block';
             document.getElementById('startOverlay').style.display = 'none';
             document.getElementById('timer').innerText = formatTime(remainingTime);
+            document.getElementById('cycleCounter').innerText = `Döngü: 0/${targetCycles}`;
+            
+            // Kare rengini ayarla
+            updateSquareColor();
             
             // Tam ekran modunu etkinleştir
             if (!isFullscreen) {
                 toggleFullscreen();
             }
-            
-            // Zigzag noktalarını oluştur
-            createZigzagPoints();
             
             // Geri sayımı göster
             const countdownEl = document.getElementById('countdown');
@@ -1452,7 +1590,7 @@
             // Manuel olarak geri sayım yap, fonksiyon çağrıları ile
             startCountdown();
         }
-        
+
         // Geri sayımı başlat
         function startCountdown() {
             const countdownEl = document.getElementById('countdown');
@@ -1469,32 +1607,47 @@
                     
                     // Egzersizi başlat
                     startTimer();
-                    moveObjectToNextPoint();
+                    updateSquareSize();
+                    
+                    // Dikkat testi açıksa, rastgele testleri başlat
+                    if (attentionTestActive) {
+                        scheduleRandomAttentionTest();
+                    }
+                    
+                    // Metronom açıksa sesi başlat
+                    if (soundActive) {
+                        startMetronome();
+                    }
                 }
             }
             
             // İlk güncellemeyi başlat
             updateCountdown();
         }
-        
+
         // Zamanlayıcıyı başlat
         function startTimer() {
             exerciseTimer = setInterval(function() {
                 remainingTime--;
                 document.getElementById('timer').innerText = formatTime(remainingTime);
                 
+                // Rastgele dikkat testi 
+                if (attentionTestActive && Math.random() < 0.05 && !attentionTestInProgress) {
+                    startAttentionTest();
+                }
+                
                 if (remainingTime <= 0) {
                     endExercise();
                 }
             }, 1000);
         }
-        
+
         // Egzersizi durdur
         function stopExercise() {
             if (!exerciseStarted) return;
             endExercise();
         }
-        
+
         // Egzersizi sonlandır
         function endExercise() {
             // Egzersiz durumunu güncelle
@@ -1502,104 +1655,41 @@
             
             // Tüm zamanlayıcıları temizle
             clearInterval(exerciseTimer);
-            clearTimeout(movementTimer);
+            clearTimeout(squareTimer);
+            stopMetronome();
             
             // UI elemanlarını güncelle
             document.getElementById('stopButton').style.display = 'none';
             
-            // Bellek testi için nesne seçimini hazırla
-            prepareMemoryTest();
-        }
-        
-        // Bellek testi için nesne seçimini hazırla
-        function prepareMemoryTest() {
-            // Seçim konteynerini temizle
-            const objectSelection = document.getElementById('objectSelection');
-            objectSelection.innerHTML = '';
+            // Sonuçları hazırla
+            const mins = Math.floor(duration / 60);
+            const secs = duration % 60;
+            const formattedDuration = `${mins} dakika ${secs} saniye`;
             
-            // Gösterilen nesnelerin 6-8 tanesini seç
-            const objectCount = shownObjects.length;
-            const correctCount = Math.min(Math.max(6, Math.floor(objectCount * 0.7)), 8);
+            document.getElementById('totalCycles').innerText = cycleCount;
+            document.getElementById('exerciseDuration').innerText = formattedDuration;
             
-            // Seçilen nesneler
-            let selectedObjects = [];
-            
-            // Eğer gosterilen nesnelerden yeterli sayıda varsa onları kullan
-            if (shownObjects.length >= correctCount) {
-                selectedObjects = shuffleArray(shownObjects).slice(0, correctCount);
+            // Dikkat testi sonuçları
+            if (attentionTestActive && attentionTestCount > 0) {
+                const attentionRate = Math.round((attentionCorrectCount / attentionTestCount) * 100);
+                document.getElementById('attentionScore').innerText = `${attentionRate}% (${attentionCorrectCount}/${attentionTestCount})`;
             } else {
-                // Yetersiz gösterilen nesne varsa hepsini al
-                selectedObjects = [...shownObjects];
-                
-                // Kalan kısmı rastgele doldur
-                const remaining = correctCount - shownObjects.length;
-                const otherObjects = allObjects.filter(obj => !shownObjects.includes(obj));
-                const randomOthers = shuffleArray(otherObjects).slice(0, remaining);
-                selectedObjects = [...selectedObjects, ...randomOthers];
+                document.getElementById('attentionScore').innerText = '-';
             }
             
-            // Çeldirici nesneleri seç
-            const distractorCount = 12 - selectedObjects.length;
-            let distractors = allObjects.filter(obj => !selectedObjects.includes(obj));
-            distractors = shuffleArray(distractors).slice(0, distractorCount);
+            // Başarı oranını, yapılan döngülerin hedef sayıya oranı olarak belirle
+            let successRate = 100;
+            if (targetCycles > 0) {
+                successRate = Math.min(100, Math.round((cycleCount / targetCycles) * 100));
+            }
             
-            // Tüm seçenekleri karıştır
-            const allOptions = shuffleArray([...selectedObjects, ...distractors]);
-            
-            // Seçenekleri ekrana ekle
-            allOptions.forEach(object => {
-                const objectOption = document.createElement('div');
-                objectOption.className = 'object-option';
-                objectOption.dataset.object = object;
-                objectOption.innerText = object;
-                
-                // Seçim davranışı ekle
-                objectOption.addEventListener('click', function() {
-                    this.classList.toggle('selected');
-                });
-                
-                objectSelection.appendChild(objectOption);
-            });
-            
-            // Bellek testi overlay'ini göster
-            document.getElementById('memoryTestOverlay').style.display = 'flex';
-        }
-        
-        // Bellek testi sonuçlarını kontrol et
-        function checkResults() {
-            // Kullanıcının seçtiği nesneleri topla
-            const selectedOptions = document.querySelectorAll('.object-option.selected');
-            const userSelectedObjects = Array.from(selectedOptions).map(option => option.dataset.object);
-            
-            // Gerçekte gösterilen nesneleri bul (tekrarsız)
-            const actualObjects = [...new Set(shownObjects)];
-            
-            // Doğru hatırlanan nesneler
-            const correctObjects = userSelectedObjects.filter(obj => actualObjects.includes(obj));
-            
-            // Kaçırılan nesneler
-            const missedObjects = actualObjects.filter(obj => !userSelectedObjects.includes(obj));
-            
-            // Fazladan işaretlenen nesneler
-            const extraObjects = userSelectedObjects.filter(obj => !actualObjects.includes(obj));
-            
-            // Başarı oranı
-            const successRate = actualObjects.length > 0 ? 
-                Math.round((correctObjects.length / actualObjects.length) * 100) : 0;
-            
-            // Sonuçları güncelle
-            document.getElementById('totalObjects').innerText = actualObjects.length;
-            document.getElementById('correctObjects').innerText = correctObjects.length;
-            document.getElementById('missedObjects').innerText = missedObjects.length;
-            document.getElementById('extraObjects').innerText = extraObjects.length;
             document.getElementById('successRate').innerText = `${successRate}%`;
             document.getElementById('successRate').style.width = `${successRate}%`;
             
-            // Bellek testi overlay'ini gizle ve sonuç ekranını göster
-            document.getElementById('memoryTestOverlay').style.display = 'none';
+            // Sonuç ekranını göster
             document.getElementById('completionOverlay').style.display = 'flex';
         }
-        
+
         // Egzersizi sıfırla
         function resetExercise() {
             // Sonuç ekranını gizle
@@ -1613,15 +1703,18 @@
             
             // Değişkenleri sıfırla
             remainingTime = duration;
-            shownObjects = [];
+            cycleCount = 0;
+            document.getElementById('cycleCounter').innerText = `Döngü: 0/${targetCycles}`;
             
-            // Nesne içeriğini temizle
-            const zigzagContainer = document.getElementById('zigzagContainer');
-            zigzagContainer.innerHTML = '';
+            // Kareyi başlangıç boyutuna getir
+            const square = document.getElementById('square');
+            square.style.width = `${minSize}px`;
+            square.style.height = `${minSize}px`;
             
             // Tam ekrandan çık
             exitFullscreen();
         }
+
     </script>
 </body>
 </html>
