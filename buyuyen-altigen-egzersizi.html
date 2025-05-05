@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Büyüyüp Küçülen Altıgen Egzersizi | ForBrain Learning Center</title>
+    <style>
+        :root {
+            --primary-color: #0f4c8a;
+            --primary-color-transparent: rgba(15, 76, 138, 0.85);
+            --secondary-color: #65c8e5;
+            --secondary-color-transparent: rgba(101, 200, 229, 0.85);
+            --accent-color: #8cc63f;
+            --accent-color-transparent: rgba(140, 198, 63, 0.85);
+            --success-color: #06d6a0;
+            --danger-color: #ef476f;
+            --warning-color: #ffd166;
+            --light-color: #f9fbff;
+            --dark-color: #333333;
+            --grey-color: #f0f2f5;
+            --white-transparent: rgba(255, 255, 255, 0.9);
+            --shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --container-padding: 5%;
+            --card-padding: clamp(0.5rem, 1.8vw, 1rem);
+            --section-margin: clamp(0.8rem, 2.5vw, 1.5rem);
+            --heading-size: clamp(1.1rem, 3vw, 1.6rem);
+            --subheading-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            --text-size: clamp(0.85rem, 1.6vw, 0.95rem);
+            --text-small: clamp(0.75rem, 1.3vw, 0.85rem);
+            --icon-size: clamp(2.2rem, 5vw, 3rem);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            overscroll-behavior: none;
+            transition: var(--transition);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 70rem;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: clamp(0.6rem, 1.5vw, 0.9rem) 0;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        .logo img {
+            width: 60%;
+            max-width: 15.625rem;
+            min-width: 9.375rem;
+            height: auto;
+        }
+        
+        .back-button {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.3125rem;
+            background: var(--grey-color);
+            transition: background 0.3s;
+            font-size: var(--text-small);
+            font-weight: 500;
+        }
+        
+        .back-button:hover {
+            background: #e5e9f0;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: clamp(0.5rem, 1.2vw, 0.8rem) 0;
+            text-align: center;
+            margin: var(--section-margin) 0 clamp(0.3rem, 1vw, 0.6rem);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-weight: 500;
+            font-size: var(--heading-size);
+            letter-spacing: 0.5px;
+        }
+        
+        /* Exercise Info */
+        .exercise-info {
+            background-color: var(--white-transparent);
+            border-radius: 0.4rem;
+            padding: var(--card-padding);
+            margin: 0.5rem auto var(--section-margin);
+            text-align: center;
+            color: #444;
+            font-size: var(--text-small);
+            line-height: 1.5;
+            box-shadow: var(--shadow);
+            max-width: 85%;
+            border-left: 3px solid var(--primary-color);
+            backdrop-filter: blur(4px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .exercise-info:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+        
+        .exercise-header {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.5rem;
+            white-space: normal;
+            overflow-wrap: break-word;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+        }
+        
+        /* Toolbar */
+        .toolbar {
+            background-color: white;
+            padding: var(--card-padding);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.625rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: clamp(0.4rem, 1.5vw, 0.8rem);
+            align-items: center;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-btn {
+            background: var(--light-color);
+            border: 1px solid var(--grey-color);
+            border-radius: 0.375rem;
+            padding: 0;
+            display: flex;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0.0625rem 0.1875rem rgba(0,0,0,0.05);
+        }
+        
+        .dropdown-btn:hover, .dropdown-btn:active {
+            background: var(--grey-color);
+        }
+        
+        .dropdown-title {
+            border-right: 1px solid var(--grey-color);
+            padding: 0.5rem 0.625rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        
+        .dropdown-arrow {
+            padding: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 10rem;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.1);
+            z-index: 6;
+            border-radius: 0.375rem;
+            margin-top: 0.3125rem;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 0.625rem 0.9375rem;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s ease;
+        }
+        
+        .dropdown-content a:hover, .dropdown-content a:active {
+            background-color: var(--grey-color);
+            color: var(--primary-color);
+        }
+        
+        /* Timer Bar */
+        .timer-bar {
+            background: rgba(15, 76, 138, 0.8);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 0.4rem;
+            margin-bottom: 0.05rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(4px);
+            transition: background 0.3s ease;
+            flex-wrap: wrap;
+            height: auto;
+            padding: 0.4rem 0.8rem;
+        }
+        
+        .timer-bar:hover {
+            background: rgba(15, 76, 138, 0.9);
+        }
+        
+        .info-text {
+            padding: 0 0.8rem;
+            font-weight: 500;
+            font-size: var(--text-small);
+            letter-spacing: 0.3px;
+            flex: 1 1 auto;
+            min-width: 0;
+            overflow-wrap: break-word;
+        }
+        
+        .timer {
+            background-color: rgba(0, 0, 0, 0.15);
+            color: white;
+            padding: 0 1.1rem;
+            border-radius: 0 0.4rem 0.4rem 0;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+            flex: 0 0 auto;
+            margin-top: 0.3rem;
+        }
+        
+        /* Exercise Area */
+        .exercise-area {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 38rem;
+            margin: 0.5rem auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 0.4rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-top: 0.625rem;
+            position: relative;
+            z-index: 1;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+            border: 1px solid rgba(240, 242, 245, 0.8);
+        }
+        
+        .exercise-area:hover {
+            box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hexagon Container */
+        .hexagon-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .hexagon {
+            position: absolute;
+            width: 50px;
+            height: 43.3px; /* Altıgen için özel oran */
+            background-color: var(--primary-color);
+            transition: all 0.1s linear;
+            z-index: 2;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            transform-origin: center;
+            transform: rotate(0deg);
+        }
+        
+        .focus-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .focus-point:before, .focus-point:after {
+            content: "";
+            position: absolute;
+            background-color: var(--primary-color-transparent);
+        }
+        
+        .focus-point:before {
+            left: 9px;
+            top: 0;
+            width: 2px;
+            height: 20px;
+        }
+        
+        .focus-point:after {
+            left: 0;
+            top: 9px;
+            width: 20px;
+            height: 2px;
+        }
+        
+        /* Overlay */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 76, 138, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            border-radius: 0.4rem;
+            backdrop-filter: blur(5px);
+            transition: background 0.4s ease;
+        }
+        
+        .overlay:hover {
+            background: rgba(15, 76, 138, 0.7);
+        }
+        
+        /* Buttons */
+        .start-button, .stop-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.9375rem 2.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 3.125rem;
+            box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.2);
+            margin: 0.3125rem;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .start-button:active, .stop-button:active {
+            transform: translateY(0.1875rem);
+            box-shadow: 0 0.125rem 0.625rem rgba(0,0,0,0.2);
+        }
+        
+        .stop-button {
+            background: var(--danger-color);
+            position: absolute;
+            top: 0.9375rem;
+            left: 0.9375rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 1rem;
+            z-index: 5;
+            display: none;
+        }
+        
+        /* Kontrol düğmeleri konumlandırma */
+        .control-buttons-container {
+            position: absolute;
+            bottom: 0.9375rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.9375rem;
+            z-index: 4;
+        }
+        
+        .left-controls {
+            display: flex;
+            flex-direction: column; /* Dikey düzen için column yapıyoruz */
+            gap: 0.5rem;
+        }
+        
+        .right-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .center-controls {
+            position: absolute;
+            bottom: 0; /* Alt ortada konumlandırılıyor */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .attention-test-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0.25rem 0.375rem rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .attention-test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.375rem 0.625rem rgba(0,0,0,0.15);
+        }
+        
+        .sound-control {
+            background: var(--light-color);
+            border: 1px solid var(--grey-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0.25rem 0.375rem rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .sound-control:hover {
+            background: var(--grey-color);
+        }
+        
+        .fullscreen-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            position: absolute;
+            bottom: 0.9375rem;
+            right: 0.9375rem;
+            z-index: 5;
+            box-shadow: 0 0.25rem 0.375rem rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .fullscreen-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.375rem 0.625rem rgba(0,0,0,0.15);
+        }
+        
+        /* Countdown */
+        .countdown {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 5rem;
+            height: 5rem;
+            display: none;
+            background: white;
+            color: var(--primary-color);
+            border: 3px solid var(--primary-color);
+            z-index: 20;
+            border-radius: 50%;
+            box-shadow: 0 0.3rem 1.25rem rgba(0,0,0,0.2);
+            font-weight: bold;
+            pointer-events: none;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            text-align: center;
+            line-height: 5rem;
+        }
+        
+        /* Completion Message */
+        .completion-message {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0.4rem;
+            padding: 1.1rem 1.6rem;
+            text-align: center;
+            max-width: 28rem;
+            width: 90%;
+            height: auto;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 0.4rem 1.2rem rgba(0,0,0,0.08);
+            backdrop-filter: blur(5px);
+            transform: translateY(10px);
+            animation: slideUp 0.4s forwards;
+            border-top: 3px solid var(--accent-color);
+        }
+        
+        @keyframes slideUp {
+            to { transform: translateY(0); }
+        }
+        
+        .completion-title {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .result-stats {
+            background-color: rgba(249, 251, 255, 0.7);
+            border-radius: 0.4rem;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            text-align: left;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .result-stats:hover {
+            background-color: var(--light-color);
+        }
+        
+        .result-stats p {
+            margin: 0.4rem 0;
+            display: flex;
+            justify-content: space-between;
+            transition: transform 0.2s ease;
+        }
+        
+        .result-stats p:hover {
+            transform: translateX(2px);
+        }
+        
+        .result-stats p span {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        
+        .progress-bar {
+            height: 1.2rem;
+            background-color: rgba(240, 242, 245, 0.7);
+            border-radius: 0.6rem;
+            margin: 0.8rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-value {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color-transparent), var(--primary-color));
+            border-radius: 0.6rem;
+            text-align: center;
+            line-height: 1.2rem;
+            color: white;
+            font-weight: 500;
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .restart-button, .submit-button {
+            background: var(--accent-color-transparent);
+            color: white;
+            border: none;
+            padding: 0.7rem 2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border-radius: 2.5rem;
+            box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.1);
+            user-select: none;
+            -webkit-user-select: none;
+            letter-spacing: 0.5px;
+        }
+        
+        .restart-button:hover, .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.3rem 0.7rem rgba(0,0,0,0.15);
+            background: var(--accent-color);
+        }
+        
+        .restart-button:active, .submit-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 0.1rem 0.3rem rgba(0,0,0,0.1);
+        }
+        
+        /* Fullscreen */
+        .fullscreen {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .fullscreen .exercise-area {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        
+        .fullscreen-exit {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: rgba(0,0,0,0.2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            font-size: 1.25rem;
+            cursor: pointer;
+            z-index: 10000;
+            display: none;
+            transition: all 0.2s ease;
+        }
+        
+        .fullscreen-exit:hover {
+            background: rgba(0,0,0,0.3);
+        }
+        
+        /* Üst bilgi çubuğu */
+        .info-bar {
+            position: absolute;
+            top: 0.9375rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.9375rem;
+            z-index: 3;
+            pointer-events: none;
+        }
+        
+        .cycle-counter {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.3rem 0.7rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            pointer-events: auto;
+        }
+        
+        /* Focus guide stilini güncelleme - artık burası center-controls içinde */
+        .focus-guide {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.3rem 0.7rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            box-shadow: var(--shadow);
+            pointer-events: auto;
+            margin-bottom: 0.5rem; /* Alt kenarda biraz boşluk bırakıyoruz */
+        }
+        
+        .focus-guide:hover {
+            opacity: 1;
+        }
+        
+        /* Attention Alert */
+        .attention-alert {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(239, 71, 111, 0.9);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            z-index: 30;
+            display: none;
+            animation: fadeInOut 0.5s;
+            box-shadow: 0 0.3rem 1rem rgba(0,0,0,0.3);
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        /* Hexagon Edges Effect */
+        .hexagon .edge {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .hexagon .edge-1 { background-color: rgba(255, 255, 255, 0.7); }
+        .hexagon .edge-2 { background-color: rgba(255, 255, 255, 0.7); }
+        .hexagon .edge-3 { background-color: rgba(255, 255, 255, 0.7); }
+        .hexagon .edge-4 { background-color: rgba(255, 255, 255, 0.7); }
+        .hexagon .edge-5 { background-color: rgba(255, 255, 255, 0.7); }
+        .hexagon .edge-6 { background-color: rgba(255, 255, 255, 0.7); }
+        
+        /* Responsive */
+        @media (max-width: 48em) {
+            .exercise-area {
+                height: 34rem;
+            }
+            
+            .countdown {
+                width: 4.5rem;
+                height: 4.5rem;
+                line-height: 4.5rem;
+                font-size: 2.2rem;
+            }
+            
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0.75rem;
+            }
+            
+            .dropdown {
+                margin-bottom: 0.5rem;
+            }
+            
+            .completion-message {
+                padding: 0.8rem 1.2rem;
+                width: 85%;
+            }
+            
+            .fullscreen .timer-bar {
+                position: fixed;
+                top: 0.9375rem;
+                left: 5%;
+                right: 5%;
+                width: 90%;
+                z-index: 10000;
+            }
+            
+            /* Mobil için düğme düzeni */
+            .control-buttons-container {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+                padding-bottom: 0.5rem;
+            }
+            
+            .left-controls {
+                width: 100%;
+                flex-direction: column; /* Mobilde de dikey düzen kalıyor */
+                align-items: center;
+            }
+            
+            .center-controls {
+                position: relative;
+                left: auto;
+                transform: none;
+                margin-top: 0.5rem;
+                width: 100%;
+                align-items: center;
+            }
+            
+            .right-controls {
+                display: none;
+            }
+            
+            .attention-test-button, .sound-control, .fullscreen-button {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            /* Bilgi çubuğu mobil düzeni */
+            .info-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 36em) {
+            .completion-message {
+                padding: 0.8rem;
+                width: 85%;
+            }
+            
+            .result-stats {
+                padding: 0.6rem;
+                font-size: 0.8rem;
+            }
+            
+            .completion-title {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .exercise-area {
+                height: 32rem;
+            }
+            
+            .exercise-header {
+                font-size: clamp(1rem, 2.5vw, 1.25rem);
+                line-height: 1.3;
+            }
+            
+            .toolbar {
+                padding: 0.5rem;
+            }
+            
+            .dropdown-btn .dropdown-title, .dropdown-btn .dropdown-arrow {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+            }
+            
+            .exercise-info {
+                max-width: 95%;
+                padding: 0.5rem;
+            }
+            
+            .timer-bar .info-text {
+                font-size: 0.8rem;
+                line-height: 1.3;
+            }
+            
+            .fullscreen .timer-bar {
+                top: 1.5625rem;
+            }
+            
+            /* Çok küçük ekranlar için buton boyutları */
+            .attention-test-button, .sound-control, .fullscreen-button {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.7rem;
+            }
+        }
+        
+        .fullscreen .container {
+            padding-top: 3.125rem;
+        }
+        
+        /* Print styles */
+        @media print {
+            .navbar, .toolbar, .stop-button, .fullscreen-button, .fullscreen-exit, .overlay, .back-button {
+                display: none !important;
+            }
+            
+            .exercise-area, .completion-message {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+                background: white !important;
+                backdrop-filter: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="ForBrain Learning Center Logo">
+            </a>
+            <a href="index.html" class="back-button">← Tüm Egzersizler</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>Büyüyüp Küçülen Altıgen Egzersizi</h1>
+        </header>
+        
+        <div class="exercise-info">
+            Bu egzersiz, gözle görsel takibi geliştirmek, odaklanmayı güçlendirmek ve hareketli nesneleri izleme becerisini artırmak amacıyla tasarlanmıştır. Ekran ortasında büyüyüp küçülen altıgeni başınızı hareket ettirmeden, sadece gözlerinizle takip edin. Altıgenin karmaşık formu, dikkat sisteminizi daha da zorlayarak göz kaslarınızı güçlendirir ve görsel odaklanma yeteneğinizi geliştirir.
+            <br><br>
+            <strong>Dikkat: Başınızı hareket ettirmeden, sadece gözlerinizle takip edin!</strong>
+        </div>
+        
+        <div class="toolbar">
+            <div class="dropdown">
+                <button class="dropdown-btn" id="durationBtn">
+                    <div class="dropdown-title" id="selectedDuration">1:00</div>
+                    <div class="dropdown-arrow">▾</div>
+                </button>
+                <div id="durationDropdown" class="dropdown-content">
+                    <a href="#" id="duration30">0:30</a>
+                    <a href="#" id="duration60">1:00</a>
+                    <a href="#" id="duration120">2:00</a>
+                    <a href="#" id="duration180">3:00</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn" id="speedBtn">
+                    <div class="dropdown-title" id="selectedSpeed">Normal</div>
+                    <div class="dropdown-arrow">▾</div>
+                </button>
+                <div id="speedDropdown" class="dropdown-content">
+                    <a href="#" id="speed1">Yavaş</a>
+                    <a href="#" id="speed2">Normal</a>
+                    <a href="#" id="speed3">Hızlı</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn" id="colorBtn">
+                    <div class="dropdown-title" id="selectedColor">Mavi</div>
+                    <div class="dropdown-arrow">▾</div>
+                </button>
+                <div id="colorDropdown" class="dropdown-content">
+                    <a href="#" id="colorBlue">Mavi</a>
+                    <a href="#" id="colorDual">Değişken (Büyürken/Küçülürken)</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn" id="rotationBtn">
+                    <div class="dropdown-title" id="selectedRotation">Dönüş Kapalı</div>
+                    <div class="dropdown-arrow">▾</div>
+                </button>
+                <div id="rotationDropdown" class="dropdown-content">
+                    <a href="#" id="rotationOff">Dönüş Kapalı</a>
+                    <a href="#" id="rotationOn">Dönüş Açık</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timer-bar">
+            <span class="info-text">Ekran ortasındaki altıgeni gözlerinizle takip edin</span>
+            <span class="timer" id="timer">01:00</span>
+        </div>
+        
+        <div class="exercise-area" id="exerciseArea">
+            <button class="fullscreen-exit" id="fullscreenExit">✕</button>
+            <button class="stop-button" id="stopButton">Egzersizi Durdur</button>
+            
+            <div class="info-bar">
+                <div class="cycle-counter" id="cycleCounter">Döngü: 0/0</div>
+            </div>
+            
+            <div class="hexagon-container" id="hexagonContainer">
+                <div class="focus-point" id="focusPoint"></div>
+                <div class="hexagon" id="hexagon">
+                    <div class="edge edge-1"></div>
+                    <div class="edge edge-2"></div>
+                    <div class="edge edge-3"></div>
+                    <div class="edge edge-4"></div>
+                    <div class="edge edge-5"></div>
+                    <div class="edge edge-6"></div>
+                </div>
+            </div>
+            
+            <div class="control-buttons-container">
+                <div class="left-controls">
+                    <button class="sound-control" id="soundControl">🔊 Metronom: Kapalı</button>
+                    <button class="attention-test-button" id="attentionTestBtn">Dikkat Testi: Kapalı</button>
+                </div>
+                <div class="center-controls">
+                    <div class="focus-guide" id="focusGuide">Başınızı hareket ettirmeden, sadece gözlerinizle takip edin</div>
+                </div>
+                <div class="right-controls">
+                    <button class="fullscreen-button" id="fullscreenButton">Tam Ekran</button>
+                </div>
+            </div>
+            
+            <div class="overlay" id="startOverlay">
+                <button class="start-button" id="startButton">Egzersizi Başlat</button>
+            </div>
+            
+            <div class="countdown" id="countdown">3</div>
+            
+            <div id="completionOverlay" class="overlay" style="display: none;">
+                <div class="completion-message">
+                    <h2 class="completion-title">Egzersiz Tamamlandı!</h2>
+                    <div class="result-stats">
+                        <p>Toplam Döngü Sayısı: <span id="totalCycles">0</span></p>
+                        <p>Egzersiz Süresi: <span id="exerciseDuration">0 dakika 0 saniye</span></p>
+                        <p>Dikkat Testi Performansı: <span id="attentionScore">-</span></p>
+                        <p>Odak Çizgisi Takibi: <span id="focusScore">%100</span></p>
+                        <p>Başarı Oranı:</p>
+                        <div class="progress-bar">
+                            <div class="progress-value" id="successRate">100%</div>
+                        </div>
+                    </div>
+                    <button class="restart-button" id="restartButton">Yeni Egzersiz Başlat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Egzersiz ayarları
+        let duration = 60;
+        let speed = 2;
+        let colorMode = 'blue';
+        let rotationMode = false;
+        let attentionTestActive = false;
+        let soundActive = false;
+        let exerciseStarted = false;
+        let isFullscreen = false;
+
+        // Altıgen ayarları
+        let minSize = 50;
+        let maxSize = 300;
+        let currentSize = minSize;
+        let isGrowing = true;
+        let cycleCount = 0;
+        let targetCycles = 15;
+        let rotationAngle = 0;
+        let currentEdgeFocus = 0;
+
+        // Dikkat testi değişkenleri
+        let attentionTestCount = 0;
+        let attentionCorrectCount = 0;
+        let attentionTestInProgress = false;
+        let lastAttentionTest = 0;
+
+        // Zamanlayıcılar
+        let exerciseTimer;
+        let hexagonTimer;
+        let edgeTimer;
+        let metronomeTimer;
+        let remainingTime = 60;
+
+        // Hıza göre büyüme/küçülme adımı (px) ve interval (ms)
+        const speedSettings = {
+            1: { step: 5, interval: 150 },  // Yavaş
+            2: { step: 10, interval: 100 }, // Normal
+            3: { step: 15, interval: 50 }   // Hızlı
+        };
+
+        // DOM elementleri hazır olduğunda çalışacak
+        document.addEventListener('DOMContentLoaded', function() {
+            setupMetronomeSound();
+            setupEventListeners();
+        });
+
+        // Metronom sesi oluştur
+        function setupMetronomeSound() {
+            // AudioContext'i tanımla ve kullanıcı etkileşimi gerektirdiği için şimdilik başlatma
+            window.audioContext = null;
+            
+            // Metronom çalma fonksiyonu
+            window.playMetronomeSound = function() {
+                if (!soundActive || !exerciseStarted) return;
+                
+                // İlk ses çalma girişiminde AudioContext oluştur (tarayıcı politikası gereği)
+                if (!window.audioContext) {
+                    window.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                
+                // Ses üretimi için gerekli bileşenleri oluştur
+                let oscillator = window.audioContext.createOscillator();
+                let gainNode = window.audioContext.createGain();
+                
+                // Ses ayarları - tiz ve kısa bir "tık" sesi
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 800; // Hz
+                gainNode.gain.value = 0.2; // Ses seviyesi
+                
+                // Bileşenleri bağla
+                oscillator.connect(gainNode);
+                gainNode.connect(window.audioContext.destination);
+                
+                // Sesi başlat ve hemen azalt
+                oscillator.start();
+                
+                // Ses uzunluğunu ayarla - kısa bir tık sesi için
+                gainNode.gain.exponentialRampToValueAtTime(0.001, window.audioContext.currentTime + 0.08);
+                
+                // Temizlik için sesi durdur
+                setTimeout(function() {
+                    oscillator.stop();
+                }, 100);
+            }
+        }
+
+        // Tüm olay dinleyicilerini kur
+        function setupEventListeners() {
+            // Dropdown açma işlemleri
+            document.getElementById('durationBtn').addEventListener('click', function() {
+                toggleDropdown('durationDropdown');
+            });
+            
+            document.getElementById('speedBtn').addEventListener('click', function() {
+                toggleDropdown('speedDropdown');
+            });
+            
+            document.getElementById('colorBtn').addEventListener('click', function() {
+                toggleDropdown('colorDropdown');
+            });
+            
+            document.getElementById('rotationBtn').addEventListener('click', function() {
+                toggleDropdown('rotationDropdown');
+            });
+            
+            // Süre seçenekleri
+            document.getElementById('duration30').addEventListener('click', function(e) {
+                e.preventDefault();
+                setDuration(30);
+            });
+            
+            document.getElementById('duration60').addEventListener('click', function(e) {
+                e.preventDefault();
+                setDuration(60);
+            });
+            
+            document.getElementById('duration120').addEventListener('click', function(e) {
+                e.preventDefault();
+                setDuration(120);
+            });
+            
+            document.getElementById('duration180').addEventListener('click', function(e) {
+                e.preventDefault();
+                setDuration(180);
+            });
+            
+            // Hız seçenekleri
+            document.getElementById('speed1').addEventListener('click', function(e) {
+                e.preventDefault();
+                setSpeed(1);
+            });
+            
+            document.getElementById('speed2').addEventListener('click', function(e) {
+                e.preventDefault();
+                setSpeed(2);
+            });
+            
+            document.getElementById('speed3').addEventListener('click', function(e) {
+                e.preventDefault();
+                setSpeed(3);
+            });
+            
+            // Renk seçenekleri
+            document.getElementById('colorBlue').addEventListener('click', function(e) {
+                e.preventDefault();
+                setColorMode('blue');
+            });
+            
+            document.getElementById('colorDual').addEventListener('click', function(e) {
+                e.preventDefault();
+                setColorMode('dual');
+            });
+            
+            // Dönüş seçenekleri
+            document.getElementById('rotationOff').addEventListener('click', function(e) {
+                e.preventDefault();
+                setRotationMode(false);
+            });
+            
+            document.getElementById('rotationOn').addEventListener('click', function(e) {
+                e.preventDefault();
+                setRotationMode(true);
+            });
+            
+            // Dikkat Testi butonu
+            document.getElementById('attentionTestBtn').addEventListener('click', function() {
+                attentionTestActive = !attentionTestActive;
+                this.textContent = attentionTestActive ? 'Dikkat Testi: Açık' : 'Dikkat Testi: Kapalı';
+            });
+            
+            // Ses kontrol butonu
+            document.getElementById('soundControl').addEventListener('click', function() {
+                soundActive = !soundActive;
+                this.textContent = soundActive ? '🔊 Metronom: Açık' : '🔊 Metronom: Kapalı';
+                
+                if (exerciseStarted && soundActive) {
+                    startMetronome();
+                } else if (!soundActive) {
+                    stopMetronome();
+                }
+            });
+            
+            // Tam ekran butonları
+            document.getElementById('fullscreenButton').addEventListener('click', toggleFullscreen);
+            document.getElementById('fullscreenExit').addEventListener('click', exitFullscreen);
+            
+            // Ana butonlar
+            document.getElementById('startButton').addEventListener('click', startExercise);
+            document.getElementById('stopButton').addEventListener('click', stopExercise);
+            document.getElementById('restartButton').addEventListener('click', resetExercise);
+            
+            // Dikkat testi için boşluk tuşu
+            document.addEventListener('keydown', function(e) {
+                if (e.code === 'Space' && exerciseStarted && attentionTestActive && attentionTestInProgress) {
+                    handleAttentionResponse();
+                    e.preventDefault(); // Sayfanın aşağı kaymasını önle
+                }
+                
+                // ESC tuşu ile tam ekrandan çıkma
+                if (e.key === 'Escape' && isFullscreen) {
+                    exitFullscreen();
+                }
+            });
+            
+            // Dışarıya tıklandığında dropdown menüleri kapat
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.dropdown-btn') && !event.target.closest('.dropdown-content')) {
+                    closeAllDropdowns();
+                }
+            });
+        }
+
+        // Dropdown'u aç/kapat
+        function toggleDropdown(id) {
+            if (exerciseStarted) return;
+            
+            const dropdown = document.getElementById(id);
+            const isOpen = dropdown.style.display === 'block';
+            
+            // Önce tüm dropdown'ları kapat
+            closeAllDropdowns();
+            
+            // Tıklanan dropdown açık değilse aç
+            if (!isOpen) {
+                dropdown.style.display = 'block';
+            }
+        }
+
+        // Tüm dropdown'ları kapat
+        function closeAllDropdowns() {
+            const dropdowns = document.getElementsByClassName('dropdown-content');
+            for (let i = 0; i < dropdowns.length; i++) {
+                dropdowns[i].style.display = 'none';
+            }
+        }
+
+        // Süreyi ayarla
+        function setDuration(seconds) {
+            duration = seconds;
+            remainingTime = seconds;
+            
+            // Hedef döngü sayısını süreye göre ayarla
+            targetCycles = Math.round(duration / 4);
+            
+            let durationText = '';
+            if (seconds < 60) {
+                durationText = `0:${seconds < 10 ? '0' : ''}${seconds}`;
+            } else {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                durationText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+            
+            document.getElementById('selectedDuration').innerText = durationText;
+            document.getElementById('timer').innerText = durationText;
+            document.getElementById('cycleCounter').innerText = `Döngü: 0/${targetCycles}`;
+            closeAllDropdowns();
+        }
+
+        // Hızı ayarla
+        function setSpeed(newSpeed) {
+            speed = newSpeed;
+            const speedTexts = ['Yavaş', 'Normal', 'Hızlı'];
+            document.getElementById('selectedSpeed').innerText = speedTexts[newSpeed - 1];
+            closeAllDropdowns();
+        }
+
+        // Renk modunu ayarla
+        function setColorMode(mode) {
+            colorMode = mode;
+            document.getElementById('selectedColor').innerText = mode === 'blue' ? 'Mavi' : 'Değişken (Büyürken/Küçülürken)';
+            closeAllDropdowns();
+            
+            // Eğer egzersiz başladıysa altıgen rengini güncelle
+            if (exerciseStarted) {
+                updateHexagonColor();
+            }
+        }
+        
+        // Dönüş modunu ayarla
+        function setRotationMode(isActive) {
+            rotationMode = isActive;
+            document.getElementById('selectedRotation').innerText = isActive ? 'Dönüş Açık' : 'Dönüş Kapalı';
+            closeAllDropdowns();
+        }
+
+        // Altıgen rengini güncelle
+        function updateHexagonColor() {
+            const hexagon = document.getElementById('hexagon');
+            
+            if (colorMode === 'blue') {
+                hexagon.style.backgroundColor = 'var(--primary-color)';
+            } else if (colorMode === 'dual') {
+                // Büyürken mavi, küçülürken turuncu
+                hexagon.style.backgroundColor = isGrowing ? 'var(--primary-color)' : '#ff7f50';
+            }
+        }
+        
+        // Kenarları parlat efekti
+        function highlightEdges() {
+            if (!exerciseStarted) return;
+            
+            // Önce tüm kenarların opacity'sini 0 yap
+            const edges = document.querySelectorAll('.edge');
+            edges.forEach(edge => {
+                edge.style.opacity = '0';
+            });
+            
+            // Mevcut kenara odaklan
+            if (currentEdgeFocus < 6) {
+                const currentEdge = document.querySelector(`.edge-${currentEdgeFocus + 1}`);
+                currentEdge.style.opacity = '0.7';
+                
+                // Sıradaki kenarı ayarla
+                currentEdgeFocus = (currentEdgeFocus + 1) % 6;
+            }
+        }
+
+        // Tam ekran modunu aç/kapat
+        function toggleFullscreen() {
+            const exerciseArea = document.getElementById('exerciseArea');
+            
+            if (!isFullscreen) {
+                isFullscreen = true;
+                exerciseArea.classList.add('fullscreen');
+                document.getElementById('fullscreenExit').style.display = 'block';
+                document.getElementById('fullscreenButton').style.display = 'none';
+                
+                // Timer bar'ı klonla
+                const originalTimerBar = document.querySelector('.timer-bar');
+                const clonedTimerBar = originalTimerBar.cloneNode(true);
+                clonedTimerBar.id = 'fullscreenTimerBar';
+                
+                // Ortak stil özellikleri
+                clonedTimerBar.style.position = 'absolute';
+                clonedTimerBar.style.padding = '0.2rem 0.5rem';
+                clonedTimerBar.style.fontSize = '0.8rem';
+                clonedTimerBar.style.lineHeight = '1.5';
+                clonedTimerBar.style.left = '50%';
+                clonedTimerBar.style.transform = 'translateX(-50%)';
+                clonedTimerBar.style.margin = '0 auto';
+                clonedTimerBar.style.display = 'flex';
+                clonedTimerBar.style.justifyContent = 'center';
+                clonedTimerBar.style.alignItems = 'center';
+                clonedTimerBar.style.zIndex = '9999';
+                
+                // Mobil cihazlar için özel stiller
+                if (window.innerWidth <= 768) {
+                    clonedTimerBar.style.top = '3.75rem'; // Durdur butonunun altında
+                    clonedTimerBar.style.width = '90%';
+                    clonedTimerBar.style.maxWidth = '95%';
+                    clonedTimerBar.style.height = '2.5rem'; // Daha yüksek (mobilde içerik sığsın diye)
+                    
+                    // Çok küçük mobil ekranlar için (576px ve altı)
+                    if (window.innerWidth <= 576) {
+                        clonedTimerBar.style.top = '4.5rem'; // Daha da aşağıda
+                        clonedTimerBar.style.fontSize = '0.7rem'; // Daha küçük yazı
+                        
+                        // İçeriği daha kompakt hale getir
+                        const infoText = clonedTimerBar.querySelector('.info-text');
+                        if (infoText) {
+                            infoText.style.padding = '0 0.5rem'; // Daha az dolgu
+                        }
+                    }
+                } else {
+                    // Masaüstü için stiller
+                    clonedTimerBar.style.top = '0.9375rem';
+                    clonedTimerBar.style.width = '80%';
+                    clonedTimerBar.style.maxWidth = '800px';
+                    clonedTimerBar.style.height = '2rem';
+                }
+                
+                // İçindeki metin öğesini düzenle
+                const infoText = clonedTimerBar.querySelector('.info-text');
+                if (infoText) {
+                    infoText.style.flex = '1';
+                    infoText.style.textAlign = 'center';
+                    infoText.style.padding = '0 1rem';
+                    // Uzun metni kırpma (mobil için önemli)
+                    infoText.style.whiteSpace = 'normal';
+                    infoText.style.overflowWrap = 'break-word';
+                }
+                
+                // Zamanlayıcı öğesini düzenle
+                const timer = clonedTimerBar.querySelector('#timer');
+                if (timer) {
+                    timer.id = 'fullscreenTimer';
+                    timer.style.textAlign = 'center';
+                    timer.style.padding = '0 1rem';
+                    timer.style.flexShrink = '0'; // Daraltma yapmasın
+                }
+                
+                // Timer değerini güncelleme fonksiyonu
+                function updateFullscreenTimer() {
+                    if (document.getElementById('fullscreenTimer') && document.getElementById('timer')) {
+                        document.getElementById('fullscreenTimer').textContent = document.getElementById('timer').textContent;
+                    }
+                }
+                
+                // Timer değerini düzenli olarak güncelle
+                const timerUpdateInterval = setInterval(updateFullscreenTimer, 500);
+                exerciseArea._timerUpdateInterval = timerUpdateInterval;
+                
+                // Klonlanmış timer bar'ı egzersiz alanına ekle
+                exerciseArea.appendChild(clonedTimerBar);
+                
+                // Orijinal timer bar'ı gizle
+                originalTimerBar.style.visibility = 'hidden';
+            }
+        }
+
+        // Tam ekrandan çık
+        function exitFullscreen() {
+            const exerciseArea = document.getElementById('exerciseArea');
+            
+            if (isFullscreen) {
+                isFullscreen = false;
+                exerciseArea.classList.remove('fullscreen');
+                document.getElementById('fullscreenExit').style.display = 'none';
+                document.getElementById('fullscreenButton').style.display = 'block';
+                
+                // Klonlanmış timer bar'ı kaldır
+                const clonedTimerBar = document.getElementById('fullscreenTimerBar');
+                if (clonedTimerBar) {
+                    exerciseArea.removeChild(clonedTimerBar);
+                }
+                
+                // Timer güncelleme interval'ini temizle
+                if (exerciseArea._timerUpdateInterval) {
+                    clearInterval(exerciseArea._timerUpdateInterval);
+                }
+                
+                // Orijinal timer bar'ı tekrar göster
+                const originalTimerBar = document.querySelector('.timer-bar');
+                originalTimerBar.style.visibility = 'visible';
+            }
+        }
+
+        // Zamanı formatla
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // Metronom sesini çal
+        function playMetronome() {
+            if (soundActive && exerciseStarted) {
+                window.playMetronomeSound();
+            }
+        }
+
+        // Metronom sesini başlat
+        function startMetronome() {
+            stopMetronome(); // Önceki metronom'u durdur
+            
+            // Hıza göre metronom aralığını belirle
+            const interval = speedSettings[speed].interval * 5; // Büyüme/küçülme aralığından daha uzun
+            
+            metronomeTimer = setInterval(playMetronome, interval);
+            playMetronome(); // İlk sesi hemen çal
+        }
+
+        // Metronom sesini durdur
+        function stopMetronome() {
+            clearInterval(metronomeTimer);
+        }
+
+        // Altıgenin boyutunu güncelle
+        function updateHexagonSize() {
+            if (!exerciseStarted) return;
+            
+            const hexagon = document.getElementById('hexagon');
+            const container = document.getElementById('hexagonContainer');
+            
+            // Hıza göre büyüme/küçülme ayarları
+            const { step, interval } = speedSettings[speed];
+            
+            // Büyüme veya küçülme işlemi
+            if (isGrowing) {
+                currentSize += step;
+                
+                // Maksimum boyuta ulaşıldıysa
+                if (currentSize >= maxSize) {
+                    currentSize = maxSize;
+                    isGrowing = false;
+                    
+                    // Renk modunu güncelle
+                    updateHexagonColor();
+                }
+            } else {
+                currentSize -= step;
+                
+                // Minimum boyuta ulaşıldıysa
+                if (currentSize <= minSize) {
+                    currentSize = minSize;
+                    isGrowing = true;
+                    
+                    // Bir döngü tamamlandı
+                    cycleCount++;
+                    document.getElementById('cycleCounter').innerText = `Döngü: ${cycleCount}/${targetCycles}`;
+                    
+                    // Renk modunu güncelle
+                    updateHexagonColor();
+                }
+            }
+            
+            // Altıgenin boyutunu güncelle - Altıgen için özel hesaplama
+            hexagon.style.width = `${currentSize}px`;
+            hexagon.style.height = `${currentSize * 0.866}px`; // Altıgen için özel oran: height = width * 0.866
+            
+            // Dönüş modu açıksa, rotation uygula
+            if (rotationMode) {
+                // Büyürken saat yönüne, küçülürken tersine
+                rotationAngle += isGrowing ? 0.3 : -0.3;
+                hexagon.style.transform = `rotate(${rotationAngle}deg)`;
+            }
+            
+            // Büyürken kenarları parlat
+            if (isGrowing && currentSize > minSize + 50) {
+                highlightEdges();
+            }
+            
+            // Sonraki güncellemeyi planla
+            hexagonTimer = setTimeout(updateHexagonSize, interval);
+        }
+
+        // Dikkat testi başlat
+        function startAttentionTest() {
+            if (!attentionTestActive || !exerciseStarted || attentionTestInProgress) return;
+            
+            // En az 3 saniye geçmiş olmalı son testten bu yana
+            const now = Date.now();
+            if (now - lastAttentionTest < 3000) return;
+            
+            // Dikkat testi için altıgen rengini kırmızı yap
+            attentionTestInProgress = true;
+            const hexagon = document.getElementById('hexagon');
+            const originalColor = hexagon.style.backgroundColor;
+            hexagon.style.backgroundColor = 'var(--danger-color)';
+            
+            // Uyarı mesajı göster
+            const hexagonContainer = document.getElementById('hexagonContainer');
+            
+            // Uyarı elementini oluştur veya var olanı al
+            let attentionAlert = document.getElementById('attentionAlert');
+            if (!attentionAlert) {
+                attentionAlert = document.createElement('div');
+                attentionAlert.id = 'attentionAlert';
+                attentionAlert.className = 'attention-alert';
+                attentionAlert.textContent = 'BOŞLUK TUŞUNA BAS!';
+                hexagonContainer.appendChild(attentionAlert);
+            }
+            
+            // Uyarıyı göster
+            attentionAlert.style.display = 'block';
+            
+            // Test sayacını artır
+            attentionTestCount++;
+            
+            // 0.5 saniye sonra normale dön
+            setTimeout(function() {
+                if (exerciseStarted) {
+                    hexagon.style.backgroundColor = originalColor;
+                    attentionAlert.style.display = 'none';
+                    attentionTestInProgress = false;
+                    
+                    // Eğer kullanıcı tepki vermediyse
+                    if (attentionTestInProgress) {
+                        attentionTestInProgress = false;
+                    }
+                }
+            }, 500);
+            
+            // Son test zamanını güncelle
+            lastAttentionTest = now;
+        }
+
+        // Dikkat testine yanıt
+        function handleAttentionResponse() {
+            if (attentionTestInProgress) {
+                attentionCorrectCount++;
+                attentionTestInProgress = false;
+                
+                // Uyarıyı gizle
+                const attentionAlert = document.getElementById('attentionAlert');
+                if (attentionAlert) {
+                    attentionAlert.style.display = 'none';
+                }
+            }
+        }
+
+        // Rastgele aralıklarla dikkat testi başlat
+        function scheduleRandomAttentionTest() {
+            if (!attentionTestActive || !exerciseStarted) return;
+            
+            // Rastgele 3-10 saniye arasında
+            const randomDelay = Math.floor(Math.random() * 7000) + 3000;
+            
+            setTimeout(function() {
+                startAttentionTest();
+                
+                // Egzersiz hala devam ediyorsa bir sonraki testi planla
+                if (exerciseStarted) {
+                    scheduleRandomAttentionTest();
+                }
+            }, randomDelay);
+        }
+
+        // Egzersizi başlat
+        function startExercise() {
+            // Egzersiz zaten başladıysa işlem yapma
+            if (exerciseStarted) return;
+            
+            // Değişkenleri sıfırla
+            exerciseStarted = true;
+            currentSize = minSize;
+            isGrowing = true;
+            cycleCount = 0;
+            remainingTime = duration;
+            attentionTestCount = 0;
+            attentionCorrectCount = 0;
+            rotationAngle = 0;
+            currentEdgeFocus = 0;
+            
+            // UI elemanlarını güncelle
+            document.getElementById('stopButton').style.display = 'block';
+            document.getElementById('startOverlay').style.display = 'none';
+            document.getElementById('timer').innerText = formatTime(remainingTime);
+            document.getElementById('cycleCounter').innerText = `Döngü: 0/${targetCycles}`;
+            
+            // Altıgen rengini ayarla
+            updateHexagonColor();
+            
+            // Tam ekran modunu etkinleştir
+            if (!isFullscreen) {
+                toggleFullscreen();
+            }
+            
+            // Geri sayımı göster
+            const countdownEl = document.getElementById('countdown');
+            countdownEl.style.display = 'block';
+            countdownEl.innerText = '3';
+            
+            // Manuel olarak geri sayım yap, fonksiyon çağrıları ile
+            startCountdown();
+        }
+
+        // Geri sayımı başlat
+        function startCountdown() {
+            const countdownEl = document.getElementById('countdown');
+            let count = 3;
+            
+            function updateCountdown() {
+                countdownEl.innerText = count;
+                
+                if (count > 0) {
+                    count--;
+                    setTimeout(updateCountdown, 1000);
+                } else {
+                    countdownEl.style.display = 'none';
+                    
+                    // Egzersizi başlat
+                    startTimer();
+                    updateHexagonSize();
+                    
+                    // Eğer altıgen kenarlarının parlaması için bir zamanlayıcı başlat
+                    if (isGrowing) {
+                        edgeTimer = setInterval(highlightEdges, 500);
+                    }
+                    
+                    // Dikkat testi açıksa, rastgele testleri başlat
+                    if (attentionTestActive) {
+                        scheduleRandomAttentionTest();
+                    }
+                    
+                    // Metronom açıksa sesi başlat
+                    if (soundActive) {
+                        startMetronome();
+                    }
+                }
+            }
+            
+            // İlk güncellemeyi başlat
+            updateCountdown();
+        }
+
+        // Zamanlayıcıyı başlat
+        function startTimer() {
+            exerciseTimer = setInterval(function() {
+                remainingTime--;
+                document.getElementById('timer').innerText = formatTime(remainingTime);
+                
+                // Rastgele dikkat testi 
+                if (attentionTestActive && Math.random() < 0.05 && !attentionTestInProgress) {
+                    startAttentionTest();
+                }
+                
+                if (remainingTime <= 0) {
+                    endExercise();
+                }
+            }, 1000);
+        }
+
+        // Egzersizi durdur
+        function stopExercise() {
+            if (!exerciseStarted) return;
+            endExercise();
+        }
+
+        // Egzersizi sonlandır
+        function endExercise() {
+            // Egzersiz durumunu güncelle
+            exerciseStarted = false;
+            
+            // Tüm zamanlayıcıları temizle
+            clearInterval(exerciseTimer);
+            clearTimeout(hexagonTimer);
+            clearInterval(edgeTimer);
+            stopMetronome();
+            
+            // UI elemanlarını güncelle
+            document.getElementById('stopButton').style.display = 'none';
+            
+            // Sonuçları hazırla
+            const mins = Math.floor(duration / 60);
+            const secs = duration % 60;
+            const formattedDuration = `${mins} dakika ${secs} saniye`;
+            
+            document.getElementById('totalCycles').innerText = cycleCount;
+            document.getElementById('exerciseDuration').innerText = formattedDuration;
+            
+            // Dikkat testi sonuçları
+            if (attentionTestActive && attentionTestCount > 0) {
+                const attentionRate = Math.round((attentionCorrectCount / attentionTestCount) * 100);
+                document.getElementById('attentionScore').innerText = `%${attentionRate} (${attentionCorrectCount}/${attentionTestCount})`;
+            } else {
+                document.getElementById('attentionScore').innerText = '-';
+            }
+            
+            // Odak çizgisi takibi (örnek amaçlı rastgele bir değer)
+            const focusScore = attentionTestActive ? 
+                Math.max(50, 100 - Math.round((attentionTestCount - attentionCorrectCount) * 10)) : 100;
+            document.getElementById('focusScore').innerText = `%${focusScore}`;
+            
+            // Başarı oranını, yapılan döngülerin hedef sayıya oranı olarak belirle
+            let successRate = 100;
+            if (targetCycles > 0) {
+                successRate = Math.min(100, Math.round((cycleCount / targetCycles) * 100));
+            }
+            
+            document.getElementById('successRate').innerText = `${successRate}%`;
+            document.getElementById('successRate').style.width = `${successRate}%`;
+            
+            // Sonuç ekranını göster
+            document.getElementById('completionOverlay').style.display = 'flex';
+        }
+
+        // Egzersizi sıfırla
+        function resetExercise() {
+            // Sonuç ekranını gizle
+            document.getElementById('completionOverlay').style.display = 'none';
+            
+            // Başlangıç ekranını göster
+            document.getElementById('startOverlay').style.display = 'flex';
+            
+            // Zamanı sıfırla
+            document.getElementById('timer').innerText = formatTime(duration);
+            
+            // Değişkenleri sıfırla
+            remainingTime = duration;
+            cycleCount = 0;
+            document.getElementById('cycleCounter').innerText = `Döngü: 0/${targetCycles}`;
+            
+            // Altıgeni başlangıç boyutuna getir
+            const hexagon = document.getElementById('hexagon');
+            hexagon.style.width = `${minSize}px`;
+            hexagon.style.height = `${minSize * 0.866}px`;
+            hexagon.style.transform = 'rotate(0deg)';
+            
+            // Kenarların parlamasını sıfırla
+            const edges = document.querySelectorAll('.edge');
+            edges.forEach(edge => {
+                edge.style.opacity = '0';
+            });
+            
+            // Tam ekrandan çık
+            exitFullscreen();
+        }
+
+    </script>
+</body>
+</html>
