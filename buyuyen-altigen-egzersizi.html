@@ -320,21 +320,29 @@
         
         .focus-point {
             position: absolute;
+            /* CENTER IT ON THE HEXAGON: */
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            
             width: 20px;
             height: 20px;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            opacity: 0.7;
+            
+            /* draw the cross */
             pointer-events: none;
+            z-index: 3;               /* above the hexagon (which is z-index: 2) */
+            opacity: 0.7;
         }
         
-        .focus-point:before, .focus-point:after {
+        .focus-point:before,
+        .focus-point:after {
             content: "";
             position: absolute;
             background-color: var(--primary-color-transparent);
         }
         
         .focus-point:before {
+            /* vertical bar of the + */
             left: 9px;
             top: 0;
             width: 2px;
@@ -342,6 +350,7 @@
         }
         
         .focus-point:after {
+            /* horizontal bar of the + */
             left: 0;
             top: 9px;
             width: 20px;
